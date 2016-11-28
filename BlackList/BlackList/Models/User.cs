@@ -16,7 +16,7 @@ namespace BlackList.Models
         public int PhoneNumber { get; set; }
         public string Mail { get; set; }
         public bool IsMailVerified { get; set; }
-
+        public DateTime DateCreated { get; set; }
 
     }
 }
