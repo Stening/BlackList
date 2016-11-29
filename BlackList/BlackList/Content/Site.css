@@ -34,3 +34,12 @@ textarea {
         padding: 10px 15px;
     }
 }
+
+.containers {
+    background-color: #99ccff;
+    border: thick solid #808080;
+    padding: 20px;
+    margin: 20px;
+    width:400px;
+    float:left;
+}
