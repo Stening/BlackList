@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BlackList
 {
-    public class UserLightWeight
+    public class UserVM
     {
         public string userName { get; set; }
         public int UserID { get; set; }
@@ -14,7 +14,7 @@ namespace BlackList
     public class ConnectedUser
     {
         public string UserName { get; set; }
-        public List<UserLightWeight> Friends { get; set; }
+        public List<UserVM> Friends { get; set; }
         
 
     }

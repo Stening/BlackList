@@ -13,7 +13,19 @@ namespace BlackList.BusinessLayer
         {
             _context = DbContext;
         }
+        public IQueryable<User> getAllFriends(int userId)
+        {
+            var friends = from friend
+                          in _context.Friends
+                          join u
+                          in _context.Users
+                          on friend.FriendID
+                          equals u.UserID
+                          where friend.FriendID == u.UserID
+                          select u;
 
+            return friends;
+        }
 
 
 
