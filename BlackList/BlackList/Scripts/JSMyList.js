@@ -4,11 +4,26 @@ $(document).ready(function () {
 
     $('#createList').click(function () {
         
+        //Skapar listan
         createList();
+
+        //Ändrar layout på list elementen vid click
         $(".click-sList").click(function () {
             $(this).toggleClass('toggleClass-li-clicked');
             $(this).find('.bock-class').toggleClass('bock-visible');
         });
+
+        //Tar bort li elementet associerat med trash button
+        $('li').on('click', 'button', function () {
+            $(this).closest('li').remove();
+        });
+
+        //Knapp för att ta bort hela listan
+        $('#remove-list').click(function () {
+            $('.ul-ShoppingList').remove();
+        })
+
+        
     });
 
     $(".click-sList").click(function () 
@@ -19,14 +34,17 @@ $(document).ready(function () {
 
     function createList() {
 
-        var listWords = ['Mendokse','Dajubu','Onegai'];
+        var listWords = ['Mendokse', 'Dajubu', 'Onegai'];
+        var ids = ['id1', 'id2', 'id3'];
         var cList = $('<ul/>')
             .addClass('ul-ShoppingList');
         $.each(listWords, function(i) {
             var li = $('<li/>')
                 .addClass('li-ShoppingList')
                 .addClass('click-sList')
+                .prop("id", ids[i])
                 .appendTo(cList);
+            
                 
             var spanInList = $('<span/>')
                 .addClass('glyphicon')
@@ -37,14 +55,29 @@ $(document).ready(function () {
             var text = $('<p/>')
                 .text(listWords[i])
                 .appendTo(li);
-                
+
+            var buttonInList = $('<button />')
+                .addClass('remove-button-class')
+                .prop('id', ids[i])
+               
+                .appendTo(li);
+
+            var glyphInbutton = $('<span/>')
+                .addClass('glyphicon')
+                .addClass('glyphicon-trash')
+                .appendTo(buttonInList);
+                          
 
 
         });
 
         $('.list-div').append(cList);
-        //$('.li-ShoppingList').append('hej');
+        
     }
+
+    
+    
+    
 
 
 });
