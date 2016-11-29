@@ -9,10 +9,11 @@ namespace BlackList.BusinessLayer
     {
         private readonly BlackListRepository _context;
 
-        public BlackListDbBusinessLayer(BlackListRepository DbContext)
+        public BlackListDbBusinessLayer()
         {
-            _context = DbContext;
+            _context = new BlackListRepository();
         }
+
         public IQueryable<User> getAllFriends(int userId)
         {
             var friends = from friend
@@ -26,7 +27,14 @@ namespace BlackList.BusinessLayer
 
             return friends;
         }
+        public IEnumerable<User> getAllUsers()
+        {
+            var users = from user
+                        in _context.Users
+                        select user;
 
+            return users.ToArray();
+        }
 
 
 

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+
+
+    <input id="inputBox" type="text" name="input" value="enter user ID" />
+
+    <button id="button">get friends</button>
+
+    <div id="AppendHere"></div>
+
+
+
+
+   
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            var test = $.connection.tryOutHub
+            
+            
+            $.connection.hub.start().done(function () {
+
+                $("#button").click(function () {
+                    var inputValue = $("#inputBox").val();
+                    test.server.test(inputValue);
+                });
+
+            });
+
+            function testMethod(name) {
+
+                $("#AppendHere").append(name);
+
+
+            }
+
+
+
+        })
+        
+    </script>
+</body>
+</html>

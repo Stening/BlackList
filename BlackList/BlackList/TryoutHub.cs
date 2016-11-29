@@ -14,8 +14,31 @@ namespace BlackList
     }
 
 
-    public class TryoutHub : Hub
+    public class TryOutHub : Hub
     {
+        //private Models.BlackListRepository _context;
+
+        public void Test(string id)
+        {
+            BlackList.BusinessLayer.BlackListDbBusinessLayer handler = new BusinessLayer.BlackListDbBusinessLayer();
+            int intId = int.Parse(id);
+            //var x = handler.getAllFriends(intId).ToList();
+            var x = handler.getAllUsers().ToList();
+
+            Clients.All.testMethod(x[0].UserName);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
         public override Task OnConnected()
         {
 
