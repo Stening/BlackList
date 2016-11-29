@@ -1,14 +1,16 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(ShoppingList.Startup))]
+[assembly: OwinStartup(typeof(ShoppingList.Startup))]
 namespace ShoppingList
 {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            app.MapSignalR();
+            //GlobalHost.HubPipeline.AddModule(new RejoingGroupPipelineModule());
         }
     }
 }
