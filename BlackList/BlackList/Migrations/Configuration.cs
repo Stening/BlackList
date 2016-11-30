@@ -17,7 +17,7 @@ namespace BlackList.Migrations
 
         protected override void Seed(BlackList.Models.ApplicationDbContext context)
         {
-           /* context.Contacts.AddOrUpdate(p => p.Name,
+            context.Contacts.AddOrUpdate(p => p.Name,
                new Contact
                {
                    Name = "Debra Garcia",
@@ -64,7 +64,7 @@ namespace BlackList.Migrations
                     Email = "diliana@example.com",
                 }
                 );
-                */
+                
         }
 
     }
