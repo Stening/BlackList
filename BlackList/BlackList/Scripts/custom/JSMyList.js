@@ -10,6 +10,8 @@ $(document).ready(function () {
 
         createList(wordarray, idarray);
 
+        $('#listName').toggleClass('toggleClass-hide-create');
+
         //Ändrar layout på list elementen vid click
         $(".click-sList").click(function () {
             $(this).toggleClass('toggleClass-li-clicked');
@@ -97,7 +99,9 @@ $(document).ready(function () {
 
         });
 
-        $('.list-div').append(cList);
+            $('.list-div').append(cList);
+
+            
         
     }
 
