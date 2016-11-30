@@ -250,3 +250,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/BlackList/BlackList/Content/JunkStyles.css
+/BlackList/BlackList/Views/Home/VariousJunk.cshtml
+/BlackList/BlackList/Resources/Image/pexels-photo-121734.jpg
+/BlackList/BlackList/Resources/Image/pexels-photo-226591.jpg
