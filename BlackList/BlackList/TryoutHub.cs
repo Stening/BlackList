@@ -18,18 +18,18 @@ namespace BlackList
     {
         //private Models.BlackListRepository _context;
 
-        public void Test(string id)
-        {
-            BlackList.BusinessLayer.BlackListDbBusinessLayer handler = new BusinessLayer.BlackListDbBusinessLayer();
-            int intId = int.Parse(id);
-            //var x = handler.getAllFriends(intId).ToList();
-            var x = handler.getAllUsers().ToList();
+        //public void Test(string id)
+        //{
+        //    BlackList.BusinessLayer.BlackListDbBusinessLayer handler = new BusinessLayer.BlackListDbBusinessLayer();
+        //    int intId = int.Parse(id);
+        //    //var x = handler.getAllFriends(intId).ToList();
+        //    var x = handler.getAllUsers().ToList();
 
-            Clients.All.testMethod(x[0].UserName);
+        //    Clients.All.testMethod(x[intId].UserName);
 
 
 
-        }
+        //}
 
 
 
@@ -51,12 +51,6 @@ namespace BlackList
         public override Task OnDisconnected(bool stopCalled)
         {
             return base.OnDisconnected(stopCalled);
-        }
-
-
-        public void Hello()
-        {
-            Clients.All.hello();
         }
     }
 }

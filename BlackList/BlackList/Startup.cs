@@ -16,12 +16,12 @@ namespace BlackList
         {
             ConfigureAuth(app);
             app.MapSignalR("/signalr", new HubConfiguration());
+            //var sqlConnectionString = @"Server=(localdb)\v11.0;Database=BlackListRepository;Integrated Security=True;";
+            //GlobalHost.DependencyResolver.UseSqlServer(sqlConnectionString);
+            //GlobalHost.DependencyResolver.
 
-            
-            
-        
         }
-
+        
         
 
     }

@@ -17,7 +17,11 @@ namespace BlackList.Models
         public DbSet<ListItem> ListItems { get; set; }
         public DbSet<UserMtoMList> UserMtoMLists { get; set; }
 
+        public BlackListRepository()
+            :base("DefaultConnection")
+        {
 
+        }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
