@@ -7,13 +7,13 @@ namespace BlackList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Added_Date_To_User : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_Date_To_User));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611231241079_Added_Date_To_User"; }
+            get { return "201611300931060_Initial"; }
         }
         
         string IMigrationMetadata.Source

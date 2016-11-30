@@ -41,6 +41,12 @@ namespace BlackList
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css"));
+
+            //Custom scripts
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                "~/Scripts/custom/menu.js",
+                "~/Scripts/custom/JSMyList.js"));
+
         }
     }
 }

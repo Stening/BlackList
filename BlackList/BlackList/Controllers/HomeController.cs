@@ -5,7 +5,9 @@ using System.Web.Mvc;
 
 namespace BlackList.Controllers
 {
+
     [Authorize]
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

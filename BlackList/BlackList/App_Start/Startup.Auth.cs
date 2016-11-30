@@ -88,6 +88,10 @@ namespace BlackList
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            app.UseGoogleAuthentication(
+         clientId: "1007773617079-u6c43k4bh2cf302jpn94m0g2qgaibi85.apps.googleusercontent.com",
+         clientSecret: "1r53y_X-wax3PtCq6_V3TLdd");
         }
     }
 }
