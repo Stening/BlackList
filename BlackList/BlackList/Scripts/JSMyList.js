@@ -5,7 +5,10 @@ $(document).ready(function () {
     $('#createList').click(function () {
         
         //Skapar listan
-        createList();
+        var wordarray = ['Matakue', 'Mendokse'];
+        var idarray = ['id1', 'id2'];
+
+        createList(wordarray, idarray);
 
         //Ändrar layout på list elementen vid click
         $(".click-sList").click(function () {
@@ -14,14 +17,17 @@ $(document).ready(function () {
         });
 
         //Tar bort li elementet associerat med trash button
-        $('li').on('click', 'button', function () {
-            $(this).closest('li').remove();
-        });
+        
+
+        function removeWord () {
+            alert('Funka!')
+            //crudRemove($(this).closest('li').prop('id'));
+        };
 
         //Knapp för att ta bort hela listan
         $('#remove-list').click(function () {
             $('.ul-ShoppingList').remove();
-        })
+        });
 
         
     });
@@ -32,17 +38,27 @@ $(document).ready(function () {
         $(this).find('.bock-class').toggleClass('bock-visible');
     });
 
-    function createList() {
+    
+    function createList (wordsInListArray, idArray ) {
 
-        var listWords = ['Mendokse', 'Dajubu', 'Onegai'];
-        var ids = ['id1', 'id2', 'id3'];
-        var cList = $('<ul/>')
+        function removeWord() {
+            alert('ta bort ord')
+            //crudRemove($(this).closest('li').prop('id'));
+        };
+
+        function editWord() {
+            alert('editera ordet ' + $(this).closest('li').prop('id'))
+            //crudRemove($(this).closest('li').prop('id'));
+        }
+
+
+            var cList = $('<ul/>')
             .addClass('ul-ShoppingList');
-        $.each(listWords, function(i) {
+            $.each(wordsInListArray, function(i) {
             var li = $('<li/>')
                 .addClass('li-ShoppingList')
                 .addClass('click-sList')
-                .prop("id", ids[i])
+                .prop("id", idArray[i])
                 .appendTo(cList);
             
                 
@@ -53,20 +69,30 @@ $(document).ready(function () {
                 .appendTo(li);
             
             var text = $('<p/>')
-                .text(listWords[i])
+                .text(wordsInListArray[i])
                 .appendTo(li);
 
-            var buttonInList = $('<button />')
+            var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
-                .prop('id', ids[i])
-               
+                .prop('id', idArray[i])
+                .click(removeWord)
                 .appendTo(li);
 
-            var glyphInbutton = $('<span/>')
+            var trashGlyphInButton = $('<span/>')
                 .addClass('glyphicon')
                 .addClass('glyphicon-trash')
-                .appendTo(buttonInList);
-                          
+                .appendTo(trashButtonInList);
+
+            var editButtonInList = $('<button />')
+                .addClass('edit-button-class')
+                .prop('id', idArray[i])
+                .click(editWord)
+                .appendTo(li);
+
+            var editGlyphInButton = $('<span />')
+                .addClass('glyphicon')
+                .addClass('glyphicon-pencil')
+                .appendTo(editButtonInList);
 
 
         });
@@ -75,7 +101,34 @@ $(document).ready(function () {
         
     }
 
-    
+    $(function () {
+        // Reference the auto-generated proxy for the hub.  
+        var chat = $.connection.chatHub;
+        // Create a function that the hub can call back to display messages.
+        chat.client.addNewMessageToPage = function (name, message) {
+            // Add the message to the page. 
+            $('#discussion').append('<li><strong>' + htmlEncode(name)
+                + '</strong>: ' + htmlEncode(message) + '</li>');
+        };
+        // Get the user name and store it to prepend to messages.
+        $('#displayname').val(prompt('Enter your name:', ''));
+        // Set initial focus to message input box.  
+        $('#message').focus();
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            $('#sendmessage').click(function () {
+                // Call the Send method on the hub. 
+                chat.server.send($('#displayname').val(), $('#message').val());
+                // Clear text box and reset focus for next comment. 
+                $('#message').val('').focus();
+            });
+        });
+    });
+    // This optional function html-encodes messages for display in the page.
+    function htmlEncode(value) {
+        var encodedValue = $('<div />').text(value).html();
+        return encodedValue;
+    }
     
     
 
