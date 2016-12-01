@@ -10,6 +10,9 @@ $(document).ready(function () {
 
         createList(wordarray, idarray);
 
+        //Gömmer textbox och knapp för skapandet av listan
+        $('#listName').toggleClass('toggleClass-hide-create');
+        $('#createList').toggleClass('toggleClass-hide-create');
         //Ändrar layout på list elementen vid click
         $(".click-sList").click(function () {
             $(this).toggleClass('toggleClass-li-clicked');
@@ -52,6 +55,19 @@ $(document).ready(function () {
         }
 
 
+        //Skapar listans rubrik
+
+        var nameOfList = $('#listName').val();
+        var listHeading = $('<h2 />')
+            .addClass('headingForListName');
+            
+        var headingText = $('<p/>')
+            .text(nameOfList)
+            .appendTo(listHeading);
+
+        $('.create-list-div').append(listHeading)
+
+        //Skapar listan med ord
             var cList = $('<ul/>')
             .addClass('ul-ShoppingList');
             $.each(wordsInListArray, function(i) {
