@@ -1,38 +1,14 @@
 ﻿
 
 $(document).ready(function () {
+    var CL = $.connection.cRUDHub;
 
-    $('#createList').click(function () {
-        
-        //Skapar listan
-        var wordarray = ['Matakue', 'Mendokse'];
-        var idarray = ['id1', 'id2'];
-
-        createList(wordarray, idarray);
-
-        //Gömmer textbox och knapp för skapandet av listan
-        $('#listName').toggleClass('toggleClass-hide-create');
-        $('#createList').toggleClass('toggleClass-hide-create');
-        //Ändrar layout på list elementen vid click
-        $(".click-sList").click(function () {
-            $(this).toggleClass('toggleClass-li-clicked');
-            $(this).find('.bock-class').toggleClass('bock-visible');
+    $.connection.hub.start().done(function () {
+        $('#createList').click(function () {    
+            CL.server.createListCode($('#listName').val());
+            $('#listName').toggleClass('toggleClass-hide-create');
+            $('#createList').toggleClass('toggleClass-hide-create');
         });
-
-        //Tar bort li elementet associerat med trash button
-        
-
-        function removeWord () {
-            alert('Funka!')
-            //crudRemove($(this).closest('li').prop('id'));
-        };
-
-        //Knapp för att ta bort hela listan
-        $('#remove-list').click(function () {
-            $('.ul-ShoppingList').remove();
-        });
-
-        
     });
 
     $(".click-sList").click(function () 
@@ -41,8 +17,44 @@ $(document).ready(function () {
         $(this).find('.bock-class').toggleClass('bock-visible');
     });
 
+    $.connection.hub.start().done(function () {
+        $('#add-to-list-button').click(function () {
+            CL.server.addToListCode($('#textbox-list').val());
+
+            
+            //Ändrar layout på list elementen vid click
+            
+
+            //function removeWord() {
+            //    alert('Funka!')
+            //    //crudRemove($(this).closest('li').prop('id'));
+            //};
+
+            //Knapp för att ta bort hela listan
+            $('#remove-list').click(function () {
+                $('.ul-ShoppingList').remove();
+            });
+
+
+        });
+    });
+
+
+    CL.client.createList = function () {
+        var nameOfList = $('#listName').val();
+        var listHeading = $('<h2 />')
+            .addClass('headingForListName');
+
+        var headingText = $('<p/>')
+            .text(nameOfList)
+            .appendTo(listHeading);
+
+        $('.create-list-div').append(listHeading)
+    }
+
     
-    function createList (wordsInListArray, idArray ) {
+    CL.client.addToList = function (wordsInList, id ) 
+    {
 
         function removeWord() {
             alert('ta bort ord')
@@ -52,29 +64,16 @@ $(document).ready(function () {
         function editWord() {
             alert('editera ordet ' + $(this).closest('li').prop('id'))
             //crudRemove($(this).closest('li').prop('id'));
-        }
-
-
-        //Skapar listans rubrik
-
-        var nameOfList = $('#listName').val();
-        var listHeading = $('<h2 />')
-            .addClass('headingForListName');
-            
-        var headingText = $('<p/>')
-            .text(nameOfList)
-            .appendTo(listHeading);
-
-        $('.create-list-div').append(listHeading)
+        };
 
         //Skapar listan med ord
             var cList = $('<ul/>')
             .addClass('ul-ShoppingList');
-            $.each(wordsInListArray, function(i) {
+            //$.each(wordsInListArray, function(i) {
             var li = $('<li/>')
                 .addClass('li-ShoppingList')
                 .addClass('click-sList')
-                .prop("id", idArray[i])
+                .prop("id", id)
                 .appendTo(cList);
             
                 
@@ -85,12 +84,12 @@ $(document).ready(function () {
                 .appendTo(li);
             
             var text = $('<p/>')
-                .text(wordsInListArray[i])
+                .text(wordsInList)
                 .appendTo(li);
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
-                .prop('id', idArray[i])
+                .prop('id', id)
                 .click(removeWord)
                 .appendTo(li);
 
@@ -101,7 +100,7 @@ $(document).ready(function () {
 
             var editButtonInList = $('<button />')
                 .addClass('edit-button-class')
-                .prop('id', idArray[i])
+                .prop('id', id)
                 .click(editWord)
                 .appendTo(li);
 
@@ -111,9 +110,14 @@ $(document).ready(function () {
                 .appendTo(editButtonInList);
 
 
-        });
+        
+            $('.list-div').append(cList);
 
-        $('.list-div').append(cList);
+            $(".click-sList").click(function () {
+                
+                $(this).toggleClass('toggleClass-li-clicked');
+                $(this).find('.bock-class').toggleClass('bock-visible');
+            });
         
     }
 
