@@ -237,10 +237,6 @@
     <Compile Include="Migrations\201611231241079_Added_Date_To_User.Designer.cs">
       <DependentUpon>201611231241079_Added_Date_To_User.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611301403224_Login_To_Website.cs" />
-    <Compile Include="Migrations\201611301403224_Login_To_Website.Designer.cs">
-      <DependentUpon>201611301403224_Login_To_Website.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlackListRepository.cs" />
@@ -367,9 +363,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611231241079_Added_Date_To_User.resx">
       <DependentUpon>201611231241079_Added_Date_To_User.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611301403224_Login_To_Website.resx">
-      <DependentUpon>201611301403224_Login_To_Website.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
