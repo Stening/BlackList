@@ -15,12 +15,12 @@ namespace BlackList.Models
         [Required, Column(Order =0) Key, ForeignKey("user")]
         public int UserID { get; set; }
         [Required]
-        public virtual User user { get; set; }
+        public virtual ListUser user { get; set; }
 
 
         [Required, Column(Order = 1)Key, ForeignKey("shoppingList")]
         public int ShoppingListID { get; set; }
         [Required]
-        public virtual ShoppingList shoppingList { get; set; }
+        public virtual List shoppingList { get; set; }
     }
 }

@@ -11,11 +11,11 @@ namespace BlackList.Models
 
         [Required, Key, Column(Order = 0), ForeignKey("user")]
         public int UserID { get; set; }
-        public virtual User user { get; set; }
+        public virtual ListUser user { get; set; }
 
         [Required, Key, Column(Order = 1), ForeignKey("friend")]
         public int FriendID { get; set; }
-        public virtual User friend { get; set; }
+        public virtual ListUser friend { get; set; }
 
     }
 }

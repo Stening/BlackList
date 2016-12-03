@@ -7,19 +7,19 @@ namespace BlackList.BusinessLayer
 {
     public class BlackListDbBusinessLayer
     {
-        private readonly BlackListRepository _context;
+        private readonly ApplicationDbContext _context;
 
         public BlackListDbBusinessLayer()
         {
-            _context = new BlackListRepository();
+            _context = new ApplicationDbContext();
         }
 
-        public IQueryable<User> getAllFriends(int userId)
+        public IQueryable<ListUser> getAllFriends(int userId)
         {
             var friends = from friend
                           in _context.Friends
                           join u
-                          in _context.Users
+                          in _context.ListUsers
                           on friend.FriendID
                           equals u.UserID
                           where friend.FriendID == u.UserID
@@ -27,10 +27,10 @@ namespace BlackList.BusinessLayer
 
             return friends;
         }
-        public IEnumerable<User> getAllUsers()
+        public IEnumerable<ListUser> getAllUsers()
         {
             var users = from user
-                        in _context.Users
+                        in _context.ListUsers
                         select user;
 
             return users.ToArray();

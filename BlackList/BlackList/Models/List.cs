@@ -6,14 +6,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace BlackList.Models
 {
-    public class ChatRoomUsers
+    public class List
     {
+        [Key, Required]
+        public int ShoppingListID { get; set; }
 
-        public int ChatRoomID { get; set; }
+        [Required]
+        public string Title { get; set; }
+        public DateTime DateCreated { get; set; }
 
-        [ForeignKey("user"), Key, Column(Order = 0)]
-        public int UserID { get; set; }
-        public User user{ get; set; }
+
 
     }
 }
