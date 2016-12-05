@@ -231,6 +231,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\CRUDHub.cs" />
+    <Compile Include="Hubs\FriendsHub.cs" />
     <Compile Include="Migrations\201612031258124_Initial.cs" />
     <Compile Include="Migrations\201612031258124_Initial.Designer.cs">
       <DependentUpon>201612031258124_Initial.cs</DependentUpon>
@@ -302,6 +303,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\custom\ViewConnectedFriends.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />

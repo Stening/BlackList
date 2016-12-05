@@ -63,7 +63,55 @@ namespace BlackList.Migrations
                     Email = "diliana@example.com",
                 }
                 );
-                
+
+
+            ListUser stening = new ListUser
+            {
+                UserName = "Stening",
+                Mail = "stening@test.com",
+                DateCreated = DateTime.Now
+            };
+            ListUser wigge = new ListUser
+            {
+                UserName = "wigge",
+                Mail = "wigge@test.com",
+                DateCreated = DateTime.Now
+
+            };
+            ListUser linkan = new ListUser
+            {
+                UserName = "linkan",
+                Mail = "linkan@test.com",
+                DateCreated = DateTime.Now
+
+            }; ListUser josse = new ListUser
+            {
+                UserName = "josse",
+                Mail = "josse@test.com",
+                DateCreated = DateTime.Now
+            };
+
+
+            //context.ListUsers.AddOrUpdate(
+            //    n => n.UserName,
+            //   josse, linkan, stening, wigge);
+
+            Friend steninglinkan = new Friend
+            {
+                UserID = stening.UserID,
+                FriendID = linkan.UserID
+            };
+            Friend steningJosse = new Friend
+            {
+                UserID = stening.UserID,
+                friend = new ListUser
+                {
+                    UserName = "josse",
+                    Mail = "josse@test.com",
+                    DateCreated = DateTime.Now
+                }
+        };
+            context.Friends.AddOrUpdate(steninglinkan, steningJosse);
         }
 
     }

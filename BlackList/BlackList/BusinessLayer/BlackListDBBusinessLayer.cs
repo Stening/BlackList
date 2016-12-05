@@ -36,6 +36,25 @@ namespace BlackList.BusinessLayer
             return users.ToArray();
         }
 
+        public ListUser getUser(string userName) => _context.ListUsers.Where(u => u.UserName == userName).Single();
+
+        public ListUser GetFriends(string userName)
+        {
+            var friend = from user in _context.ListUsers
+                         where user.UserName == userName
+                         from buddy in _context.Friends
+                         group buddy by buddy.friend into grp
+                         select grp.Key; 
+
+
+            //var test = from friend in _context.ListUsers
+            //           where friend.UserName 
+            //           select friend;
+
+
+            throw new NotImplementedException();
+        }
+
 
 
     }
