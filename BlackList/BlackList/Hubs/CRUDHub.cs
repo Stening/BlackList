@@ -10,7 +10,7 @@ namespace BlackList.Hubs
     public class CRUDHub : Hub
     {
 
-        private readonly BlackListRepository _context = new BlackListRepository();
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         public void Send(string name, string message)
         {
@@ -21,7 +21,7 @@ namespace BlackList.Hubs
         public void CreateListCode(string listName)
         {
 
-            _context.ShoppingLists.Add(new ShoppingList
+            _context.ShoppingLists.Add(new List
             {
                 Title = listName,
                 DateCreated = DateTime.Now
