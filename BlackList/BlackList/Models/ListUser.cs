@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlackList.Models
 {
-    public class User
+    public class ListUser
     {
         [Required Key]
         public int UserID { get; set; }

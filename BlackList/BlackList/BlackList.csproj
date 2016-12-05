@@ -221,7 +221,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
@@ -229,25 +231,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\CRUDHub.cs" />
-    <Compile Include="Migrations\201611231201392_Initial.cs" />
-    <Compile Include="Migrations\201611231201392_Initial.Designer.cs">
-      <DependentUpon>201611231201392_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611231241079_Added_Date_To_User.cs" />
-    <Compile Include="Migrations\201611231241079_Added_Date_To_User.Designer.cs">
-      <DependentUpon>201611231241079_Added_Date_To_User.cs</DependentUpon>
+    <Compile Include="Migrations\201612031258124_Initial.cs" />
+    <Compile Include="Migrations\201612031258124_Initial.Designer.cs">
+      <DependentUpon>201612031258124_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BlackListRepository.cs" />
+    <Compile Include="Models\ChatRoom.cs" />
+    <Compile Include="Models\ChatRoomUser.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListItem.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MeViewModels.cs" />
-    <Compile Include="Models\ShoppingList.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\List.cs" />
+    <Compile Include="Models\ListUser.cs" />
     <Compile Include="Models\UserMtoMList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -358,11 +359,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611231201392_Initial.resx">
-      <DependentUpon>201611231201392_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611231241079_Added_Date_To_User.resx">
-      <DependentUpon>201611231241079_Added_Date_To_User.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612031258124_Initial.resx">
+      <DependentUpon>201612031258124_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

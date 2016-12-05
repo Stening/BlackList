@@ -16,7 +16,7 @@ namespace BlackList.Models
 
         [ForeignKey("shoppingList")]
         public int ListID { get; set; }
-        public virtual ShoppingList shoppingList { get; set; }
+        public virtual List shoppingList { get; set; }
 
     }
 }

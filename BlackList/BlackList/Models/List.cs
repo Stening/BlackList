@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace BlackList.Models
 {
-    public class ShoppingList
+    public class List
     {
         [Key, Required]
         public int ShoppingListID { get; set; }
