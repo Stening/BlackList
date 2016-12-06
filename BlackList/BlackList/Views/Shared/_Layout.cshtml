@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="container body-content" id="site-wrapper">
@@ -69,11 +70,14 @@
         </div>
     </div>
 
+   
+    
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jquery.signalR-2.2.1.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/signalr/hubs")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

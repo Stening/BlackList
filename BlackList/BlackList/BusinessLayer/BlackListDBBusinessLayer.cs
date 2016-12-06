@@ -37,22 +37,47 @@ namespace BlackList.BusinessLayer
         }
 
         public ListUser getUser(string userName) => _context.ListUsers.Where(u => u.UserName == userName).Single();
+        public ListUser getUserBymail(string email) => _context.ListUsers.Where(u => u.Mail == email).Single();
 
-        public ListUser GetFriends(string userName)
+        public ListUser getFriendTest(string mail)
         {
-            var friend = from user in _context.ListUsers
-                         where user.UserName == userName
-                         from buddy in _context.Friends
-                         group buddy by buddy.friend into grp
-                         select grp.Key; 
+            var user = getUserBymail(mail);
 
 
-            //var test = from friend in _context.ListUsers
-            //           where friend.UserName 
-            //           select friend;
+            var friends = from friend in _context.Friends
+                          where friend.UserID == user.UserID
+                          select friend.friend;
+
+            return friends.FirstOrDefault();
+        }
 
 
-            throw new NotImplementedException();
+
+        public ListUser[] GetFriends(string mail)
+        {
+
+            var friends = from user in _context.Friends
+                          where user.user.Mail == mail
+                          select user.friend;
+            
+
+            //var friends = from user in _context.ListUsers
+            //              where user.
+            //              from buddy in _context.Friends
+            //              where user.UserID == buddy.UserID
+            //              from userfriend in _context.ListUsers
+            //              where userfriend.UserID == buddy.FriendID
+            //              select userfriend;
+            // group buddy by buddy.friend into grp
+            //select grp.Key;
+
+
+                          //var test = from friend in _context.ListUsers
+                          //           where friend.UserName 
+                          //           select friend;
+
+
+            return friends.ToArray();
         }
 
 
