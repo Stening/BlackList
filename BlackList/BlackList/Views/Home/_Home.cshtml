@@ -44,8 +44,30 @@
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
+            <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
             <div class="panel-body">
-                Träutensilierna i ett tryckeri äro ingalunda en faktor där trevnadens ordningens och ekonomiens upprätthållande, och dock är det icke sällan som sorgliga erfarenheter göras ordningens och ekon och miens därmed upprätthållande. Träutensilierna i ett tryckeri äro ingalunda en oviktig faktor, för trevnadens ordningens och och dock är det icke sällan.
+</div>
+@model BlackList.Models.RegisterModel
+
+@{
+    using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
+    {
+        <label>Ditt Namn:</label><br />
+        @Html.TextBoxFor(m => m.UserName)<br />
+
+
+        <label>Namn på personen du vill bjuda in:</label><br />
+        @Html.TextBoxFor(m => m.InviteUserName)<br />
+
+        <label>Ange Email till personen du vill bjuda in:</label><br />
+        @Html.TextBoxFor(m => m.Email)<br />
+
+
+
+        <br />
+        <input type="submit" value="Bjud in" />
+        }
+    }
             </div>
         </div>
     </div>
