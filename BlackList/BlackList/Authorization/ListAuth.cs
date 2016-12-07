@@ -21,13 +21,25 @@ namespace BlackList.Authorization
         {
 
             
-            var listId = httpContext.Request.RequestContext.RouteData.Values["listId"] as string;
-            var AuthorizationRole = dbLayer.GetAuthorizationRole();
+            string listId = httpContext.Request.RequestContext.RouteData.Values["listId"] as string;
+            int ListIdInt = int.Parse(listId);
 
-            //if (isUserAuthorized)
-            //    return true;
-            throw new NotImplementedException();
-            //return base.AuthorizeCore(httpContext);
+
+            string userMail = httpContext.User.Identity.Name;
+
+            var AuthorizationRole = dbLayer.GetAuthorizationRole(userMail, ListIdInt);
+
+            if (AuthorizationRole <= (int)Enum.Parse(typeof(ListRoles), Roles))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+            //return base.AuthorizeCore(httpContext);//Should we use this even??
         }
 
 

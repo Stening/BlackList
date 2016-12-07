@@ -28,13 +28,16 @@ namespace BlackList.BusinessLayer
             return friends;
         }
 
-        public string GetAuthorizationRole()
+        public int GetAuthorizationRole(string mail, int listId)
         {
 
-            //var authorization = from auth in _context.UserMtoMLists
-            //                    where auth.
+            var authorization = from auth in _context.UserMtoMLists
+                                where auth.user.Mail == mail
+                                && auth.ShoppingListID == listId
+                                select auth;
 
-            throw new NotImplementedException();
+            return authorization.First().Authority;
+            
         }
 
         public IEnumerable<ListUser> getAllUsers()
