@@ -19,8 +19,8 @@ namespace BlackList.Models
         public Message PreviousMessage { get; set; }
 
         [ForeignKey("Sender")]
-        public int SenderUserID { get; set; }
-        public ListUser Sender { get; set; }
+        public string SenderUserID { get; set; }
+        public ApplicationUser Sender { get; set; }
 
         [ForeignKey("chatRoom")]
         public int ChatRoomID { get; set; }

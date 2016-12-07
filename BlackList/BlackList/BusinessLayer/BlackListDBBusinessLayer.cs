@@ -16,16 +16,18 @@ namespace BlackList.BusinessLayer
 
         public IQueryable<ListUser> getAllFriends(int userId)
         {
-            var friends = from friend
-                          in _context.Friends
-                          join u
-                          in _context.ListUsers
-                          on friend.FriendID
-                          equals u.UserID
-                          where friend.FriendID == u.UserID
-                          select u;
+            // needs re-writing
+            //var friends = from friend
+            //              in _context.Friends
+            //              join u
+            //              in _context.Users
+            //              on friend.FriendID
+            //              equals u.
+            //              where friend.FriendID == u.UserID
+            //              select u;
 
-            return friends;
+            //return friends;
+            throw new NotImplementedException();
         }
 
         public int GetAuthorizationRole(string mail, int listId)
@@ -42,11 +44,12 @@ namespace BlackList.BusinessLayer
 
         public IEnumerable<ListUser> getAllUsers()
         {
-            var users = from user
-                        in _context.ListUsers
-                        select user;
+            //var users = from user
+            //            in _context.ListUsers
+            //            select user;
 
-            return users.ToArray();
+            //return users.ToArray();
+            throw new NotImplementedException();
         }
 
         public ListUser getUser(string userName) => _context.ListUsers.Where(u => u.UserName == userName).Single();

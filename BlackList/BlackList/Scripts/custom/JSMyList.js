@@ -11,43 +11,45 @@ $(document).ready(function () {
         });
     });
 
-    $(".click-sList").click(function () 
-    {
-        $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
-    });
+    //$(".click-sList").click(function () 
+    //{
+    //    $(this).toggleClass('toggleClass-li-clicked');
+    //    $(this).find('.bock-class').toggleClass('bock-visible');
+    //});
 
+    //Tar bort li elemnt från listan efter att detta görs i databasen
+    CL.client.deleteWordfromList = function (deleteWordID) {
+        $('#'+deleteWordID).remove();
+        
+
+    }
+
+    //Add word to list
     $.connection.hub.start().done(function () {
         $('#add-to-list-button').click(function () {
-            CL.server.addToListCode($('#textbox-list').val());
+            CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
-            
-            //Ändrar layout på list elementen vid click
-            
-
-            //function removeWord() {
-            //    alert('Funka!')
-            //    //crudRemove($(this).closest('li').prop('id'));
-            //};
-
+           
             //Knapp för att ta bort hela listan
             $('#remove-list').click(function () {
                 $('.ul-ShoppingList').remove();
             });
 
-
         });
     });
 
 
-    CL.client.createList = function () {
+    CL.client.createList = function (listID) {
         var nameOfList = $('#listName').val();
         var listHeading = $('<h2 />')
-            .addClass('headingForListName');
+            .addClass('headingForListName')
+            .prop('id', listID);
 
         var headingText = $('<p/>')
             .text(nameOfList)
             .appendTo(listHeading);
+
+        //$('#add-to-list-button').prop('id', listID);
 
         $('.create-list-div').append(listHeading)
     }
@@ -56,13 +58,43 @@ $(document).ready(function () {
     CL.client.addToList = function (wordsInList, id ) 
     {
 
-        function removeWord() {
-            alert('ta bort ord')
-            //crudRemove($(this).closest('li').prop('id'));
-        };
+        function deleteWord() {
+            $.connection.hub.start().done(function () {
+                CL.server.removeFromListCode(id);             
+
+            });
+        }
+
+        function sendNewWord(){
+            
+        }
 
         function editWord() {
-            alert('editera ordet ' + $(this).closest('li').prop('id'))
+            $.connection.hub.start().done(function () {
+                CL.server.editWordListCode(id, 'hej', $('.headingForListName').prop('id'));
+            });
+
+            var newTextBox = $('<input>', {
+                type: 'text',
+                val: $('.li-ShoppingList').val()
+            }).addClass('textbox-for-update').appendTo($(this).closest('li'));
+
+            var editButton = $('<button />')
+                .addClass('save-new-word')
+                .click(sendNewWord)
+                .appendTo($(this).closest('li'));
+
+
+            var updateGlyphInButton = $('<span />')
+                .addClass('glyphicon')
+                .addClass('glyphicon-floppy-saved')
+                .appendTo(editButton);
+
+            $('.li-ShoppingList').closest('p').remove();                   
+                
+
+        
+            //alert('editera ordet ' + $(this).prop('id'))
             //crudRemove($(this).closest('li').prop('id'));
         };
 
@@ -84,13 +116,14 @@ $(document).ready(function () {
                 .appendTo(li);
             
             var text = $('<p/>')
+                .addClass('word-in-p')
                 .text(wordsInList)
                 .appendTo(li);
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
                 .prop('id', id)
-                .click(removeWord)
+                .click(deleteWord)
                 .appendTo(li);
 
             var trashGlyphInButton = $('<span/>')
