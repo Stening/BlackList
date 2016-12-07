@@ -50,7 +50,6 @@ namespace BlackList.Hubs
 
                     FriendIds[i] = temp.ConnectionId;
                 }
-
             }
 
 
@@ -58,6 +57,7 @@ namespace BlackList.Hubs
             Clients.Clients(FriendIds).updateFriends();
             UpdateConnectedFriends();
         }
+
 
 
 
@@ -81,7 +81,15 @@ namespace BlackList.Hubs
         }
 
 
+        public void inviteToList(string userNameToInvite, int listId)
+        {
+            dbLayer.InviteToList(listId, userNameToInvite);
 
+
+
+            //call client method to update lists here!
+
+        }
 
 
 

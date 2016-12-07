@@ -27,6 +27,16 @@ namespace BlackList.BusinessLayer
 
             return friends;
         }
+
+        public string GetAuthorizationRole()
+        {
+
+            //var authorization = from auth in _context.UserMtoMLists
+            //                    where auth.
+
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ListUser> getAllUsers()
         {
             var users = from user
@@ -79,6 +89,35 @@ namespace BlackList.BusinessLayer
 
             return friends.ToArray();
         }
+
+
+        public void InviteToList(int listID,string UserName)
+        {
+
+            var list = _context.ShoppingLists.Where(l => l.ShoppingListID == listID).Single();
+            var listRelation = from rel in _context.UserMtoMLists
+                               where rel.ShoppingListID == listID
+                               && rel.user.UserName == UserName
+                               && rel.Authority == 1
+                               select rel;
+
+            var singleRelation = listRelation.First();
+
+            _context.UserMtoMLists.Add(new UserMtoMList
+            {
+                Authority = 4,
+                shoppingList = singleRelation.shoppingList,
+                ShoppingListID = singleRelation.ShoppingListID,
+                user = singleRelation.user,
+                UserID = singleRelation.UserID
+            });
+
+            _context.SaveChanges();
+
+
+        }
+
+
 
 
 
