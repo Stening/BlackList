@@ -52,8 +52,9 @@
 @{
     using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
     {
-        <label>Ditt Namn:</label><br />
-        @Html.TextBoxFor(m => m.UserName)<br />
+      //  <b>Employee Name:</b> @ViewBag.EmployeeName<br />
+        
+        <h1>Avsändare: @ViewBag.EmployeeName</h1><br />
 
 
         <label>Namn på personen du vill bjuda in:</label><br />

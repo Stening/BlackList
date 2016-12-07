@@ -12,17 +12,27 @@ namespace BlackList.Controllers
     {
         public ActionResult Index()
         {
+            string _currentLoggedInUser= currentLoggedInUser();
+            ViewBag.EmployeeName = _currentLoggedInUser;
             return View();
         }
-        [HttpPost]
-        public ActionResult EmailInfo(string Email, string InviteUserName,string UserName)
+
+        private string currentLoggedInUser()
         {
-            SendEmail(Email, InviteUserName,UserName);
+            string activeUser = ControllerContext.HttpContext.User.Identity.Name;
+            return activeUser;
+        }
+
+        [HttpPost]
+        public ActionResult EmailInfo(string Email, string InviteUserName)
+        {
+            SendEmail(Email, InviteUserName);
             return RedirectToAction("Index");
         }
 
-        public void SendEmail(string email, string InviteUserName, string UserName)
+        public void SendEmail(string email, string InviteUserName)
         {
+           string UserName = currentLoggedInUser();
             string fromaddr = "projectblacklistteam@gmail.com";
             string toaddr = email;//TO ADDRESS HERE
             string password = "alexander28";
@@ -32,7 +42,7 @@ namespace BlackList.Controllers
                 MailMessage msg = new MailMessage();
                 msg.Subject = "projectblacklistteam alexander28";
                 msg.From = new MailAddress(fromaddr);
-                msg.Body = "Hej "+ InviteUserName+ "\n"+ UserName + " vill bjuda in dig till att använda BlackList,\nFölj länken nedan " + " www.string-emil.de";
+                msg.Body = "Hej "+ InviteUserName+ "\n"+ UserName + " vill bjuda in dig till att använda BlackList,\nFölj länken nedan " + " www.?.de";
                 msg.To.Add(new MailAddress(toaddr));
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
