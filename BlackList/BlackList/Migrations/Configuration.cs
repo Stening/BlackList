@@ -1,5 +1,4 @@
 namespace BlackList.Migrations
-
 {
     using BlackList.Models;
     using System;
@@ -68,4 +67,8 @@ namespace BlackList.Migrations
         }
 
     }
-}
+
+
+
+
+    }

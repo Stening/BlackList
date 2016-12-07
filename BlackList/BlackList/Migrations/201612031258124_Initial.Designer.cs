@@ -13,7 +13,7 @@ namespace BlackList.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201611231201392_Initial"; }
+            get { return "201612031258124_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,14 +1,9 @@
-﻿<!-- Using jQuery library & using jquery to support signalR -->
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-<script src="/Scripts/jquery.signalR-2.2.1.min.js"></script>
-<script src="/signalr/hubs"></script>
-<!-- Javascript file containing code used for the chat to function -->
-<script src="/Scripts/ChatAll.js"></script>
-
-
-<div class="banner-image">
+﻿<div class="banner-image">
     <figure class="fluidratio"></figure>
 </div>
+
+@Scripts.Render("~/signalr/hubs")
+@Scripts.Render("~/bundles/custom")
 
 <div class="panel-group" id="accordion">
 
@@ -27,8 +22,8 @@
             <div class="panel-body">
 
                 <div class="container">
-                    <div class="read-List col-lg-12">
-                        <h2>Create your shoppinglist!</h2>
+                    <h2>Create your shoppinglist!</h2>
+                    <div class="read-List">                        
                         <div class="create-list-div">
                             <input type="text" value="Name the list" id="listName" />
                             <input type="button" value="Create List " id="createList" />
@@ -39,14 +34,6 @@
                             <input type="button" value="Add" id="add-to-list-button" />
                             <input type="button" value="Remove List" id="remove-list" />
                         </div>
-                        @*<ul class="ul-ShoppingList">
-                                <li class="li-ShoppingList click-sList"><span class="glyphicon glyphicon-ok bock-class"></span>Mendokse</li>
-                                <li class="li-ShoppingList click-sList">Matakue</li>
-                                <li class="li-ShoppingList click-sList">Dajubu</li>
-
-
-                            </ul>*@
-
                     </div>
                 </div>
 
@@ -57,58 +44,13 @@
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
+            <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
             <div class="panel-body">
-                Träutensilierna i ett tryckeri äro ingalunda en faktor där trevnadens ordningens och ekonomiens upprätthållande, och dock är det icke sällan som sorgliga erfarenheter göras ordningens och ekon och miens därmed upprätthållande. Träutensilierna i ett tryckeri äro ingalunda en oviktig faktor, för trevnadens ordningens och och dock är det icke sällan.
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
-
-<!-- Area containing the chat -->
-<div class="containers">
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ko with: home -->
-
-
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>  
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-@*@model BlackList.Models.RegisterModel
+@model BlackList.Models.RegisterModel
 
 @{
-    using (Html.BeginForm("EmailInfo","Home", FormMethod.Post))
+    using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
     {
         <label>Ditt Namn:</label><br />
         @Html.TextBoxFor(m => m.UserName)<br />
@@ -123,41 +65,10 @@
 
 
         <br />
-        <input type="submit" value="Bjud in" />*@
+        <input type="submit" value="Bjud in" />
+        }
     }
-@*@using (Ajax.BeginForm("EmployeeMaster", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divEmp" }))
-{
-
-    <div class="form-horizontal">
-
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.(model => model.Name, htmlAttributes: )
-            <div class="col-md-10">
-           
-            
             </div>
         </div>
-
-        
-
-      
-
-    
-       
-    
-
     </div>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-}*@
-  
-}
+</div>
