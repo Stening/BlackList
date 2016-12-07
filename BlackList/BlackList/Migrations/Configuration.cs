@@ -5,6 +5,7 @@ namespace BlackList.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using BlackList.BusinessLayer;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BlackList.Models.ApplicationDbContext>
     {
@@ -14,7 +15,7 @@ namespace BlackList.Migrations
             ContextKey = "BlackList.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Models.ApplicationDbContext context)
+        protected override void Seed(BlackList.Models.ApplicationDbContext context)
         {
             context.Contacts.AddOrUpdate(p => p.Name,
                new Contact
@@ -64,60 +65,34 @@ namespace BlackList.Migrations
                 }
                 );
 
+            SeedHelper date = new SeedHelper();
 
-        //    ListUser stening = new ListUser
-        //    {
-        //        UserID = 1,
-        //        UserName = "Stening",
-        //        Mail = "stening.johan@gmail.com",
-        //        DateCreated = DateTime.Now
-        //    };
-        //    ListUser wigge = new ListUser
-        //    {
-        //        UserID = 2,
-        //        UserName = "wigge",
-        //        Mail = "wigge@test.com",
-        //        DateCreated = DateTime.Now
+            List first = new List { ShoppingListID = 1,Title = "First", DateCreated = date.Randomday() };
+            List second = new List { ShoppingListID = 2, Title = "Second", DateCreated = date.Randomday() };
+            List third = new List { ShoppingListID = 3, Title = "Third", DateCreated = date.Randomday() };
+            context.ShoppingLists.AddOrUpdate(n => n.Title, first, second, third);
+            context.SaveChanges();
 
-        //    };
-        //    ListUser linkan = new ListUser
-        //    {
-        //        UserID = 3,
-        //        UserName = "linkan",
-        //        Mail = "linkan@test.com",
-        //        DateCreated = DateTime.Now
+            ListItem a1 = new ListItem { ListItemID = 1, ItemName = "A", ListID = first.ShoppingListID };
+            ListItem a2 = new ListItem { ListItemID = 2, ItemName = "A", ListID = second.ShoppingListID };
+            ListItem a3 = new ListItem { ListItemID = 3, ItemName = "A", ListID = third.ShoppingListID };
+            ListItem b1 = new ListItem { ListItemID = 4, ItemName = "B", ListID = first.ShoppingListID };
+            ListItem c1 = new ListItem { ListItemID = 5, ItemName = "C", ListID = first.ShoppingListID };
+            context.ListItems.AddOrUpdate(n => n.ItemName, a1, a2, a3, b1, c1);
+            context.SaveChanges();
 
-        //    };
-        //    ListUser josse = new ListUser
-        //    {
-        //        UserID = 4,
-        //        UserName = "josse",
-        //        Mail = "josse@test.com",
-        //        DateCreated = DateTime.Now
-        //    };
+            ListUser link = new ListUser { UserID = 1, UserName = "Linkan", DateCreated = date.Randomday() };
+            ListUser stening = new ListUser { UserID = 2, UserName = "Stening", DateCreated = date.Randomday() };
+            ListUser alex = new ListUser { UserID = 3, UserName = "Alex", DateCreated = date.Randomday() };
+            context.ListUsers.AddOrUpdate(n =>n.UserName, link, stening, alex);
+            context.SaveChanges();
 
-
-        //    context.ListUsers.AddOrUpdate(
-        //        n => n.UserName,
-        //       linkan, josse, wigge, stening);
-
-        //    Friend steninglinkan = new Friend
-        //    {
-        //        user = stening,
-        //        UserID = stening.UserID,
-        //        FriendID = linkan.UserID,
-        //        friend = linkan
-                
-        //    };
-        //    Friend steningJosse = new Friend
-        //    {
-        //        UserID = stening.UserID,
-        //        user = stening,
-        //        FriendID = josse.UserID,
-        //        friend = josse
-                
-        //};
-        //    context.Friends.AddOrUpdate(steninglinkan, steningJosse);
+            UserMtoMList linklist = new UserMtoMList { UserID = link.UserID, ShoppingListID = first.ShoppingListID };
+            UserMtoMList linklist2 = new UserMtoMList { UserID = link.UserID, ShoppingListID = second.ShoppingListID };
+            UserMtoMList steninglist = new UserMtoMList { UserID = stening.UserID, ShoppingListID = third.ShoppingListID };
+            UserMtoMList alexlist = new UserMtoMList { UserID = alex.UserID, ShoppingListID = first.ShoppingListID };
+            context.UserMtoMLists.AddOrUpdate(linklist, linklist2, steninglist, alexlist);
+            context.SaveChanges();
         }
 
     }
@@ -125,4 +100,4 @@ namespace BlackList.Migrations
 
 
 
-    }
+}

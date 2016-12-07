@@ -46,6 +46,7 @@ namespace BlackList
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                 "~/Scripts/custom/menu.js",
                 "~/Scripts/custom/JSMyList.js",
+                "~/Scripts/custom/ReadingOfTheList.js"
                 "~/Scripts/custom/ViewConnectedFriends.js"));
 
         }
