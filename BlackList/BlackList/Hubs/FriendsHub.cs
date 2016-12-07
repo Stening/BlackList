@@ -17,7 +17,7 @@ namespace BlackList.Hubs
             var myName = Context.User.Identity.Name;
             //var y = dbLayer.getFriendTest(myName);
             //var me = dbLayer.getUserBymail(myName);
-            
+
             var friends = dbLayer.GetFriends(myName);
 
 
@@ -38,7 +38,7 @@ namespace BlackList.Hubs
             {
                 connectedUsers.Add(myName, new ConnectedUser(myName, friends, true, Context.ConnectionId));
             }
-            
+
             //Clients.All.renderFriends(friends);
             //List<string> FriendIds = new List<string>();
             string[] FriendIds = new string[friends.Length];
@@ -50,7 +50,7 @@ namespace BlackList.Hubs
 
                     FriendIds[i] = temp.ConnectionId;
                 }
-                
+
             }
 
 
@@ -60,16 +60,41 @@ namespace BlackList.Hubs
         }
 
 
+
+
+
+        public void DisconnectFromFriends()
+        {
+            var myName = Context.User.Identity.Name;
+
+            ConnectedUser me = connectedUsers[myName];
+            string[] friendIds = new string[me.Friends.Length];
+            for (int i = 0; i < me.Friends.Length; i++)
+            {
+                ConnectedUser temp;
+                if (connectedUsers.TryGetValue(me.Friends[i].Mail, out temp))
+                {
+                    friendIds[i] = temp.ConnectionId;
+                }
+            }
+            Clients.Clients(friendIds).updateFriends();
+        }
+
+
+
+
+
+
         public void UpdateConnectedFriends()
         {
             string myName = Context.User.Identity.Name;
             ListUser[] MyFriends = connectedUsers[myName].Friends;
 
             ConnectedUser[] FriendStatuses = new ConnectedUser[MyFriends.Length];
-            
+
             for (int i = 0; i < MyFriends.Length; i++)
             {
-                FriendStatuses[i] = 
+                FriendStatuses[i] =
                     new ConnectedUser(MyFriends[i].Mail, null, connectedUsers.ContainsKey(MyFriends[i].Mail));
 
             }
@@ -83,7 +108,7 @@ namespace BlackList.Hubs
 
         private class ConnectedUser
         {
-            public ConnectedUser(string userName, ListUser[] friends, bool isOnline,string connectionId = "")
+            public ConnectedUser(string userName, ListUser[] friends, bool isOnline, string connectionId = "")
             {
                 UserName = userName;
                 Online = isOnline;
