@@ -28,6 +28,12 @@ namespace BlackList.Controllers
             SignInManager = signInManager;
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
         public ApplicationSignInManager SignInManager
         {
             get
