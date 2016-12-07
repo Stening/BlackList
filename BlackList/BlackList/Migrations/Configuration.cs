@@ -14,7 +14,7 @@ namespace BlackList.Migrations
             ContextKey = "BlackList.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(BlackList.Models.ApplicationDbContext context)
+        protected override void Seed(Models.ApplicationDbContext context)
         {
             context.Contacts.AddOrUpdate(p => p.Name,
                new Contact

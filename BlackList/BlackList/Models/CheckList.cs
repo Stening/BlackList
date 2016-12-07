@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace BlackList.Models
 {
-    public class List
+    public class CheckList
     {
         [Key, Required]
-        public int ShoppingListID { get; set; }
+        public int ListID { get; set; }
 
         [Required]
         public string Title { get; set; }
