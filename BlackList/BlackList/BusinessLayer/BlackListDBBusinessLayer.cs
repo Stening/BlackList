@@ -34,8 +34,8 @@ namespace BlackList.BusinessLayer
         {
 
             var authorization = from auth in _context.UserMtoMLists
-                                where auth.user.Mail == mail
-                                && auth.ShoppingListID == listId
+                                where auth.user.Email == mail
+                                && auth.ListID == listId
                                 select auth;
 
             return authorization.First().Authority;
@@ -52,16 +52,16 @@ namespace BlackList.BusinessLayer
             throw new NotImplementedException();
         }
 
-        public ListUser getUser(string userName) => _context.ListUsers.Where(u => u.UserName == userName).Single();
-        public ListUser getUserBymail(string email) => _context.ListUsers.Where(u => u.Mail == email).Single();
+        public ApplicationUser getUser(string Email) => _context.Users.Where(u => u.Email == Email).Single();
 
-        public ListUser getFriendTest(string mail)
+
+        public ApplicationUser getFriendTest(string mail)
         {
-            var user = getUserBymail(mail);
+            var user = getUser(mail);
 
 
             var friends = from friend in _context.Friends
-                          where friend.UserID == user.UserID
+                          where friend.UserID == user.Email
                           select friend.friend;
 
             return friends.FirstOrDefault();
@@ -69,11 +69,11 @@ namespace BlackList.BusinessLayer
 
 
 
-        public ListUser[] GetFriends(string mail)
+        public ApplicationUser[] GetFriends(string mail)
         {
 
             var friends = from user in _context.Friends
-                          where user.user.Mail == mail
+                          where user.user.Email == mail
                           select user.friend;
             
 
@@ -100,9 +100,9 @@ namespace BlackList.BusinessLayer
         public void InviteToList(int listID,string UserName)
         {
 
-            var list = _context.ShoppingLists.Where(l => l.ShoppingListID == listID).Single();
+            var list = _context.ShoppingLists.Where(l => l.ListID == listID).Single();
             var listRelation = from rel in _context.UserMtoMLists
-                               where rel.ShoppingListID == listID
+                               where rel.ListID == listID
                                && rel.user.UserName == UserName
                                && rel.Authority == 1
                                select rel;
@@ -112,8 +112,8 @@ namespace BlackList.BusinessLayer
             _context.UserMtoMLists.Add(new UserMtoMList
             {
                 Authority = 4,
-                shoppingList = singleRelation.shoppingList,
-                ShoppingListID = singleRelation.ShoppingListID,
+                List = singleRelation.List,
+                ListID = singleRelation.ListID,
                 user = singleRelation.user,
                 UserID = singleRelation.UserID
             });

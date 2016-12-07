@@ -22,13 +22,13 @@ namespace BlackList.Hubs
 
 
             //Dummy Code
-            if (!connectedUsers.ContainsKey(friends[0].Mail))
+            if (!connectedUsers.ContainsKey(friends[0].Email))
             {
-                connectedUsers.Add(friends[0].Mail, new ConnectedUser(friends[0].Mail, null, true, "12345"));
+                connectedUsers.Add(friends[0].Email, new ConnectedUser(friends[0].Email, null, true, "12345"));
             }
-            if (!connectedUsers.ContainsKey(friends[1].Mail))
+            if (!connectedUsers.ContainsKey(friends[1].Email))
             {
-                connectedUsers.Add(friends[1].Mail, new ConnectedUser(friends[1].Mail, null, true, "12345"));
+                connectedUsers.Add(friends[1].Email, new ConnectedUser(friends[1].Email, null, true, "12345"));
             }
             //Dummy code
 
@@ -45,7 +45,7 @@ namespace BlackList.Hubs
             for (int i = 0; i < friends.Length; i++)
             {
                 ConnectedUser temp;
-                if (connectedUsers.TryGetValue(friends[i].Mail, out temp))
+                if (connectedUsers.TryGetValue(friends[i].Email, out temp))
                 {
 
                     FriendIds[i] = temp.ConnectionId;
@@ -72,7 +72,7 @@ namespace BlackList.Hubs
             for (int i = 0; i < me.Friends.Length; i++)
             {
                 ConnectedUser temp;
-                if (connectedUsers.TryGetValue(me.Friends[i].Mail, out temp))
+                if (connectedUsers.TryGetValue(me.Friends[i].Email, out temp))
                 {
                     friendIds[i] = temp.ConnectionId;
                 }
@@ -96,14 +96,14 @@ namespace BlackList.Hubs
         public void UpdateConnectedFriends()
         {
             string myName = Context.User.Identity.Name;
-            ListUser[] MyFriends = connectedUsers[myName].Friends;
+            ApplicationUser[] MyFriends = connectedUsers[myName].Friends;
 
             ConnectedUser[] FriendStatuses = new ConnectedUser[MyFriends.Length];
 
             for (int i = 0; i < MyFriends.Length; i++)
             {
                 FriendStatuses[i] =
-                    new ConnectedUser(MyFriends[i].Mail, null, connectedUsers.ContainsKey(MyFriends[i].Mail));
+                    new ConnectedUser(MyFriends[i].Email, null, connectedUsers.ContainsKey(MyFriends[i].Email));
 
             }
 
@@ -116,7 +116,7 @@ namespace BlackList.Hubs
 
         private class ConnectedUser
         {
-            public ConnectedUser(string userName, ListUser[] friends, bool isOnline, string connectionId = "")
+            public ConnectedUser(string userName, ApplicationUser[] friends, bool isOnline, string connectionId = "")
             {
                 UserName = userName;
                 Online = isOnline;
@@ -126,7 +126,7 @@ namespace BlackList.Hubs
             public string UserName { get; set; }
             public bool Online { get; set; }
             public string ConnectionId { get; set; }
-            public ListUser[] Friends { get; set; }
+            public ApplicationUser[] Friends { get; set; }
 
         }
     }

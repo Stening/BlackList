@@ -65,59 +65,59 @@ namespace BlackList.Migrations
                 );
 
 
-            ListUser stening = new ListUser
-            {
-                UserID = 1,
-                UserName = "Stening",
-                Mail = "stening.johan@gmail.com",
-                DateCreated = DateTime.Now
-            };
-            ListUser wigge = new ListUser
-            {
-                UserID = 2,
-                UserName = "wigge",
-                Mail = "wigge@test.com",
-                DateCreated = DateTime.Now
+        //    ListUser stening = new ListUser
+        //    {
+        //        UserID = 1,
+        //        UserName = "Stening",
+        //        Mail = "stening.johan@gmail.com",
+        //        DateCreated = DateTime.Now
+        //    };
+        //    ListUser wigge = new ListUser
+        //    {
+        //        UserID = 2,
+        //        UserName = "wigge",
+        //        Mail = "wigge@test.com",
+        //        DateCreated = DateTime.Now
 
-            };
-            ListUser linkan = new ListUser
-            {
-                UserID = 3,
-                UserName = "linkan",
-                Mail = "linkan@test.com",
-                DateCreated = DateTime.Now
+        //    };
+        //    ListUser linkan = new ListUser
+        //    {
+        //        UserID = 3,
+        //        UserName = "linkan",
+        //        Mail = "linkan@test.com",
+        //        DateCreated = DateTime.Now
 
-            };
-            ListUser josse = new ListUser
-            {
-                UserID = 4,
-                UserName = "josse",
-                Mail = "josse@test.com",
-                DateCreated = DateTime.Now
-            };
+        //    };
+        //    ListUser josse = new ListUser
+        //    {
+        //        UserID = 4,
+        //        UserName = "josse",
+        //        Mail = "josse@test.com",
+        //        DateCreated = DateTime.Now
+        //    };
 
 
-            context.ListUsers.AddOrUpdate(
-                n => n.UserName,
-               linkan, josse, wigge, stening);
+        //    context.ListUsers.AddOrUpdate(
+        //        n => n.UserName,
+        //       linkan, josse, wigge, stening);
 
-            Friend steninglinkan = new Friend
-            {
-                user = stening,
-                UserID = stening.UserID,
-                FriendID = linkan.UserID,
-                friend = linkan
+        //    Friend steninglinkan = new Friend
+        //    {
+        //        user = stening,
+        //        UserID = stening.UserID,
+        //        FriendID = linkan.UserID,
+        //        friend = linkan
                 
-            };
-            Friend steningJosse = new Friend
-            {
-                UserID = stening.UserID,
-                user = stening,
-                FriendID = josse.UserID,
-                friend = josse
+        //    };
+        //    Friend steningJosse = new Friend
+        //    {
+        //        UserID = stening.UserID,
+        //        user = stening,
+        //        FriendID = josse.UserID,
+        //        friend = josse
                 
-        };
-            context.Friends.AddOrUpdate(steninglinkan, steningJosse);
+        //};
+        //    context.Friends.AddOrUpdate(steninglinkan, steningJosse);
         }
 
     }
