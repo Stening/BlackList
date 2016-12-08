@@ -222,6 +222,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
+    <Compile Include="Migrations\201612071254065_User.Name.cs" />
+    <Compile Include="Migrations\201612071254065_User.Name.Designer.cs">
+      <DependentUpon>201612071254065_User.Name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -287,11 +292,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ChatAll.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\custom\JSMyList.js" />
+    <Content Include="Scripts\Jquery3.1.1.js" />
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\knockout.validation.debug.js" />
@@ -360,6 +367,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612031258124_Initial.resx">
       <DependentUpon>201612031258124_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071254065_User.Name.resx">
+      <DependentUpon>201612071254065_User.Name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

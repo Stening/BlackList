@@ -13,6 +13,9 @@ namespace BlackList.Models
 
         [Display(Name = "Hometown")]
         public string Hometown { get; set; }
+
+        [Display(Name = "Namn")]
+        public string Name { get; set; }
     }
 
     public class ExternalLoginListViewModel
