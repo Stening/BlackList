@@ -22,14 +22,14 @@ namespace BlackList.Hubs
 
 
             //Dummy Code
-            if (!connectedUsers.ContainsKey(friends[0].Email))
-            {
-                connectedUsers.Add(friends[0].Email, new ConnectedUser(friends[0].Email, null, true, "12345"));
-            }
-            if (!connectedUsers.ContainsKey(friends[1].Email))
-            {
-                connectedUsers.Add(friends[1].Email, new ConnectedUser(friends[1].Email, null, true, "12345"));
-            }
+            //if (!connectedUsers.ContainsKey(friends[0].Email))
+            //{
+            //    connectedUsers.Add(friends[0].Email, new ConnectedUser(friends[0].Email, null, true, "12345"));
+            //}
+            //if (!connectedUsers.ContainsKey(friends[1].Email))
+            //{
+            //    connectedUsers.Add(friends[1].Email, new ConnectedUser(friends[1].Email, null, true, "12345"));
+            //}
             //Dummy code
 
 

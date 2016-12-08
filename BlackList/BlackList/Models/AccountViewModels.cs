@@ -90,6 +90,7 @@ namespace BlackList.Models
 
         [Display(Name = "Hometown")]
         public string Hometown { get; set; }
+        public string Name { get; internal set; }
     }
 
     public class ResetPasswordViewModel
