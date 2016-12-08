@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackList.Hubs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,8 +11,13 @@ namespace BlackList.Controllers
     
     public class HomeController : Controller
     {
+
+        ShowAllUsers wigge = new ShowAllUsers();
+        
         public ActionResult Index()
         {
+            
+            
             return View();
         }
         [HttpPost]
