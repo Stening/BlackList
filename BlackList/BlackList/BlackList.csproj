@@ -224,6 +224,7 @@
     <Compile Include="Authorization\ListAuth.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="BusinessLayer\SeedHelper.cs" />
+    <Compile Include="Hubs\ShowAllUsers.cs" />
     <Compile Include="Migrations\201612081037378_Initial.cs" />
     <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
       <DependentUpon>201612081037378_Initial.cs</DependentUpon>
@@ -291,6 +292,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChatAll.js" />
+    <Content Include="Scripts\custom\GetAllUsers.js" />
     <Content Include="Scripts\custom\ReadingOfTheList.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
