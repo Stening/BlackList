@@ -14,7 +14,7 @@ namespace BlackList.BusinessLayer
             _context = new ApplicationDbContext();
         }
 
-        public IQueryable<ListUser> getAllFriends(int userId)
+        public IQueryable<ApplicationUser> getAllFriends(int userId)
         {
             // needs re-writing
             //var friends = from friend
@@ -42,7 +42,7 @@ namespace BlackList.BusinessLayer
             
         }
 
-        public IEnumerable<ListUser> getAllUsers()
+        public IEnumerable<ApplicationUser> getAllUsers()
         {
             //var users = from user
             //            in _context.ListUsers
