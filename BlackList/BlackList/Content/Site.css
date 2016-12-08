@@ -149,6 +149,14 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     
 }
 
+.toggleClass-div-hide{
+    display:none;
+}
+
+.toggleClass-div-show{
+    display:inline-block;
+}
+
 
 .bock-class{
     display:none;

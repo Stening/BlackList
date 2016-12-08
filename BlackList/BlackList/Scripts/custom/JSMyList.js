@@ -9,13 +9,15 @@ $(document).ready(function () {
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
         });
+
     });
 
-    //$(".click-sList").click(function () 
-    //{
-    //    $(this).toggleClass('toggleClass-li-clicked');
-    //    $(this).find('.bock-class').toggleClass('bock-visible');
-    //});
+    
+    function toggleListWords() {
+        $(this).toggleClass('toggleClass-li-clicked');
+        $(this).find('.bock-class').toggleClass('bock-visible');
+    }
+
 
     //Tar bort li elemnt från listan efter att detta görs i databasen
     CL.client.deleteWordfromList = function (deleteWordID) {
@@ -25,7 +27,7 @@ $(document).ready(function () {
     }
 
     //Add word to list
-    $.connection.hub.start().done(function () {
+    
         $('#add-to-list-button').click(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
@@ -36,11 +38,12 @@ $(document).ready(function () {
             });
 
         });
-    });
+    
 
 
     CL.client.createList = function (listID) {
         var nameOfList = $('#listName').val();
+
         var listHeading = $('<h2 />')
             .addClass('headingForListName')
             .prop('id', listID);
@@ -49,82 +52,65 @@ $(document).ready(function () {
             .text(nameOfList)
             .appendTo(listHeading);
 
-        //$('#add-to-list-button').prop('id', listID);
-
         $('.create-list-div').append(listHeading)
     }
 
-    
+    // Add Words to list
     CL.client.addToList = function (wordsInList, id ) 
     {
-
         function deleteWord() {
-            $.connection.hub.start().done(function () {
-                CL.server.removeFromListCode(id);             
-
-            });
+            CL.server.removeFromListCode(id);              
         }
 
-        function sendNewWord(){
+        function sendNewWord() {            
+            var valueOftextbox = $(this).parent().children('input').val();
+            alert(valueOftextbox);
+            $(this).parents('li').children().children('p').text(valueOftextbox);
+            $(this).parents('li').children('div:nth-child(2)').removeClass('toggleClass-div-show');
+            $(this).parents('li').children('div:nth-child(2)').addClass('toggleClass-div-hide');
+            $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-show');
+            CL.server.editWordListCode(id, valueOftextbox, $('.headingForListName').prop('id'));
             
         }
 
-        function editWord() {
-            $.connection.hub.start().done(function () {
-                CL.server.editWordListCode(id, 'hej', $('.headingForListName').prop('id'));
-            });
-
-            var newTextBox = $('<input>', {
-                type: 'text',
-                val: $('.li-ShoppingList').val()
-            }).addClass('textbox-for-update').appendTo($(this).closest('li'));
-
-            var editButton = $('<button />')
-                .addClass('save-new-word')
-                .click(sendNewWord)
-                .appendTo($(this).closest('li'));
-
-
-            var updateGlyphInButton = $('<span />')
-                .addClass('glyphicon')
-                .addClass('glyphicon-floppy-saved')
-                .appendTo(editButton);
-
-            $('.li-ShoppingList').closest('p').remove();                   
-                
-
-        
-            //alert('editera ordet ' + $(this).prop('id'))
-            //crudRemove($(this).closest('li').prop('id'));
+        function editWord() {            
+            $(this).parent('div').toggleClass('toggleClass-div-hide');
+            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
+           // $('.update-word-div').toggleClass('toggleClass-div-show');
+               
         };
 
         //Skapar listan med ord
-            var cList = $('<ul/>')
-            .addClass('ul-ShoppingList');
-            //$.each(wordsInListArray, function(i) {
-            var li = $('<li/>')
-                .addClass('li-ShoppingList')
-                .addClass('click-sList')
-                .prop("id", id)
-                .appendTo(cList);
-            
+            //var cList = $('<ul/>')
+            //.addClass('ul-ShoppingList');
+        //$.each(wordsInListArray, function(i) {
+
+        var li = $('<li/>')
+            .addClass('li-ShoppingList')
+            .addClass('click-sList')
+            .prop("id", id);
                 
-            var spanInList = $('<span/>')
-                .addClass('glyphicon')
-                .addClass('glyphicon-ok')
-                .addClass('bock-class')
+
+            var defaultDiv = $('<div />')
+                .addClass('default-div-word')
                 .appendTo(li);
             
             var text = $('<p/>')
                 .addClass('word-in-p')
                 .text(wordsInList)
-                .appendTo(li);
+                .click(toggleListWords)
+                .appendTo(defaultDiv);
+
+            var spanInList = $('<span/>')
+                    .addClass('glyphicon')
+                    .addClass('glyphicon-ok')
+                    .addClass('bock-class')
+                    .appendTo(text);
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
-                .prop('id', id)
                 .click(deleteWord)
-                .appendTo(li);
+                .appendTo(defaultDiv);
 
             var trashGlyphInButton = $('<span/>')
                 .addClass('glyphicon')
@@ -132,65 +118,53 @@ $(document).ready(function () {
                 .appendTo(trashButtonInList);
 
             var editButtonInList = $('<button />')
-                .addClass('edit-button-class')
-                .prop('id', id)
+                .addClass('edit-button-class')                
                 .click(editWord)
-                .appendTo(li);
+                .appendTo(defaultDiv);
 
             var editGlyphInButton = $('<span />')
                 .addClass('glyphicon')
                 .addClass('glyphicon-pencil')
                 .appendTo(editButtonInList);
 
+            var updateDiv = $('<div />')
+            .addClass('update-word-div')
+            .addClass('toggleClass-div-hide')
+            .appendTo(li);
+
+            var newTextBox = $('<input>', {
+                type: 'text',
+                val: wordsInList
+            }).addClass('textbox-for-update').prop('id', 'editBox' + id).appendTo(updateDiv);
+
+            var editButton = $('<button />')
+                .addClass('save-new-word')
+                .click(sendNewWord)
+                .appendTo(updateDiv);
+
+            var updateGlyphInButton = $('<span />')
+                .addClass('glyphicon')
+                .addClass('glyphicon-floppy-saved')
+                .appendTo(editButton);
 
         
-            $('.list-div').append(cList);
+            $('#theUlList').append(li);
 
-            $(".click-sList").click(function () {
+            //$(".click-sList").click(function () {
                 
-                $(this).toggleClass('toggleClass-li-clicked');
-                $(this).find('.bock-class').toggleClass('bock-visible');
-            });
+            //    $(this).toggleClass('toggleClass-li-clicked');
+            //    $(this).find('.bock-class').toggleClass('bock-visible');
+            //});
         
     }
 
-    $(function () {
-        // Reference the auto-generated proxy for the hub.  
-        var chat = $.connection.chatHub;
-        // Create a function that the hub can call back to display messages.
-        chat.client.addNewMessageToPage = function (name, message) {
-            // Add the message to the page. 
-            $('#discussion').append('<li><strong>' + htmlEncode(name)
-                + '</strong>: ' + htmlEncode(message) + '</li>');
-        };
-        // Get the user name and store it to prepend to messages.
-        $('#displayname').val(prompt('Enter your name:', ''));
-        // Set initial focus to message input box.  
-        $('#message').focus();
-        // Start the connection.
-        $.connection.hub.start().done(function () {
-            $('#sendmessage').click(function () {
-                // Call the Send method on the hub. 
-                chat.server.send($('#displayname').val(), $('#message').val());
-                // Clear text box and reset focus for next comment. 
-                $('#message').val('').focus();
-            });
-        });
-    });
-    // This optional function html-encodes messages for display in the page.
-    function htmlEncode(value) {
-        var encodedValue = $('<div />').text(value).html();
-        return encodedValue;
-    }
-    
-    
 
 
 });
 
 
 
-
+//$(this).closest('li').prop('id');
 
   
 
