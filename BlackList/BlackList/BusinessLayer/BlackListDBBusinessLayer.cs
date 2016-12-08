@@ -14,19 +14,19 @@ namespace BlackList.BusinessLayer
             _context = new ApplicationDbContext();
         }
 
-        public IQueryable<ListUser> getAllFriends(int userId)
-        {
-            var friends = from friend
-                          in _context.Friends
-                          join u
-                          in _context.ListUsers
-                          on friend.FriendID
-                          equals u.UserID
-                          where friend.FriendID == u.UserID
-                          select u;
+        //public IQueryable<ListUser> getAllFriends(Guid userId)
+        //{
+        //    //var friends = from friend
+        //    //              in _context.Friends
+        //    //              join u
+        //    //              in _context.ListUsers
+        //    //              on friend.FriendID
+        //    //              equals u.UserID
+        //    //              where friend.FriendID == u.UserID
+        //    //              select u;
 
-            return friends;
-        }
+        //    return friends;
+        //}
         public IEnumerable<ListUser> getAllUsers()
         {
             var users = from user
@@ -35,6 +35,17 @@ namespace BlackList.BusinessLayer
 
             return users.ToArray();
         }
+        public List<int> getListID(string listId)
+        {
+            var ListID = from List
+                          in _context.ShoppingLists
+                         
+                          where List.Title == listId
+                          select List.ShoppingListID;
+
+            return ListID.ToList();
+        }
+       
 
 
 

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using BlackList.Models;
-
+using Microsoft.AspNet.Identity;
+using BlackList.BusinessLayer;
 
 namespace BlackList.Hubs
 {
@@ -21,12 +22,20 @@ namespace BlackList.Hubs
 
         public void CreateListCode(string listName)
         {
-
+            ApplicationDbContext _context = new ApplicationDbContext();
             List NewList = new List();
             NewList.Title = listName;
             NewList.DateCreated = DateTime.Now;
             _context.ShoppingLists.Add(NewList);
             _context.SaveChanges();
+
+
+            BlackListDbBusinessLayer bl = new BlackListDbBusinessLayer();
+            var f = bl.getListID(listName);
+            int val = f[0];
+
+            //var f  =  Select ShoppingListsID from _context.ShoppingLists;
+
 
 
 
@@ -40,14 +49,29 @@ namespace BlackList.Hubs
             //_context.UserMtoMLists.Add(new UserMtoMList
             //{
             //    ShoppingListID = NewList.ShoppingListID,
-            //    UserID = Context.User.Identity.Name
+            string userMail = Context.User.Identity.Name;
+            //var listid = ;
+            var id = HttpContext.Current.User.Identity.GetUserId();
 
+
+            // UserID
             //});
             //_context.SaveChanges();
 
             int _listID = NewList.ShoppingListID;
 
+
             Clients.All.createList(_listID);
+
+
+
+            string query = "INSERT INTO UserMtoMLists(UserID,ShoppingListID,Authority) VALUES ('" + id + "', '" + val + "', '" + 1 + "')";
+
+
+            _context.Database.ExecuteSqlCommand(query);
+            _context.SaveChanges();
+
+
         }
 
         //Adds words to the list
