@@ -224,9 +224,9 @@
     <Compile Include="Authorization\ListAuth.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="BusinessLayer\SeedHelper.cs" />
-    <Compile Include="Migrations\201612071254065_User.Name.cs" />
-    <Compile Include="Migrations\201612071254065_User.Name.Designer.cs">
-      <DependentUpon>201612071254065_User.Name.cs</DependentUpon>
+    <Compile Include="Migrations\201612081037378_Initial.cs" />
+    <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
+      <DependentUpon>201612081037378_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -239,14 +239,6 @@
     </Compile>
     <Compile Include="Hubs\CRUDHub.cs" />
     <Compile Include="Hubs\FriendsHub.cs" />
-    <Compile Include="Migrations\201612031258124_Initial.cs" />
-    <Compile Include="Migrations\201612031258124_Initial.Designer.cs">
-      <DependentUpon>201612031258124_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071440105_removed_ListUser.cs" />
-    <Compile Include="Migrations\201612071440105_removed_ListUser.Designer.cs">
-      <DependentUpon>201612071440105_removed_ListUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChatRoom.cs" />
@@ -373,14 +365,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612031258124_Initial.resx">
-      <DependentUpon>201612031258124_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071254065_User.Name.resx">
-      <DependentUpon>201612071254065_User.Name.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071440105_removed_ListUser.resx">
-      <DependentUpon>201612071440105_removed_ListUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612081037378_Initial.resx">
+      <DependentUpon>201612081037378_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
