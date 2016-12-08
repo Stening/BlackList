@@ -42,6 +42,7 @@ namespace BlackList.BusinessLayer
             
         }
 
+
         public IEnumerable<ApplicationUser> getAllUsers()
         {
             //var users = from user
