@@ -14,8 +14,8 @@ namespace BlackList.Models
 
 
         [ForeignKey("user"), Key, Column(Order = 1)]
-        public string UserID { get; set; }
-        public ApplicationUser user{ get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser user { get; set; }
 
     }
 }

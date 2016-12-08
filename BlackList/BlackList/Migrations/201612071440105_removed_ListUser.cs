@@ -32,16 +32,16 @@ namespace BlackList.Migrations
             
             AddColumn("dbo.ChatRooms", "ListID", c => c.Int(nullable: false));
             AddColumn("dbo.UserMtoMLists", "ListID", c => c.Int(nullable: false));
-            AlterColumn("dbo.ChatRoomUsers", "UserID", c => c.String(nullable: false, maxLength: 128));
+            AlterColumn("dbo.ChatRoomUsers", "UserId", c => c.String(nullable: false, maxLength: 128));
             AlterColumn("dbo.Friends", "UserID", c => c.String(nullable: false, maxLength: 128));
             AlterColumn("dbo.Friends", "FriendID", c => c.String(nullable: false, maxLength: 128));
             AlterColumn("dbo.Messages", "SenderUserID", c => c.String(nullable: false, maxLength: 128));
             AlterColumn("dbo.UserMtoMLists", "UserID", c => c.String(nullable: false, maxLength: 128));
-            AddPrimaryKey("dbo.ChatRoomUsers", new[] { "ChatRoomID", "UserID" });
+            AddPrimaryKey("dbo.ChatRoomUsers", new[] { "ChatRoomID", "UserId" });
             AddPrimaryKey("dbo.Friends", new[] { "UserID", "FriendID" });
             AddPrimaryKey("dbo.UserMtoMLists", new[] { "UserID", "ListID" });
             CreateIndex("dbo.ChatRooms", "ListID");
-            CreateIndex("dbo.ChatRoomUsers", "UserID");
+            CreateIndex("dbo.ChatRoomUsers", "UserId");
             CreateIndex("dbo.Friends", "UserID");
             CreateIndex("dbo.Friends", "FriendID");
             CreateIndex("dbo.Messages", "SenderUserID");
@@ -53,7 +53,7 @@ namespace BlackList.Migrations
             DropColumn("dbo.ChatRooms", "ShoppingListID");
             DropColumn("dbo.UserMtoMLists", "ShoppingListID");
             DropTable("dbo.Lists");
-            DropTable("dbo.ListUsers");
+            
         }
         
         public override void Down()
@@ -91,7 +91,7 @@ namespace BlackList.Migrations
             DropIndex("dbo.Messages", new[] { "SenderUserID" });
             DropIndex("dbo.Friends", new[] { "FriendID" });
             DropIndex("dbo.Friends", new[] { "UserID" });
-            DropIndex("dbo.ChatRoomUsers", new[] { "UserID" });
+            DropIndex("dbo.ChatRoomUsers", new[] { "UserId" });
             DropIndex("dbo.ChatRooms", new[] { "ListID" });
             DropPrimaryKey("dbo.UserMtoMLists");
             DropPrimaryKey("dbo.Friends");
@@ -100,7 +100,7 @@ namespace BlackList.Migrations
             AlterColumn("dbo.Messages", "SenderUserID", c => c.Int(nullable: false));
             AlterColumn("dbo.Friends", "FriendID", c => c.Int(nullable: false));
             AlterColumn("dbo.Friends", "UserID", c => c.Int(nullable: false));
-            AlterColumn("dbo.ChatRoomUsers", "UserID", c => c.Int(nullable: false));
+            AlterColumn("dbo.ChatRoomUsers", "UserId", c => c.Int(nullable: false));
             DropColumn("dbo.UserMtoMLists", "ListID");
             DropColumn("dbo.ChatRooms", "ListID");
             DropTable("dbo.CheckLists");

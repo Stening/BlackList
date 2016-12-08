@@ -57,13 +57,13 @@ namespace BlackList.Hubs
         /// <param name="IDFromList"></param>
         public void readTheList(string listTitle, int listID)
         {
-            List shoppinglist = new List();
-            shoppinglist.Title = listTitle;
-            shoppinglist.ShoppingListID = listID;
+            //CheckList shoppinglist = new CheckList();
+            //shoppinglist.Title = listTitle;
+            //shoppinglist.ShoppingListID = listID;
 
-            _context.ShoppingLists.Add(shoppinglist);
-            _context.SaveChanges();
-            Clients.All.readtheListJS(listTitle, listID);
+            //_context.ShoppingLists.Add(shoppinglist);
+            //_context.SaveChanges();
+            //Clients.All.readtheListJS(listTitle, listID);
         }
 
         //Adds words to the list
