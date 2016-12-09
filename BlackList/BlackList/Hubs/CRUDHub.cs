@@ -93,7 +93,7 @@ namespace BlackList.Hubs
 
         public void EditWordListCode(int IDFromListItem, string wordFromList, int IDfromList)
         {
-            //var _listID = _context.ListItems.SingleOrDefault(m => m.ListItemID == IDFromList);
+            
             ListItem updateListItem = new ListItem();
             updateListItem.ListItemID = IDFromListItem;
             updateListItem.ItemName = wordFromList;
@@ -101,8 +101,8 @@ namespace BlackList.Hubs
             _context.Entry(updateListItem).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
 
-            Clients.All.addToList(wordFromList, IDFromListItem );
-            //Clients.All.updateWordfromList(IDFromList);
+            //Clients.All.addToList(wordFromList, IDFromListItem);
+           
 
         }
 
