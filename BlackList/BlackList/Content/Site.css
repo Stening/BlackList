@@ -119,16 +119,30 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .create-list-div{
-    margin:55px;
+    margin-top:55px;
+    margin-left:100px;
+    margin-bottom:55px;
+    margin-right:100px;
    
 }
 
 .list-div{
-    margin:15px;
+    margin-left: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 80px;
 }
 
 .add-list-div{
-    margin:55px;
+    margin-top:55px;
+    margin-left:100px;
+    margin-bottom:55px;
+    margin-right:100px;
+    display:none;
+}
+
+.update-word-div{
+    display:none;
 }
 
 .remove-button-class{
@@ -160,9 +174,9 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .bock-class{
     display:none;
-    margin-left:-30px;
+    margin-left:-70px;
     font-size:x-large;
-    vertical-align:middle;
+    vertical-align:top;
 }
 
 .bock-visible{
@@ -184,5 +198,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family:'Annie Use Your Telescope', cursive;
     font-weight:bold;
     font-size:x-large;
+    margin-top:20px;
 
 }

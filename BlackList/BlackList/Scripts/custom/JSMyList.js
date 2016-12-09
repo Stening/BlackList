@@ -4,10 +4,11 @@ $(document).ready(function () {
     var CL = $.connection.cRUDHub;
 
     $.connection.hub.start().done(function () {
-        $('#createList').click(function () {    
+        $('#createList').click(function () {
             CL.server.createListCode($('#listName').val());
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
+            $('#addToListID').toggleClass('toggleClass-div-show');
         });
 
     });
@@ -63,12 +64,11 @@ $(document).ready(function () {
         }
 
         function sendNewWord() {            
-            var valueOftextbox = $(this).parent().children('input').val();
-            alert(valueOftextbox);
+            var valueOftextbox = $(this).parent().children('input').val()
             $(this).parents('li').children().children('p').text(valueOftextbox);
-            $(this).parents('li').children('div:nth-child(2)').removeClass('toggleClass-div-show');
-            $(this).parents('li').children('div:nth-child(2)').addClass('toggleClass-div-hide');
-            $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-show');
+            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
+            //$(this).parents('li').children('div:nth-child(2)').addClass('toggleClass-div-hide');
+            $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-hide');
             CL.server.editWordListCode(id, valueOftextbox, $('.headingForListName').prop('id'));
             
         }
@@ -97,6 +97,7 @@ $(document).ready(function () {
             
             var text = $('<p/>')
                 .addClass('word-in-p')
+                .addClass('col-lg-1')
                 .text(wordsInList)
                 .click(toggleListWords)
                 .appendTo(defaultDiv);
@@ -129,7 +130,7 @@ $(document).ready(function () {
 
             var updateDiv = $('<div />')
             .addClass('update-word-div')
-            .addClass('toggleClass-div-hide')
+            //.addClass('toggleClass-div-hide')
             .appendTo(li);
 
             var newTextBox = $('<input>', {
