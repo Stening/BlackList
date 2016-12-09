@@ -254,3 +254,9 @@ paket-files/
 /BlackList/BlackList/Views/Home/VariousJunk.cshtml
 /BlackList/BlackList/Resources/Image/pexels-photo-121734.jpg
 /BlackList/BlackList/Resources/Image/pexels-photo-226591.jpg
+/BlackList/BlackList/Hubs/SomeSampleHub.cs
+/BlackList/BlackList/Scripts/custom/someSample.js
+/BlackList/BlackList/Hubs/ShowAllUsers.cs
+/BlackList/BlackList/UserSearch.aspx
+/BlackList/BlackList/UserSearch.aspx.cs
+/BlackList/BlackList/UserSearch.aspx.designer.cs

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="container body-content" id="site-wrapper">
@@ -56,6 +57,10 @@
                             <a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree"
                                aria-expanded="false" aria-controls="collapseThree">Mina vänner</a>
                         </li>
+                        <li>
+                            <a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour"
+                               aria-expanded="false" aria-controls="collapseFour">Chatt</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -69,11 +74,14 @@
         </div>
     </div>
 
+   
+    
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jquery.signalR-2.2.1.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/signalr/hubs")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("Scripts", required: false)
+    <script type="text/javascript" src="~/Scripts/ChatAll.js"></script>
 </body>
 </html>

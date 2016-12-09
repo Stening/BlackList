@@ -14,27 +14,117 @@ namespace BlackList.BusinessLayer
             _context = new ApplicationDbContext();
         }
 
-        public IQueryable<ListUser> getAllFriends(int userId)
+        public IQueryable<ApplicationUser> getAllFriends(int userId)
         {
-            var friends = from friend
-                          in _context.Friends
-                          join u
-                          in _context.ListUsers
-                          on friend.FriendID
-                          equals u.UserID
-                          where friend.FriendID == u.UserID
-                          select u;
+            // needs re-writing
+            //var friends = from friend
+            //              in _context.Friends
+            //              join u
+            //              in _context.Users
+            //              on friend.FriendID
+            //              equals u.
+            //              where friend.FriendID == u.UserID
+            //              select u;
 
-            return friends;
+            //return friends;
+            throw new NotImplementedException();
         }
-        public IEnumerable<ListUser> getAllUsers()
+
+        public int GetAuthorizationRole(string mail, int listId)
         {
-            var users = from user
-                        in _context.ListUsers
-                        select user;
 
-            return users.ToArray();
+            var authorization = from auth in _context.UserMtoMLists
+                                where auth.user.Email == mail
+                                && auth.ListID == listId
+                                select auth;
+
+            return authorization.First().Authority;
+            
         }
+
+
+        public IEnumerable<ApplicationUser> getAllUsers()
+        {
+            //var users = from user
+            //            in _context.ListUsers
+            //            select user;
+
+            //return users.ToArray();
+            throw new NotImplementedException();
+        }
+
+        public ApplicationUser getUser(string Email) => _context.Users.Where(u => u.Email == Email).Single();
+
+
+        public ApplicationUser getFriendTest(string mail)
+        {
+            var user = getUser(mail);
+
+
+            var friends = from friend in _context.Friends
+                          where friend.UserID == user.Email
+                          select friend.friend;
+
+            return friends.FirstOrDefault();
+        }
+
+
+
+        public ApplicationUser[] GetFriends(string mail)
+        {
+
+            var friends = from user in _context.Friends
+                          where user.user.Email == mail
+                          select user.friend;
+            
+
+            //var friends = from user in _context.ListUsers
+            //              where user.
+            //              from buddy in _context.Friends
+            //              where user.UserID == buddy.UserID
+            //              from userfriend in _context.ListUsers
+            //              where userfriend.UserID == buddy.FriendID
+            //              select userfriend;
+            // group buddy by buddy.friend into grp
+            //select grp.Key;
+
+
+                          //var test = from friend in _context.ListUsers
+                          //           where friend.UserName 
+                          //           select friend;
+
+
+            return friends.ToArray();
+        }
+
+
+        public void InviteToList(int listID,string UserName)
+        {
+
+            var list = _context.ShoppingLists.Where(l => l.ListID == listID).Single();
+            var listRelation = from rel in _context.UserMtoMLists
+                               where rel.ListID == listID
+                               && rel.user.UserName == UserName
+                               && rel.Authority == 1
+                               select rel;
+
+            var singleRelation = listRelation.First();
+
+            _context.UserMtoMLists.Add(new UserMtoMList
+            {
+                Authority = 4,
+                List = singleRelation.List,
+                ListID = singleRelation.ListID,
+                user = singleRelation.user,
+                UserID = singleRelation.UserID
+            });
+
+            _context.SaveChanges();
+
+
+        }
+
+
 
 
 

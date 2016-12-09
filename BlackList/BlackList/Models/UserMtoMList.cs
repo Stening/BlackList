@@ -13,14 +13,14 @@ namespace BlackList.Models
         public int Authority { get; set; }
 
         [Required, Column(Order =0) Key, ForeignKey("user")]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         [Required]
-        public virtual ListUser user { get; set; }
+        public virtual ApplicationUser user { get; set; }
+        
 
-
-        [Required, Column(Order = 1)Key, ForeignKey("shoppingList")]
-        public int ShoppingListID { get; set; }
+        [Required, Column(Order = 1)Key, ForeignKey("List")]
+        public int ListID { get; set; }
         [Required]
-        public virtual List shoppingList { get; set; }
+        public virtual CheckList List { get; set; }
     }
 }

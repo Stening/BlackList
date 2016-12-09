@@ -22,7 +22,7 @@ namespace BlackList.Hubs
         public void CreateListCode(string listName)
         {
 
-            List NewList = new List();
+            Models.CheckList NewList = new Models.CheckList();
             NewList.Title = listName;
             NewList.DateCreated = DateTime.Now;
             _context.ShoppingLists.Add(NewList);
@@ -45,9 +45,20 @@ namespace BlackList.Hubs
             //});
             //_context.SaveChanges();
 
-            int _listID = NewList.ShoppingListID;
+            int _listID = NewList.ListID;
 
             Clients.All.createList(_listID);
+        }
+
+        /// <summary>
+        /// Reading of the List function
+        /// </summary>
+        /// <param name="listTitle"></param>
+        /// <param name="IDFromList"></param>
+        public void readTheList(string listTitle, int listID)
+        {
+            CheckList checklist = new CheckList();
+
         }
 
         //Adds words to the list

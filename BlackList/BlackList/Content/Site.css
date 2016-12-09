@@ -40,6 +40,16 @@ textarea {
                 CUSTOM STUFF            
 ========================================*/
 
+/* Styles for the chatbox */
+.containers {
+    background-color: #99ccff;
+    border: thick solid #808080;
+    padding: 20px;
+    margin: 20px;
+    width:400px;
+    float:left;
+}
+
 /* No border on panels*/
 .panel {
     border: 0;
