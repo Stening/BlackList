@@ -123,6 +123,16 @@ namespace BlackList.BusinessLayer
 
 
         }
+        //public List<int> getListID(string listId)
+        //{
+        //    var ListID = from List
+        //                  in _context.
+
+        //                 where List.Title == listId
+        //                 select List.;
+
+        //    return ListID.ToList();
+        //}
 
 
 
