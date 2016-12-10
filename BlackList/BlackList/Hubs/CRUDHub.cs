@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using BlackList.Models;
-using Microsoft.AspNet.Identity;
 using BlackList.BusinessLayer;
+using Microsoft.AspNet.Identity;
 
 namespace BlackList.Hubs
 {
@@ -22,22 +22,16 @@ namespace BlackList.Hubs
 
         public void CreateListCode(string listName)
         {
-            ApplicationDbContext _context = new ApplicationDbContext();
-            List NewList = new List();
+
+            Models.CheckList NewList = new Models.CheckList();
             NewList.Title = listName;
             NewList.DateCreated = DateTime.Now;
             _context.ShoppingLists.Add(NewList);
             _context.SaveChanges();
 
-
-            BlackListDbBusinessLayer bl = new BlackListDbBusinessLayer();
-            var f = bl.getListID(listName);
-            int val = f[0];
-
-            //var f  =  Select ShoppingListsID from _context.ShoppingLists;
-
-
-
+            CheckList bl = new CheckList();
+            var f = bl.ListID;
+            //int val = f[0];
 
             //_context.ShoppingLists.Add(new List
             //{
@@ -49,16 +43,23 @@ namespace BlackList.Hubs
             //_context.UserMtoMLists.Add(new UserMtoMList
             //{
             //    ShoppingListID = NewList.ShoppingListID,
-            string userMail = Context.User.Identity.Name;
-            //var listid = ;
-            var id = HttpContext.Current.User.Identity.GetUserId();
-
+            var UserID = Context.User.Identity.Name;
 
             // UserID
             //});
             //_context.SaveChanges();
+            string userMail = Context.User.Identity.Name;
 
-            int _listID = NewList.ShoppingListID;
+            var id = HttpContext.Current.User.Identity.GetUserId();
+
+
+            int _listID = NewList.ListID;
+
+
+
+            string query = "INSERT INTO UserMtoMLists(UserID,ListID,Authority) VALUES ('" + id + "', '" + _listID + "', '" + 1 + "')";
+            _context.Database.ExecuteSqlCommand(query);
+            _context.SaveChanges();
 
 
             Clients.All.createList(_listID);
@@ -71,6 +72,17 @@ namespace BlackList.Hubs
             _context.Database.ExecuteSqlCommand(query);
             _context.SaveChanges();
 
+
+        }
+
+        /// <summary>
+        /// Reading of the List function
+        /// </summary>
+        /// <param name="listTitle"></param>
+        /// <param name="IDFromList"></param>
+        public void readTheList(string listTitle, int listID)
+        {
+            CheckList checklist = new CheckList();
 
         }
 
@@ -106,7 +118,7 @@ namespace BlackList.Hubs
 
         public void EditWordListCode(int IDFromListItem, string wordFromList, int IDfromList)
         {
-            //var _listID = _context.ListItems.SingleOrDefault(m => m.ListItemID == IDFromList);
+
             ListItem updateListItem = new ListItem();
             updateListItem.ListItemID = IDFromListItem;
             updateListItem.ItemName = wordFromList;
@@ -114,8 +126,8 @@ namespace BlackList.Hubs
             _context.Entry(updateListItem).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
 
-            Clients.All.addToList(wordFromList, IDFromListItem );
-            //Clients.All.updateWordfromList(IDFromList);
+            //Clients.All.addToList(wordFromList, IDFromListItem);
+
 
         }
 

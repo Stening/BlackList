@@ -1,4 +1,6 @@
-﻿<div class="banner-image">
+﻿
+
+<div class="banner-image">
     <figure class="fluidratio"></figure>
 </div>
 
@@ -10,7 +12,23 @@
         <div id="collapseOne" class="panel-collapse collapse">
             <h4 class="panel-title">Meddelande</h4>
             <div class="panel-body">
-                Träutensilierna i ett tryckeri äro ingalunda en faktor där trevnadens ordningens och ekonomiens upprätthållande, och dock är det icke sällan som sorgliga erfarenheter göras ordningens och ekon och miens därmed upprätthållande. Träutensilierna i ett tryckeri äro ingalunda en oviktig faktor, för trevnadens ordningens och och dock är det icke sällan.
+              
+                <div id="display-list">
+                    <h2> Reading the list</h2>
+                    <ul>
+                        <li id="101"></li>
+                        <li id="102"></li>
+                        <li id="103"></li>
+                        <li id="104"></li>
+                    </ul>
+
+
+                    <input type="button" value="Display" 
+                           id="read-list-button" />
+                </div>
+            
+            
+            
             </div>
         </div>
     </div>
@@ -27,22 +45,31 @@
                             <input type="text" value="Name the list" id="listName" />
                             <input type="button" value="Create List " id="createList" />
                         </div>
-                        <div class="list-div"></div>
-                        <div class="add-list-div">
+                        <div class="list-div">
+                            <ul class="ul-ShoppingList" id="theUlList">
+                            </ul>
+                        </div>
+                        <div class="add-list-div toggleClass-div-hide" id="addToListID">
                             <input type="text" value="Word" id="textbox-list" />
                             <input type="button" value="Add" id="add-to-list-button" />
                             <input type="button" value="Remove List" id="remove-list" />
                         </div>
                     </div>
+                    <div id="InviteFriends"></div>
                 </div>
 
             </div>
         </div>
     </div>
 
+
+
+
+
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
+            <div id="Friends"></div>
             <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
             <div class="panel-body">
 </div>
@@ -69,6 +96,30 @@
         }
     }
             </div>
-        </div>
     </div>
+
+    <div class="panel panel-default">
+        <div id="collapseFour" class="panel-collapse collapse">
+            <h4 class="panel-title">Chatt</h4>
+            <div class="panel-body">
+
+
+                <div class="containers">
+                    <!-- Area containing the chat -->
+                    <button id="ClickMe">Click Me</button>
+
+                    <input type="text" id="message" />
+                    <input type="button" id="sendmessage" value="send" />
+                    <input type="hidden" id="displayname" />
+                    <ul id="discussion"></ul>
+                </div>
+
+
+        </div>
+            
+    </div>
+    </div>
+
+
+</div>
 
