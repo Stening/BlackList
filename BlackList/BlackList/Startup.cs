@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
 using Owin;
+using BlackList.BusinessLayer;
+
 
 [assembly: OwinStartup(typeof(BlackList.Startup))]
 
@@ -14,6 +16,7 @@ namespace BlackList
         {
             ConfigureAuth(app);
             app.MapSignalR();
+            bootstrapper.Initialize();
         }
     }
 }

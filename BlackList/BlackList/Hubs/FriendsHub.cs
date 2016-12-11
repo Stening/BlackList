@@ -4,13 +4,19 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using BlackList.Models;
-
+using BlackList.BusinessLayer.Interfaces;
 namespace BlackList.Hubs
 {
     public class FriendsHub : Hub
     {
-        static BlackList.BusinessLayer.BlackListDbBusinessLayer dbLayer = new BusinessLayer.BlackListDbBusinessLayer();
+        private readonly IBlackListDbBusinessLayer _dbBLayer;
         static Dictionary<string, ConnectedUser> connectedUsers = new Dictionary<string, ConnectedUser>();
+
+        public FriendsHub(IBlackListDbBusinessLayer dbBLayer)
+        {
+            _dbBLayer = dbBLayer;
+        }
+
 
         public void ConnectToFriends()
         {
@@ -18,7 +24,7 @@ namespace BlackList.Hubs
             //var y = dbLayer.getFriendTest(myName);
             //var me = dbLayer.getUserBymail(myName);
 
-            var friends = dbLayer.GetFriends(myName);
+            var friends = _dbBLayer.GetFriends(myName);
 
 
             //Dummy Code
@@ -83,7 +89,7 @@ namespace BlackList.Hubs
 
         public void inviteToList(string userNameToInvite, int listId)
         {
-            dbLayer.InviteToList(listId, userNameToInvite);
+            _dbBLayer.InviteToList(listId, userNameToInvite);
 
 
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Principal;
+using BlackList.Models.Interfaces;
 
 namespace BlackList.Models
 {
@@ -23,7 +24,7 @@ namespace BlackList.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> , IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("BlackListDB", throwIfV1Schema: false)
@@ -34,9 +35,10 @@ namespace BlackList.Models
         {
             return new ApplicationDbContext();
         }
-
+        
         public System.Data.Entity.DbSet<BlackList.Models.Contact> Contacts { get; set; }
-
+        //public override IDbSet<ApplicationUser, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim> Users { get { return base.Users; }set { base.Users = value; } }
+        public new IDbSet<ApplicationUser> Users { get { return base.Users; } set { base.Users = value; } }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<CheckList> ShoppingLists { get; set; }
         public DbSet<ListItem> ListItems { get; set; }
@@ -45,7 +47,10 @@ namespace BlackList.Models
         public DbSet<Message> Messages { get; set; }
         public DbSet<ChatRoomUser> ChatRoomUsers { get; set; }
 
-
+        public new void SaveChanges()
+        {
+            base.SaveChanges();
+        }
 
 
 

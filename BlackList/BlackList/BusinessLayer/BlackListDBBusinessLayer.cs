@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BlackList.Models;
+using BlackList.BusinessLayer.Interfaces;
+using BlackList.Models.Interfaces;
+
 namespace BlackList.BusinessLayer
 {
-    public class BlackListDbBusinessLayer
+    public class BlackListDbBusinessLayer : IBlackListDbBusinessLayer
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public BlackListDbBusinessLayer()
+        public BlackListDbBusinessLayer(IApplicationDbContext dbContext)
         {
-            _context = new ApplicationDbContext();
+            _context = dbContext;
         }
 
         public IQueryable<ApplicationUser> getAllFriends(int userId)
