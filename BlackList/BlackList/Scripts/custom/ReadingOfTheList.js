@@ -1,4 +1,13 @@
-﻿$(function () {
+﻿/*====================================
+            On start
+====================================*/
+$(document).ready(function () {
+    var CL = $.connection.cRUDHub;
+    $('#myLists').click(function () 
+    {
+        alet('hej');
+        listInmeny(listArray);
+    });
 
     /*====================================
             Reading of the list
