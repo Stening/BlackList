@@ -63,28 +63,37 @@ $(document).ready(function () {
         
     })
 
-    $('body').on('click', '#MyLists', function () {
+    $('body').on('click', '.li-in-list', function () {
 
-
-        CrudConnection.server.getListItems();
+        var id = $(this).attr("id")
+        console.log(id)
+        CrudConnection.server.getListItems(id);
 
 
     })
 
 
-
     CrudConnection.client.renderMyLists = function (myLists) {
-
+        
         var html = "<ul>";
 
         for (var i = 0; i < myLists.length; i++) {
-            html += "<li class='li-in-list'><p>" + myLists[i].Title + "</p></li>";
+            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><p>" + myLists[i].Title + "</p></li>";
         }
         html += "</ul>";
         $("#MyLists").append(html);
-        console.log(myLists);
+        
 
     }
+    CrudConnection.client.renderMyListItems = function (myListItems) {
+        var html = "<ul>";
+        console.log(myListItems);
+        for (var i = 0; i < myListItems.length; i++) {
+            html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
+        }
+        html += "</ul>";
+        $("#MyLists").append(html);
 
+    }
   
 })
