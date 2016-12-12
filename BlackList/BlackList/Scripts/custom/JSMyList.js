@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
     var CL = $.connection.cRUDHub;
-
+    //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {
             CL.server.createListCode($('#listName').val());
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     });
 
-    
+    //Makes the words in the list clickable
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
         $(this).find('.bock-class').toggleClass('bock-visible');
@@ -27,8 +27,8 @@ $(document).ready(function () {
 
     }
 
-    //Add word to list
     
+        //Calls the add method in hub and adds the word to the database
         $('#add-to-list-button').click(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
         });
     
 
-
+    //Creates the list HTML
     CL.client.createList = function (listID) {
         var nameOfList = $('#listName').val();
 
@@ -62,22 +62,21 @@ $(document).ready(function () {
         function deleteWord() {
             CL.server.removeFromListCode(id);              
         }
-
+        //Sends the new word and updates database
         function sendNewWord() {            
             var valueOftextbox = $(this).parent().children('input').val()
             $(this).parents('li').children().children('p').text(valueOftextbox);
-            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
-            //$(this).parents('li').children('div:nth-child(2)').addClass('toggleClass-div-hide');
+            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');            
             $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-hide');
             CL.server.editWordListCode(id, valueOftextbox, $('.headingForListName').prop('id'));
             
         }
 
+        //Hides word with buttons and shows textbox
         function editWord() {            
             $(this).parent('div').toggleClass('toggleClass-div-hide');
             $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
-           // $('.update-word-div').toggleClass('toggleClass-div-show');
-               
+                          
         };
 
         //Skapar listan med ord
@@ -97,7 +96,7 @@ $(document).ready(function () {
             
             var text = $('<p/>')
                 .addClass('word-in-p')
-                .addClass('col-lg-1')
+                .addClass('col-lg-5')
                 .text(wordsInList)
                 .click(toggleListWords)
                 .appendTo(defaultDiv);
