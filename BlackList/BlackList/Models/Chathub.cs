@@ -18,12 +18,15 @@ namespace BlackList
         {
             // Creating a string variable and storing the users Name from the database.
             string name = Context.User.Identity.GetName();
-            
+
+            // Creating a string variable and storing the users email from the database.
+            string hashurl = Context.User.Identity.GetUserName();
+
             // Sends this method back to the function in ChatAll.js that creates <li>name : message</li>.
             // For each message sent.
             // Name is the name the string variable get from the database. Name of the user logged in.
             // Message the the message use typed in the textbox in the view.
-            Clients.All.broadcastMessage(name, message);
+            Clients.All.broadcastMessage(hashurl, name, message);
         }
     }
 }

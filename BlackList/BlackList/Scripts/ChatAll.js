@@ -3,13 +3,15 @@ $(document).ready(function () {
     // Declare a connection to the Hub and save the connection in a variable.
     var chat = $.connection.chatHub;
     // Create a function that the hub can call to broadcast messages.
-    chat.client.broadcastMessage = function (name, message) {
+    chat.client.broadcastMessage = function (email, name, message) {
         console.log("broadcast");
+        var result = 'https://www.gravatar.com/avatar/' + md5(email);
         // Html encode display name and message.
+        var encodedEmail = $('<div />').text(email).html();
         var encodedName = $('<div />').text(name).html();
         var encodedMsg = $('<div />').text(message).html();
         // Add the message to the page.
-        $("#discussion").append('<li><strong>' + encodedName + '</strong> : ' + encodedMsg + '</li>');
+        $("#discussion").append('<li><img src="' + result + '" with="15px" height="15px"/>'+  '<strong>' + encodedName + '</strong> : ' + encodedMsg + '</li>');
     };
     // Get the user name and store it to prepend to messages.
     //$("#displayname").val(prompt('Enter your name:', ''));
