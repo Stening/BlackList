@@ -23,7 +23,7 @@ namespace BlackList.Hubs
         public void CreateListCode(string listName)
         {
 
-            Models.CheckList NewList = new Models.CheckList();
+            CheckList NewList = new CheckList();
             NewList.Title = listName;
             NewList.DateCreated = DateTime.Now;
             _context.ShoppingLists.Add(NewList);

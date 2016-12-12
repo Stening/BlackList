@@ -90,15 +90,3 @@ namespace UserName.Extensions
 
     }
 }
-namespace UserName.Extensions
-{
-    public static class IndentityExtensions
-    {
-        public static string GetName(this IIdentity identity)
-        {
-            var claim = ((ClaimsIdentity)identity).FindFirst("Name");
-
-            return (claim != null) ? claim.Value : string.Empty;
-        }
-    }
-}
