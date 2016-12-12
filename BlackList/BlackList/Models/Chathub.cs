@@ -16,13 +16,13 @@ namespace BlackList
         [Authorize]
         public void Send(string message)
         {
-            //string name = Context.User.Identity.Name;
+            // Creating a string variable and storing the users Name from the database.
             string name = Context.User.Identity.GetName();
-
-            //string UserName = _context.ListUsers.ToString();
-            //name = UserName;
+            
             // Sends this method back to the function in ChatAll.js that creates <li>name : message</li>.
             // For each message sent.
+            // Name is the name the string variable get from the database. Name of the user logged in.
+            // Message the the message use typed in the textbox in the view.
             Clients.All.broadcastMessage(name, message);
         }
     }
