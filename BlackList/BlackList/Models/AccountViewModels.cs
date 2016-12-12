@@ -11,8 +11,12 @@ namespace BlackList.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+
         [Display(Name = "Hometown")]
         public string Hometown { get; set; }
+
+        [Display(Name = "Namn")]
+        public string Name { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -87,6 +91,7 @@ namespace BlackList.Models
 
         [Display(Name = "Hometown")]
         public string Hometown { get; set; }
+        public string Name { get; internal set; }
     }
 
     public class ResetPasswordViewModel

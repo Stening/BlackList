@@ -18,10 +18,7 @@ namespace BlackList.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
-
-
             userIdentity.AddClaim(new Claim("Name", this.Name.ToString()));
-
             return userIdentity;
         }
     }
@@ -40,9 +37,8 @@ namespace BlackList.Models
 
         public System.Data.Entity.DbSet<BlackList.Models.Contact> Contacts { get; set; }
 
-        public DbSet<ListUser> ListUsers { get; set; }
         public DbSet<Friend> Friends { get; set; }
-        public DbSet<List> ShoppingLists { get; set; }
+        public DbSet<CheckList> ShoppingLists { get; set; }
         public DbSet<ListItem> ListItems { get; set; }
         public DbSet<UserMtoMList> UserMtoMLists { get; set; }
         public DbSet<ChatRoom> ChatRooms { get; set; }
@@ -58,12 +54,12 @@ namespace BlackList.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Friend>().HasRequired(i => i.user).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Friend>().HasRequired(i => i.friend).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<ListItem>().HasRequired(i => i.shoppingList).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<UserMtoMList>().HasRequired(i => i.shoppingList).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<ListItem>().HasRequired(i => i.List).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<UserMtoMList>().HasRequired(i => i.List).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<UserMtoMList>().HasRequired(i => i.user).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<ChatRoomUser>().HasRequired(i => i.user).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<ChatRoomUser>().HasRequired(i => i.chatRoom).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<ChatRoom>().HasRequired(i => i.shoppingList).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<ChatRoom>().HasRequired(i => i.List).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Message>().HasRequired(i => i.chatRoom).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Message>().HasRequired(i => i.PreviousMessage).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Message>().HasRequired(i => i.Sender).WithMany().WillCascadeOnDelete(false);
@@ -92,5 +88,17 @@ namespace UserName.Extensions
             return (claim != null) ? claim.Value : string.Empty;
         }
 
+    }
+}
+namespace UserName.Extensions
+{
+    public static class IndentityExtensions
+    {
+        public static string GetName(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst("Name");
+
+            return (claim != null) ? claim.Value : string.Empty;
+        }
     }
 }

@@ -23,7 +23,6 @@ $(document).ready(function () {
     //Tar bort li elemnt från listan efter att detta görs i databasen
     CL.client.deleteWordfromList = function (deleteWordID) {
         $('#'+deleteWordID).remove();
-        
 
     }
 
@@ -41,7 +40,7 @@ $(document).ready(function () {
         });
     
 
-    //Creates the list HTML
+    //Creates the html for the list heading
     CL.client.createList = function (listID) {
         var nameOfList = $('#listName').val();
 
@@ -62,7 +61,8 @@ $(document).ready(function () {
         function deleteWord() {
             CL.server.removeFromListCode(id);              
         }
-        //Sends the new word and updates database
+
+        //Takes new value and updates database, toggles the divs
         function sendNewWord() {            
             var valueOftextbox = $(this).parent().children('input').val()
             $(this).parents('li').children().children('p').text(valueOftextbox);
@@ -72,11 +72,12 @@ $(document).ready(function () {
             
         }
 
-        //Hides word with buttons and shows textbox
+        //Toggles the divs fpr update procedure
         function editWord() {            
             $(this).parent('div').toggleClass('toggleClass-div-hide');
             $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
-                          
+           
+               
         };
 
         //Skapar listan med ord
@@ -87,8 +88,7 @@ $(document).ready(function () {
         var li = $('<li/>')
             .addClass('li-ShoppingList')
             .addClass('click-sList')
-            .prop("id", id);
-                
+            .prop("id", id);                
 
             var defaultDiv = $('<div />')
                 .addClass('default-div-word')
@@ -128,8 +128,7 @@ $(document).ready(function () {
                 .appendTo(editButtonInList);
 
             var updateDiv = $('<div />')
-            .addClass('update-word-div')
-            //.addClass('toggleClass-div-hide')
+            .addClass('update-word-div')            
             .appendTo(li);
 
             var newTextBox = $('<input>', {
@@ -150,16 +149,9 @@ $(document).ready(function () {
         
             $('#theUlList').append(li);
 
-            //$(".click-sList").click(function () {
-                
-            //    $(this).toggleClass('toggleClass-li-clicked');
-            //    $(this).find('.bock-class').toggleClass('bock-visible');
-            //});
-        
+            
     }
-
-
-
+    
 });
 
 
