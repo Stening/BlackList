@@ -66,11 +66,11 @@ namespace BlackList.Hubs
 
 
 
-            string query = "INSERT INTO UserMtoMLists(UserID,ShoppingListID,Authority) VALUES ('" + id + "', '" + val + "', '" + 1 + "')";
+            //string query = "INSERT INTO UserMtoMLists(UserID,ShoppingListID,Authority) VALUES ('" + id + "', '" + val + "', '" + 1 + "')";
 
 
-            _context.Database.ExecuteSqlCommand(query);
-            _context.SaveChanges();
+            //_context.Database.ExecuteSqlCommand(query);
+            //_context.SaveChanges();
 
 
         }

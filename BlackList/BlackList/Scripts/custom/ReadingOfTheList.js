@@ -20,7 +20,7 @@ $(document).ready(function () {
        Generating list item from idlist
     ====================================*/
     $(function () {
-        var arr = ["1", "2", "3", "4"];
+        var arr = ["101", "102", "103", "104"];
 
         $.each(arr, function (i, val) {
             $("#" + val).text("ID: " + val);
