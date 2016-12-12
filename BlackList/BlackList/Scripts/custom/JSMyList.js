@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
     var CL = $.connection.cRUDHub;
-
+    //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {
             CL.server.createListCode($('#listName').val());
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     });
 
-    
+    //Makes the words in the list clickable
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
         $(this).find('.bock-class').toggleClass('bock-visible');
@@ -26,8 +26,8 @@ $(document).ready(function () {
 
     }
 
-    //Add word to list
     
+        //Calls the add method in hub and adds the word to the database
         $('#add-to-list-button').click(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
