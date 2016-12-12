@@ -299,6 +299,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ChatAll.js" />
     <Content Include="Scripts\custom\ReadingOfTheList.js" />
+    <Content Include="Scripts\GravatarApi.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />

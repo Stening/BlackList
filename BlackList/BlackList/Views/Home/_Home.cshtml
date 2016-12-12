@@ -44,16 +44,19 @@
     <div class="containers">
         <input type="text" id="message" />
         <input type="button" id="sendmessage" value="send" />
-        <input type="hidden" id="displayname" />
         <ul id="discussion"></ul>
     </div>
+    
+    <input type="text" id="email"/>
+    <input type="button" id="get_image"/>
+    <img id="my_whatever"/>
+    <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" id="image"/>
 
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
             <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
-            <div class="panel-body">
-</div>
+            <div class="panel-body"></div>
 @model BlackList.Models.RegisterModel
 
 @{
@@ -75,6 +78,6 @@
         <input type="submit" value="Bjud in" />
         }
     }
-            </div>
-        </div>
+         </div>
     </div>
+</div>

@@ -76,7 +76,7 @@ namespace BlackList.BusinessLayer
             var friends = from user in _context.Friends
                           where user.user.Email == mail
                           select user.friend;
-            
+
 
             //var friends = from user in _context.ListUsers
             //              where user.
@@ -89,9 +89,9 @@ namespace BlackList.BusinessLayer
             //select grp.Key;
 
 
-                          //var test = from friend in _context.ListUsers
-                          //           where friend.UserName 
-                          //           select friend;
+            //var test = from friend in _context.ListUsers
+            //           where friend.UserName 
+            //           select friend;
 
 
             return friends.ToArray();
