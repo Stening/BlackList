@@ -111,7 +111,7 @@ namespace BlackList.BusinessLayer
             var singleRelation = listRelation.First();
 
             _context.UserMtoMLists.Add(new UserMtoMList
-            {
+        {
                 Authority = 4,
                 List = singleRelation.List,
                 ListID = singleRelation.ListID,
@@ -123,6 +123,17 @@ namespace BlackList.BusinessLayer
 
 
         }
+        //public List<int> getListID(string listId)
+        //{
+        //    var ListID = from List
+        //                  in _context.
+
+        //                 where List.Title == listId
+        //                 select List.;
+
+        //    return ListID.ToList();
+        //}
+
 
         public IEnumerable<CheckList> getMyLists(string Mail)
         {
