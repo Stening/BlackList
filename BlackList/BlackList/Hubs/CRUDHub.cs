@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using BlackList.Models;
-
+using BlackList.BusinessLayer;
 
 namespace BlackList.Hubs
 {
@@ -12,7 +12,7 @@ namespace BlackList.Hubs
     {
 
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
-
+        private static BlackListDbBusinessLayer dbLayer = new BlackListDbBusinessLayer();
         public void Send(string name, string message)
         {
             // Call the addNewMessageToPage method to update clients.
@@ -105,6 +105,15 @@ namespace BlackList.Hubs
            
 
         }
+
+        public CheckList[] getMyLists()
+        {
+            var myMail = Context.User.Identity.Name;
+
+            var myLists = dbLayer.getMyLists(myMail);
+            return myLists.ToArray();
+        }
+
 
 
     }
