@@ -14,13 +14,7 @@
             <div class="panel-body">
               
                 <div id="display-list">
-                    <h2> Reading the list</h2>
-                    <ul>
-                        <li id="101"></li>
-                        <li id="102"></li>
-                        <li id="103"></li>
-                        <li id="104"></li>
-                    </ul>
+                    <h4> Meddelanden</h4>
 
 
                     <input type="button" value="Display" 
@@ -37,22 +31,18 @@
 
                 <div class="container">
                     <h2>Create your shoppinglist!</h2>
-                    <div class="read-List">
+                    <div class="read-List">                        
                         <div class="create-list-div">
-                            <input type="text" value="" id="listName" placeholder="Name the List"/>
+                            <input type="text" value="Name the list" id="listName" />
                             <input type="button" value="Create List " id="createList" />
                         </div>
-                        <div class="list-div">
-                            <ul class="ul-ShoppingList" id="theUlList">
-                            </ul>
-                        </div>
-                        <div class="add-list-div toggleClass-div-hide" id="addToListID">
-                            <input type="text" value="" id="textbox-list" placeholder="Add Word"/>
+                        <div class="list-div"></div>
+                        <div class="add-list-div">
+                            <input type="text" value="Word" id="textbox-list" />
                             <input type="button" value="Add" id="add-to-list-button" />
                             <input type="button" value="Remove List" id="remove-list" />
                         </div>
                     </div>
-                    <div id="InviteFriends"></div>
                 </div>
 
             </div>
@@ -66,33 +56,30 @@
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
-            <div id="Friends"></div>
             <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
-            <div class="panel-body">
-            </div>
-            @model BlackList.Models.RegisterModel
+            <div class="panel-body"></div>
+@model BlackList.Models.RegisterModel
 
-            @{
-                using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
-                {
-                    //  <b>Employee Name:</b> @ViewBag.EmployeeName<br />
-
-                    <h1>Avsändare: @ViewBag.EmployeeName</h1><br />
+@{
+    using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
+    {
+        <label>Ditt Namn:</label><br />
+        @Html.TextBoxFor(m => m.UserName)<br />
 
 
-                    <label>Namn på personen du vill bjuda in:</label><br />
-                    @Html.TextBoxFor(m => m.InviteUserName)<br />
+        <label>Namn på personen du vill bjuda in:</label><br />
+        @Html.TextBoxFor(m => m.InviteUserName)<br />
 
-                    <label>Ange Email till personen du vill bjuda in:</label><br />
-                    @Html.TextBoxFor(m => m.Email)<br />
+        <label>Ange Email till personen du vill bjuda in:</label><br />
+        @Html.TextBoxFor(m => m.Email)<br />
 
 
 
-                    <br />
-                    <input type="submit" value="Bjud in" />
-                }
-            }
-        </div>
+        <br />
+        <input type="submit" value="Bjud in" />
+        }
+    }
+         </div>
     </div>
 
     <div class="panel panel-default">
@@ -112,9 +99,9 @@
                 </div>
 
 
-            </div>
-            
         </div>
+            
+    </div>
     </div>
 
 

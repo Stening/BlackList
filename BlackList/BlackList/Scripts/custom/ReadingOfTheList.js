@@ -37,5 +37,14 @@ $(document).ready(function () {
     /*====================================
        Generating list item from idlist
     ====================================*/
-    
+    $(function () {
+        var arr = ["101", "102", "103", "104"];
+
+        $.each(arr, function (i, val) {
+            $("#" + val).text("ID: " + val);
+        });
+        $.each(arr, function (i, val) {
+            $("#" + i).append(document.createTextNode(", " + val));
+        });
+    });
 });

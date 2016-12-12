@@ -76,7 +76,7 @@ namespace BlackList.BusinessLayer
             var friends = from user in _context.Friends
                           where user.user.Email == mail
                           select user.friend;
-            
+
 
             //var friends = from user in _context.ListUsers
             //              where user.
@@ -89,9 +89,9 @@ namespace BlackList.BusinessLayer
             //select grp.Key;
 
 
-                          //var test = from friend in _context.ListUsers
-                          //           where friend.UserName 
-                          //           select friend;
+            //var test = from friend in _context.ListUsers
+            //           where friend.UserName 
+            //           select friend;
 
 
             return friends.ToArray();
@@ -111,7 +111,7 @@ namespace BlackList.BusinessLayer
             var singleRelation = listRelation.First();
 
             _context.UserMtoMLists.Add(new UserMtoMList
-            {
+        {
                 Authority = 4,
                 List = singleRelation.List,
                 ListID = singleRelation.ListID,
@@ -123,8 +123,26 @@ namespace BlackList.BusinessLayer
 
 
         }
+        //public List<int> getListID(string listId)
+        //{
+        //    var ListID = from List
+        //                  in _context.
+
+        //                 where List.Title == listId
+        //                 select List.;
+
+        //    return ListID.ToList();
+        //}
 
 
+        public IEnumerable<CheckList> getMyLists(string Mail)
+        {
+            var lists = from list in _context.UserMtoMLists
+                        where list.user.Email == Mail
+                        select list.List;
+            return lists;
+
+        }
 
 
 
