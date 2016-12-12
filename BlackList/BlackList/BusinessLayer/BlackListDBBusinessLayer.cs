@@ -143,7 +143,13 @@ namespace BlackList.BusinessLayer
             return lists;
 
         }
-
+        public IEnumerable<ListItem> getListItems(int listID)
+        {
+            var items = from item in _context.ListItems
+                        where item.ListID == listID
+                        select item;
+            return items;
+        }
 
 
     }

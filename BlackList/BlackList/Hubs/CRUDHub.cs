@@ -131,12 +131,14 @@ namespace BlackList.Hubs
 
         }
 
-        public CheckList[] getMyLists()
+        public void GetMyLists()
         {
             var myMail = Context.User.Identity.Name;
 
             var myLists = dbLayer.getMyLists(myMail);
-            return myLists.ToArray();
+
+            Clients.Caller.renderMyLists(myLists.ToArray());
+
         }
 
 
