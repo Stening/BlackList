@@ -137,11 +137,19 @@ namespace BlackList.Hubs
 
             var myLists = dbLayer.getMyLists(myMail);
 
-            Clients.Caller.renderMyLists(myLists.ToArray());
+            Clients.Caller.RenderMyLists(myLists.ToArray());
 
         }
 
+        public void GetListItems(int listID)
+        {
+            var myMail = Context.User.Identity.Name;
 
+            var myLists = dbLayer.getMyLists(myMail);
+
+            Clients.Caller.renderMyLists(myLists.ToArray());
+
+        }
 
     }
 }

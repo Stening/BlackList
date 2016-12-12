@@ -25,11 +25,9 @@
 
 
 
-    var CrudConnection = $.connection.cRUDHub;
-    $.connection.hub.start().done(function () {
+   
 
-
-        CrudConnection.server.getMyLists();
+        
 
         });
             
@@ -39,9 +37,32 @@
     /*====================================
        Generating list item from idlist
     ====================================*/
-    $(function () {
+  
         var arr = ["101", "102", "103", "104"];
-    });
+
+
+
+
+
+
+    var CrudConnection = $.connection.cRUDHub;
+    $.connection.hub.start().done(function () {
+
+
+        CrudConnection.server.getMyLists();
+
+        
+    })
+
+    $('body').on('click', '#MyLists', function () {
+
+
+        CrudConnection.server.getListItems();
+
+
+    })
+
+
 
     CrudConnection.client.renderMyLists = function (myLists) {
 
@@ -50,17 +71,11 @@
         for (var i = 0; i < myLists.length; i++) {
             html += "<li class='li-in-list'><p>" + myLists[i].Title + "</p></li>";
         }
-        var html = "</ul>";
+        html += "</ul>";
         $("#MyLists").append(html);
         console.log(myLists);
 
     }
 
-    $('body').on('click', '#MyLists', function () {
-
-     
-   CrudConnection.server.getListItems();
-
-
-    })
+  
 })
