@@ -82,7 +82,7 @@ namespace BlackList.Hubs
         //removes word from kist
         public void RemoveFromListCode(int IDFromList)
         {
-
+            
             var _listID = _context.ListItems.SingleOrDefault(m => m.ListItemID == IDFromList);
             _context.ListItems.Remove(_listID);
             _context.SaveChanges();
