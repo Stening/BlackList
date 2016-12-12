@@ -3,28 +3,39 @@
 ====================================*/
 $(document).ready(function () {
     var CL = $.connection.cRUDHub;
+    $('#myLists').click(listInmeny(listArray));
 
     /*====================================
             Reading of the list
     ====================================*/
-    $.connection.hub.start().done(function () {
-        $('#read-list-button').click(function () {
-            CL.server.readTheListJS($('#textbox-list').val(), $('.headingForListName').prop('id'));
+    var listArray = ['Stening', 'Josefine', 'Wigge','Niclas']
 
+    function listInmeny(listArray) {
+
+        $.each(listArray, function (i) {
+
+            var ulListInMeny = $('<ul/>')
+                .addClass('ul-list-meny')
+
+            var liInMeny = $('<li />')
+                .addClass('li-in-meny')
+                .appendTo(ulListInMeny)
+
+            var pInMeny = $('<p />')
+                .text(listArray[i])
+                .appendTo(liInMeny)
+
+           
+            $('#myLists').append(ulListInMeny);
 
 
         });
-    });
+            
+       };
+
+
     /*====================================
        Generating list item from idlist
     ====================================*/
-    $(function () {
-        var arr = ["101", "102", "103", "104"];
-        $.each(arr, function (i, val) {
-            $("#" + val).text("ID: " + val);
-        });
-        $.each(arr, function (i, val) {
-            $("#" + i).append(document.createTextNode(", " + val));
-        });
-    });
+    
 });
