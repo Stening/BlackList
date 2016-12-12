@@ -3,7 +3,11 @@
 ====================================*/
 $(document).ready(function () {
     var CL = $.connection.cRUDHub;
-    $('#myLists').click(listInmeny(listArray));
+    $('#myLists').click(function () 
+    {
+        alet('hej');
+        listInmeny(listArray);
+    });
 
     /*====================================
             Reading of the list
@@ -37,14 +41,14 @@ $(document).ready(function () {
     /*====================================
        Generating list item from idlist
     ====================================*/
-    $(function () {
-        var arr = ["101", "102", "103", "104"];
+//    $(function () {
+//        var arr = ["101", "102", "103", "104"];
 
-        $.each(arr, function (i, val) {
-            $("#" + val).text("ID: " + val);
-        });
-        $.each(arr, function (i, val) {
-            $("#" + i).append(document.createTextNode(", " + val));
-        });
-    });
-});
+//        $.each(arr, function (i, val) {
+//            $("#" + val).text("ID: " + val);
+//        });
+//        $.each(arr, function (i, val) {
+//            $("#" + i).append(document.createTextNode(", " + val));
+//        });
+//    });
+//});
