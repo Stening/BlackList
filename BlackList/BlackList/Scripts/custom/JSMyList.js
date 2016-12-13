@@ -54,6 +54,7 @@ $(document).ready(function () {
     // Add Words to list
     CL.client.addToList = function (wordsInList, id ) 
     {
+        console.log("testig")
         function deleteWord() {
             CL.server.removeFromListCode(id);              
         }
@@ -148,6 +149,17 @@ $(document).ready(function () {
             
     }
     
+
+
+
+    function toggleListWords() {
+        $(this).toggleClass('toggleClass-li-clicked');
+        $(this).find('.bock-class').toggleClass('bock-visible');
+    }
+    function deleteWord() {
+        CL.server.removeFromListCode(id);
+    }
+
 });
 
 

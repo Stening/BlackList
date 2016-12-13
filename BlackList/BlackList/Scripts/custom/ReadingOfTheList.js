@@ -47,7 +47,16 @@ $(document).ready(function () {
 
 
     $('body').on('click', '.li-in-list', function () {
+        var heading = $(this).children().text();
         CrudConnection.server.getListItems($(this).prop("id"));
+        var headingForList = $('</h2>')
+
+        var textrubrik = $('</p>')
+        .text(heading)
+        .appendTo(headingForList);
+
+        
+
     })
 
 
@@ -76,24 +85,24 @@ $(document).ready(function () {
 
 
     CrudConnection.client.renderMyListItems = function (myListItems) {
-        //$("#MyLists").empty();
+        $("#secondUl").empty();
         //var html = "<ul>";
         //console.log(myListItems);
-        //if (myListItems.length == 0) {
-        //    $("#MyLists").append("Inga saker i listan");
-        //}
-        //else {
+        if (myListItems.length == 0) {
+            $("#secondUl").append("Inga saker i listan");
+        }
+        else {
 
         
         for (var i = 0; i < myListItems.length; i++) {
-            addToList(myListItems[i].ItemName, myListItems[i].ListItemID);
+            renderListItem(myListItems[i].ItemName, myListItems[i].ListItemID);
 
 
                 //html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
             }
         //    html += "</ul>";
         //    $("#MyLists").append(html);
-        //}
+        }
     }
 
     var CrudConnection = $.connection.cRUDHub;
@@ -114,22 +123,15 @@ $(document).ready(function () {
 
 
 
+    CL.client.renderListItem = function (wordsInList, id) {
 
-
-
-
-
-
-
-    CL.client.addToList = function (wordsInList, id) {
-
-        addToList(wordsInList, id);
+        renderListItem(wordsInList, id);
 
     }
 
 
 
-    $('#add-to-list-button').click(function () {
+    $('#add-to-list').click(function () {
         CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
 
@@ -140,7 +142,8 @@ $(document).ready(function () {
 
     });
 
-    var addToList = function (wordsInList, id) {
+    var renderListItem = function (wordsInList, id) {
+
         function deleteWord() {
             CL.server.removeFromListCode(id);
         }
@@ -167,6 +170,15 @@ $(document).ready(function () {
         //var cList = $('<ul/>')
         //.addClass('ul-ShoppingList');
         //$.each(wordsInListArray, function(i) {
+        //var nameOfList = $('#listName').val();
+
+        //var listHeading = $('<h2 />')
+        //    .addClass('headingForListName')
+        //    .prop('id', listID);
+
+        //var headingText = $('<p/>')
+        //    .text(nameOfList)
+        //    .appendTo(listHeading);
 
         var li = $('<li/>')
             .addClass('li-ShoppingList')
@@ -230,7 +242,7 @@ $(document).ready(function () {
             .appendTo(editButton);
 
 
-        $('#theUlList').append(li);
+        $('#secondUl').append(li);
 
 
     }
