@@ -1,7 +1,8 @@
 ﻿/*====================================
             On start
 ====================================*/
-$(document).ready(function () {
+$(window).ready(function () {
+//$(document).ready(function () {
 //$(function () {
     //var CL = $.connection.cRUDHub;
     //$('#myLists').click(function () 
@@ -56,9 +57,11 @@ $(document).ready(function () {
 
 
     var CrudConnection = $.connection.cRUDHub;
-    
+
+    CrudConnection.client.foo = function () { };
+
     console.log("1");
-    $.connection.cRUDHub.client.renderMyLists = function (myLists) {
+    CrudConnection.client.renderMyLists = function (myLists) {
         $("#MyLists").empty();
         console.log("renderMyListstesting");
         var html = "<ul>";
@@ -74,7 +77,7 @@ $(document).ready(function () {
         console.log("5");
     }
     console.log("2");
-    $.connection.cRUDHub.client.renderMyListItems = function (myListItems) {
+    CrudConnection.client.renderMyListItems = function (myListItems) {
         var html = "<ul>";
         console.log(myListItems);
         for (var i = 0; i < myListItems.length; i++) {
