@@ -47,13 +47,11 @@ $(document).ready(function () {
 
 
     $('body').on('click', '.li-in-list', function () {
-        var heading = $(this).children().text();
         CrudConnection.server.getListItems($(this).prop("id"));
-        var headingForList = $('</h2>')
+        var heading = $(this).children().text();
+        alert(heading);
+        $('#listheading-read').append(heading);
 
-        var textrubrik = $('</p>')
-        .text(heading)
-        .appendTo(headingForList);
 
         
 
@@ -119,10 +117,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
     CL.client.renderListItem = function (wordsInList, id) {
 
         renderListItem(wordsInList, id);
@@ -131,7 +125,7 @@ $(document).ready(function () {
 
 
 
-    $('#add-to-list').click(function () {
+    $('#add-to-listButton').click(function () {
         CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
 
