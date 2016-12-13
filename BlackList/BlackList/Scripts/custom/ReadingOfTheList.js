@@ -62,7 +62,7 @@ $(window).ready(function () {
 
     console.log("1");
     CrudConnection.client.renderMyLists = function (myLists) {
-        $("#MyLists").empty();
+        $("#ListMenuItem").empty();
         console.log("renderMyListstesting");
         var html = "<ul>";
 
@@ -70,7 +70,7 @@ $(window).ready(function () {
             html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><p>" + myLists[i].Title + "</p></li>";
         }
         html += "</ul>";
-        $("#MyLists").append(html);
+        $("#ListMenuItem").append(html);
 
         console.log(myLists);
         console.log("renderMyListstesting2");
@@ -78,14 +78,21 @@ $(window).ready(function () {
     }
     console.log("2");
     CrudConnection.client.renderMyListItems = function (myListItems) {
+        $("#MyLists").empty();
         var html = "<ul>";
         console.log(myListItems);
+        if (myListItems.length == 0) {
+            $("#MyLists").append("Inga saker i listan");
+        }
+        else {
+
+        
         for (var i = 0; i < myListItems.length; i++) {
             html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
         }
         html += "</ul>";
         $("#MyLists").append(html);
-
+        }
     }
 
 
