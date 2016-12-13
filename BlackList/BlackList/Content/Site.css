@@ -42,12 +42,12 @@ textarea {
 
 /* Styles for the chatbox */
 .containers {
-    background-color: #99ccff;
-    border: thick solid #808080;
+    background-color: pink;
     padding: 20px;
     margin-top: 20px;
     width:100%;
 }
+
 
 /* No border on panels*/
 .panel {

@@ -11,7 +11,7 @@ $(document).ready(function () {
         var encodedName = $('<div />').text(name).html();
         var encodedMsg = $('<div />').text(message).html();
         // Add the message to the page.
-        $("#discussion").append('<li><img src="' + result + '" with="15px" height="15px"/>'+  '<strong>' + encodedName + '</strong> : ' + encodedMsg + '</li>');
+        $("#discussion").append('<li><img src="' + result + '" width="15px" height="15px"/>' +  '<strong>' + encodedName + '</strong> : ' + encodedMsg + '</li>');
     };
     // Get the user name and store it to prepend to messages.
     //$("#displayname").val(prompt('Enter your name:', ''));
