@@ -52,11 +52,15 @@ $(document).ready(function () {
         alert(heading);
         $('#listheading-read').append(heading);
 
-
+       
         
 
     })
+    $('body').on('click', '.remove-listItem', function () {
 
+        CL.server.removeListWithItems(enter list ID here);
+
+    })
 
     var CrudConnection = $.connection.cRUDHub;
 
