@@ -45,9 +45,8 @@ textarea {
     background-color: #99ccff;
     border: thick solid #808080;
     padding: 20px;
-    margin: 20px;
-    width:400px;
-    float:left;
+    margin-top: 20px;
+    width:100%;
 }
 
 /* No border on panels*/
