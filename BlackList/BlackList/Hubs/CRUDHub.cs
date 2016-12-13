@@ -136,8 +136,8 @@ namespace BlackList.Hubs
             var myMail = Context.User.Identity.Name;
 
             var myLists = dbLayer.getMyLists(myMail);
-
-            Clients.Caller.RenderMyLists(myLists.ToArray());
+            var MyListsReturnVal = myLists.ToArray();
+            Clients.Caller.RenderMyLists(MyListsReturnVal);
 
         }
 
@@ -147,6 +147,7 @@ namespace BlackList.Hubs
 
             var myListitems = dbLayer.getListItems(listID);
 
+            //Clients.Caller.readListFromMenu(myListitems.ToArray());
             Clients.Caller.renderMyListItems(myListitems.ToArray());
 
         }
