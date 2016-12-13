@@ -3,38 +3,38 @@
 ====================================*/
 $(document).ready(function () {
     var CL = $.connection.cRUDHub;
-    $('#myLists').click(function () 
-    {
-        alet('hej');
-        listInmeny(listArray);
-    });
+    //$('#myLists').click(function () 
+    //{
+    //    alet('hej');
+    //    listInmeny(listArray);
+    //});
 
     /*====================================
             Reading of the list
     ====================================*/
-    var listArray = ['Stening', 'Josefine', 'Wigge','Niclas']
+    //var listArray = ['Stening', 'Josefine', 'Wigge','Niclas']
 
-    function listInmeny(listArray) {
+    //function listInmeny(listArray) {
 
-        $.each(listArray, function (i) {
+    //    $.each(listArray, function (i) {
 
-            var ulListInMeny = $('<ul/>')
-                .addClass('ul-list-meny')
+    //        var ulListInMeny = $('<ul/>')
+    //            .addClass('ul-list-meny')
 
-            var liInMeny = $('<li />')
-                .addClass('li-in-meny')
-                .appendTo(ulListInMeny)
+    //        var liInMeny = $('<li />')
+    //            .addClass('li-in-meny')
+    //            .appendTo(ulListInMeny)
 
-            var pInMeny = $('<p />')
-                .text(listArray[i])
-                .appendTo(liInMeny)
+    //        var pInMeny = $('<p />')
+    //            .text(listArray[i])
+    //            .appendTo(liInMeny)
 
            
-            $('#myLists').append(ulListInMeny); 
+    //        $('#myLists').append(ulListInMeny); 
 
         
 
-        });
+    //    });
             
     //   };
 
@@ -43,26 +43,19 @@ $(document).ready(function () {
        Generating list item from idlist
     ====================================*/
 
-    var CrudConnection = $.connection.cRUDHub;
-    $.connection.hub.start().done(function () {
-        CrudConnection.server.getMyLists();
-        
+ 
+
+
+    $('body').on('click', '.li-in-list', function () {
+        CrudConnection.server.getListItems($(this).prop("id"));
     })
-
-
-    $('body').on('click', '#MyLists', function () {
-        CrudConnection.server.getListItems();
-    })
-
-    CrudConnection.client.renderMyLists = function (myLists) {
-        var html = "<ul>";
 
 
     var CrudConnection = $.connection.cRUDHub;
 
-    CrudConnection.client.foo = function () { };
+    CrudConnection.client.dummy = function () { };
 
-    console.log("1");
+
     CrudConnection.client.renderMyLists = function (myLists) {
         $("#ListMenuItem").empty();
         console.log("renderMyListstesting");
@@ -78,117 +71,180 @@ $(document).ready(function () {
         console.log("renderMyListstesting2");
         console.log("5");
     }
-    console.log("2");
+
+
+
+
     CrudConnection.client.renderMyListItems = function (myListItems) {
-        $("#MyLists").empty();
-        var html = "<ul>";
-        console.log(myListItems);
-        if (myListItems.length == 0) {
-            $("#MyLists").append("Inga saker i listan");
-        }
-        else {
+        //$("#MyLists").empty();
+        //var html = "<ul>";
+        //console.log(myListItems);
+        //if (myListItems.length == 0) {
+        //    $("#MyLists").append("Inga saker i listan");
+        //}
+        //else {
 
         
         for (var i = 0; i < myListItems.length; i++) {
-            html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
-        }
-        html += "</ul>";
-        $("#MyLists").append(html);
-        }
+            addToList(myListItems[i].ItemName, myListItems[i].ListItemID);
+
+
+                //html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
+            }
+        //    html += "</ul>";
+        //    $("#MyLists").append(html);
+        //}
     }
 
-
-
-
-    function readListFromMenu(myLists) {
-
+    var CrudConnection = $.connection.cRUDHub;
     $.connection.hub.start().done(function () {
-        console.log("3");
-
         CrudConnection.server.getMyLists();
-        console.log("4");
-    }).fail(function (reason) {
-        console.log("error")
-        console.log(reason);
-        //Skapar listan med ord
-        //var cList = $('<ul/>')
-        //.addClass('ul-ShoppingList');
         
-        $.each(myLists[i], function (i) {
-
-            var li = $('<li/>')
-                .addClass('li-ShoppingList')
-                .addClass('click-sList')
-                .prop("id", myList[i].ListItemID);
-
-            var defaultDiv = $('<div />')
-                .addClass('default-div-word')
-                .appendTo(li);
-
-            var text = $('<p/>')
-                .addClass('word-in-p')
-                .addClass('col-lg-5')
-                .text(myLists[i].ItemName)
-                .click(toggleListWords)
-                .appendTo(defaultDiv);
-
-            var spanInList = $('<span/>')
-                    .addClass('glyphicon')
-                    .addClass('glyphicon-ok')
-                    .addClass('bock-class')
-                    .appendTo(text);
-
-            var trashButtonInList = $('<button />')
-                .addClass('remove-button-class')
-                .click(deleteWord)
-                .appendTo(defaultDiv);
-
-            var trashGlyphInButton = $('<span/>')
-                .addClass('glyphicon')
-                .addClass('glyphicon-trash')
-                .appendTo(trashButtonInList);
-
-            var editButtonInList = $('<button />')
-                .addClass('edit-button-class')
-                .click(editWord)
-                .appendTo(defaultDiv);
-
-            var editGlyphInButton = $('<span />')
-                .addClass('glyphicon')
-                .addClass('glyphicon-pencil')
-                .appendTo(editButtonInList);
-
     })
+
+
     $("#ListMenuItem a").click(function(){
 
         console.log("menuclick registered!");
         CrudConnection.server.getMyLists();
-
-            var updateDiv = $('<div />')
-            .addClass('update-word-div')
-            .appendTo(li);
-
-            var newTextBox = $('<input>', {
-                type: 'text',
-                val: wordsInList
-            }).addClass('textbox-for-update').prop('id', 'editBox' + id).appendTo(updateDiv);
-
-            var editButton = $('<button />')
-                .addClass('save-new-word')
-                .click(sendNewWord)
-                .appendTo(updateDiv);
-
-            var updateGlyphInButton = $('<span />')
-                .addClass('glyphicon')
-                .addClass('glyphicon-floppy-saved')
-                .appendTo(editButton);
+    });
 
 
-            $('#theUlList').append(li);
 
-        });
+
+
+
+
+
+
+
+
+
+
+    CL.client.addToList = function (wordsInList, id) {
+
+        addToList(wordsInList, id);
+
     }
 
-  
+
+
+    $('#add-to-list-button').click(function () {
+        CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
+
+
+        //Knapp för att ta bort hela listan
+        $('#remove-list').click(function () {
+            $('.ul-ShoppingList').remove();
+        });
+
+    });
+
+    var addToList = function (wordsInList, id) {
+        function deleteWord() {
+            CL.server.removeFromListCode(id);
+        }
+
+        //Takes new value and updates database, toggles the divs
+        function sendNewWord() {
+            var valueOftextbox = $(this).parent().children('input').val()
+            $(this).parents('li').children().children('p').text(valueOftextbox);
+            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
+            $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-hide');
+            CL.server.editWordListCode(id, valueOftextbox, $('.headingForListName').prop('id'));
+
+        }
+
+        //Toggles the divs fpr update procedure
+        function editWord() {
+            $(this).parent('div').toggleClass('toggleClass-div-hide');
+            $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
+
+
+        };
+
+        //Skapar listan med ord
+        //var cList = $('<ul/>')
+        //.addClass('ul-ShoppingList');
+        //$.each(wordsInListArray, function(i) {
+
+        var li = $('<li/>')
+            .addClass('li-ShoppingList')
+            .addClass('click-sList')
+            .prop("id", id);
+
+        var defaultDiv = $('<div />')
+            .addClass('default-div-word')
+            .appendTo(li);
+
+        var text = $('<p/>')
+            .addClass('word-in-p')
+            .addClass('col-lg-5')
+            .text(wordsInList)
+            .click(toggleListWords)
+            .appendTo(defaultDiv);
+
+        var spanInList = $('<span/>')
+                .addClass('glyphicon')
+                .addClass('glyphicon-ok')
+                .addClass('bock-class')
+                .appendTo(text);
+
+        var trashButtonInList = $('<button />')
+            .addClass('remove-button-class')
+            .click(deleteWord)
+            .appendTo(defaultDiv);
+
+        var trashGlyphInButton = $('<span/>')
+            .addClass('glyphicon')
+            .addClass('glyphicon-trash')
+            .appendTo(trashButtonInList);
+
+        var editButtonInList = $('<button />')
+            .addClass('edit-button-class')
+            .click(editWord)
+            .appendTo(defaultDiv);
+
+        var editGlyphInButton = $('<span />')
+            .addClass('glyphicon')
+            .addClass('glyphicon-pencil')
+            .appendTo(editButtonInList);
+
+        var updateDiv = $('<div />')
+        .addClass('update-word-div')
+        .appendTo(li);
+
+        var newTextBox = $('<input>', {
+            type: 'text',
+            val: wordsInList
+        }).addClass('textbox-for-update').prop('id', 'editBox' + id).appendTo(updateDiv);
+
+        var editButton = $('<button />')
+            .addClass('save-new-word')
+            .click(sendNewWord)
+            .appendTo(updateDiv);
+
+        var updateGlyphInButton = $('<span />')
+            .addClass('glyphicon')
+            .addClass('glyphicon-floppy-saved')
+            .appendTo(editButton);
+
+
+        $('#theUlList').append(li);
+
+
+    }
+    function toggleListWords() {
+        $(this).toggleClass('toggleClass-li-clicked');
+        $(this).find('.bock-class').toggleClass('bock-visible');
+    }
+    function deleteWord() {
+        CL.server.removeFromListCode(id);
+    }
+
+
 })
+
+  
+            
 

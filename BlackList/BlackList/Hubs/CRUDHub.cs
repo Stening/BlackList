@@ -147,6 +147,7 @@ namespace BlackList.Hubs
 
             var myListitems = dbLayer.getListItems(listID);
 
+            //Clients.Caller.readListFromMenu(myListitems.ToArray());
             Clients.Caller.renderMyListItems(myListitems.ToArray());
 
         }

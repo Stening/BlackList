@@ -14,11 +14,7 @@ $(document).ready(function () {
     });
 
     //Makes the words in the list clickable
-    function toggleListWords() {
-        $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
-    }
-
+    
 
     //Tar bort li elemnt från listan efter att detta görs i databasen
     CL.client.deleteWordfromList = function (deleteWordID) {
