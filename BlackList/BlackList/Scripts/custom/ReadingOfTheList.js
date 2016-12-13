@@ -49,8 +49,10 @@ $(document).ready(function () {
     $('body').on('click', '.li-in-list', function () {
         CrudConnection.server.getListItems($(this).prop("id"));
         var heading = $(this).children().text();
-        alert(heading);
-        $('#listheading-read').append(heading);
+        var liID = $(this).prop('id');
+        
+        $('.listheading-read').append(heading);
+        $('.listheading-read').prop('id', liID);
 
 
         
