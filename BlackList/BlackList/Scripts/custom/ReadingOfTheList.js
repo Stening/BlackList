@@ -63,9 +63,13 @@ $(document).ready(function () {
         html += "</ul>";
         $("#MyLists").append(html);
         console.log(myLists);
+        readListFromMenu(myLists);
         
     }
 
+    $('body').on('click', '.li-in-list', function () {
+        readListFromMenu(myLists);
+    })
 
     function readListFromMenu(myLists) {
 
@@ -137,7 +141,7 @@ $(document).ready(function () {
                 .appendTo(editButton);
 
 
-            $('#theUlList').append(li);
+            $('#collapseFive').append(li);
 
         });
     }
