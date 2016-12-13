@@ -152,5 +152,29 @@ namespace BlackList.Hubs
 
         }
 
+        public void removeListWithItems(int listID)
+        {
+            var listItems = from listRel in _context.ListItems
+                            where listRel.ListID == listID
+                            select listRel;
+
+            foreach (var item in listItems)
+            {
+                _context.ListItems.Remove(item);
+            }
+            //_context.SaveChanges();
+            var list = from listrel in _context.UserMtoMLists
+                          where listrel.ListID == listID
+                          select listrel.List;
+
+            foreach (var item in list)
+            {
+                _context.ShoppingLists.Remove(item);
+            }
+            _context.SaveChanges();
+
+        }
+
+
     }
 }
