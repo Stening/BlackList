@@ -1,34 +1,22 @@
-﻿
-
-<div class="banner-image">
+﻿<div class="banner-image">
     <figure class="fluidratio"></figure>
 </div>
-
-
-
 <div class="panel-group" id="accordion">
-
     <div class="panel panel-default">
         <div id="collapseOne" class="panel-collapse collapse">
             <h4 class="panel-title">Meddelande</h4>
             <div class="panel-body">
-              
                 <div id="display-list">
                     <h4> Meddelanden</h4>
-
-
-                    <input type="button" value="Display" 
-                           id="read-list-button" />
+                    <input type="button" value="Display" id="read-list-button" />
                 </div>           
             </div>
         </div>
     </div>
-
     <div class="panel panel-default">
         <div id="collapseTwo" class="panel-collapse collapse">
             <h4 class="panel-title">Mina listor</h4>
             <div class="panel-body">
-
                 <div class="container">
                     <h2>Create your shoppinglist!</h2>
                     <div class="read-List">                        
@@ -45,16 +33,20 @@
                             <input type="button" value="Add" id="add-to-list-button" />
                             <input type="button" value="Create new list" id="remove-list" />
                         </div>
+                        <!-- Area containing the chat -->
+                        <div class="containers">
+                            <!-- Textbox where you write your message -->
+                            <input type="text" id="message"/>
+                            <!-- Button that calls the broadcast function -->
+                            <input type="button" id="sendmessage" value="send" />
+                            <!-- Append a <li> element for every message sent -->
+                            <ul id="discussion"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
@@ -62,55 +54,32 @@
             <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
             <div class="panel-body"></div>
 @model BlackList.Models.RegisterModel
-
 @{
     using (Html.BeginForm("EmailInfo", "Home", FormMethod.Post))
     {
         <label>Ditt Namn:</label><br />
         @Html.TextBoxFor(m => m.UserName)<br />
-
-
         <label>Namn på personen du vill bjuda in:</label><br />
         @Html.TextBoxFor(m => m.InviteUserName)<br />
-
         <label>Ange Email till personen du vill bjuda in:</label><br />
         @Html.TextBoxFor(m => m.Email)<br />
-
-
-
         <br />
         <input type="submit" value="Bjud in" />
         }
     }
          </div>
     </div>
-
     <div class="panel panel-default">
         <div id="collapseFour" class="panel-collapse collapse">
             <h4 class="panel-title">Chatt</h4>
             <div class="panel-body">
-
-
-                <div class="containers">
-                    <!-- Area containing the chat -->
-                    <button id="ClickMe">Click Me</button>
-
-                    <input type="text" id="message" />
-                    <input type="button" id="sendmessage" value="send" />
-                    <input type="hidden" id="displayname" />
-                    <ul id="discussion"></ul>
-                </div>
-
-
-        </div>
-            
+        </div>  
     </div>
     </div>
     <div class="panel panel-default">
         <div id="collapseFive" class="panel-collapse collapse">
             <h4 class="panel-title">Mina Listor</h4>
             <div class="panel-body">
-
                 <div class="containers read-List">
                     <div id="MyLists"></div>
                     <h2 class="listheading-read"></h2>
@@ -122,14 +91,10 @@
                         <input type="button" value="Remove List" class="Button-in-read-mode" id="remove-listItem" />
                     </div>
                     <div>
-                        
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
 </div>
 
