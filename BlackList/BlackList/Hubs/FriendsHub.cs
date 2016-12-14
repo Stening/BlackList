@@ -114,6 +114,41 @@ namespace BlackList.Hubs
 
 
 
+
+
+        public void sendToRoom(int chatRoomID, string message)
+        {
+            // save the message in DB also!
+            string[] connectionIDs = GetRoomUsers(chatRoomID);
+
+            Clients.Clients(connectionIDs).receiveMessage(chatRoomID);
+
+        }
+
+
+
+
+        public string[] GetRoomUsers(int chatRoomID)
+        {
+            ApplicationUser[] users = dbLayer.getChatRoomUsers(chatRoomID).ToArray();
+            string[] connectionIds = new string[users.Length];
+            //ConnectedUser[] connectedUsersFiltered = new ConnectedUser[users.Length];
+            for (int i = 0; i < users.Length; i++)
+            {
+                ConnectedUser temp;
+                if (connectedUsers.TryGetValue(users[i].Email, out temp))
+                {
+                    connectionIds[i] = temp.ConnectionId;
+                    //connectedUsersFiltered[i] = temp;
+                }
+            }
+            return connectionIds;
+            //return connectedUsersFiltered;
+        }
+
+
+
+
         public class ConnectedUser
         {
             public ConnectedUser(string userName, ApplicationUser[] friends, bool isOnline, string connectionId = "")

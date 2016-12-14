@@ -32,26 +32,7 @@ namespace BlackList
             // Name is the name the string variable get from the database. Name of the user logged in.
             // Message the the message use typed in the textbox in the view.
             Clients.All.broadcastMessage(email, name, message);
+            
         }
-
-
-
-        public ConnectedUser[] GetRoomUsers(int chatRoomID)
-        {
-            ApplicationUser[] users =  dbLayer.getChatRoomUsers(chatRoomID).ToArray();
-            ConnectedUser[] connectedUsersFiltered = new ConnectedUser[users.Length];
-            for (int i = 0; i < users.Length; i++)
-            {
-                ConnectedUser temp;
-                if (connectedUsers.TryGetValue(users[i].Email, out temp))
-                {
-                    connectedUsersFiltered[i] = temp;
-                }
-            }
-            return connectedUsersFiltered;
-        }
-
-
-
     }
 }
