@@ -52,10 +52,17 @@ $(document).ready(function () {
         var liID = $(this).prop('id');
         
         $('.listheading-read').append(heading);
-        $('.listheading-read').prop('id', liID);        
+        $('.listheading-read').prop('id', liID);
+
+       
+        
 
     })
+    $('body').on('click', '.remove-listItem', function () {
 
+        CL.server.removeListWithItems(enter list ID here);
+
+    })
 
     var CrudConnection = $.connection.cRUDHub;
 
@@ -125,7 +132,7 @@ $(document).ready(function () {
 
 
     $('#add-to-listButton').click(function () {
-        CL.server.addToListInReadMode($('#textbox-list-readMode').val(), $('.listheading-read').prop('id'));
+        CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
 
         //Knapp för att ta bort hela listan
