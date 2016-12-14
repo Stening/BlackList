@@ -30,7 +30,7 @@ $(document).ready(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
         });
-            //Knapp för att ta bort hela listan
+            //Knapp för att skapa ny lista
         $('#remove-list').click(function () {
             $(".headingForListName").remove();
                 $("#addToListID").toggleClass("toggleClass-div-hide");
@@ -101,19 +101,19 @@ $(document).ready(function () {
             var defaultDiv = $('<div />')
                 .addClass('default-div-word')
                 .appendTo(li);
+
+            var spanInList = $('<span/>')
+                        .addClass('glyphicon')
+                        .addClass('glyphicon-ok')
+                        .addClass('bock-class')
+                        .appendTo(defaultDiv);
             
             var text = $('<p/>')
                 .addClass('word-in-p')
                 .addClass('col-lg-5')
                 .text(wordsInList)
                 .click(toggleListWords)
-                .appendTo(defaultDiv);
-
-            var spanInList = $('<span/>')
-                    .addClass('glyphicon')
-                    .addClass('glyphicon-ok')
-                    .addClass('bock-class')
-                    .appendTo(text);
+                .appendTo(defaultDiv);            
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
@@ -165,7 +165,7 @@ $(document).ready(function () {
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-visible');
     }
     function deleteWord() {
         CL.server.removeFromListCode(id);

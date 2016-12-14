@@ -128,6 +128,15 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     
 }
 
+.read-the-list{
+    font-family:'Annie Use Your Telescope', cursive;
+    border:solid;
+    margin-top:50px;
+    background-color:antiquewhite;
+    width:600px;
+    
+}
+
 .create-list-div{
     margin-top:55px;
     margin-left:100px;
@@ -188,7 +197,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .bock-class{
     display:none;
-    margin-left:-70px;
+    margin-left:-20px;
     font-size:x-large;
     vertical-align:top;
 }
@@ -196,8 +205,24 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .bock-visible{
     display: inline-block;
     color: green;
-    width: 30px;
+    width: 15px;
     position: relative;
+    float:left;
+}
+
+.bock-class-read{
+    display:none;
+    margin-left:-20px;
+    font-size:x-large;
+    vertical-align:top;
+}
+
+.bock-read-visible{
+    display: inline-block;
+    color: green;
+    width: 15px;
+    position: relative;
+    float:left;
 }
 
 

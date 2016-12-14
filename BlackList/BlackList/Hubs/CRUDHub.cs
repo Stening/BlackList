@@ -190,9 +190,10 @@ namespace BlackList.Hubs
             _context.SaveChanges();
 
 
-            var list = from listrel in _context.UserMtoMLists
+            var list = from listrel in _context.ShoppingLists
+
                           where listrel.ListID == listID
-                          select listrel.List;
+                          select listrel;
 
             foreach (var item in list)
             {
