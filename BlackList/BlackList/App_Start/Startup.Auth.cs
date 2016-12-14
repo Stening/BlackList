@@ -83,15 +83,17 @@ namespace BlackList
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //    {
+            //          ClientId= "1073436829318-6f7f9gu4j26b1hvlabvjlmjlqij4sl7a.apps.googleusercontent.com",
+            //       ClientSecret= "f8p4VA6TzXXNBpgUbYowJYcV",
+            //       CallbackPath = new Microsoft.Owin.PathString("/Callbacks/External")
             //});
 
             app.UseGoogleAuthentication(
-         clientId: "1007773617079-u6c43k4bh2cf302jpn94m0g2qgaibi85.apps.googleusercontent.com",
-         clientSecret: "1r53y_X-wax3PtCq6_V3TLdd");
+         clientId: "1073436829318-6f7f9gu4j26b1hvlabvjlmjlqij4sl7a.apps.googleusercontent.com",
+         clientSecret: "f8p4VA6TzXXNBpgUbYowJYcV");
+
         }
     }
 }

@@ -138,7 +138,7 @@ namespace BlackList.BusinessLayer
         public IEnumerable<CheckList> getMyLists(string Mail)
         {
             var lists = from list in _context.UserMtoMLists
-                        //where list.user.Email == Mail
+                        where list.user.Email == Mail
                         select list.List;
             return lists;
 
