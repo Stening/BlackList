@@ -79,14 +79,14 @@ namespace BlackList.Migrations
             ListItem a3 = new ListItem { ListItemID = 3, ItemName = "C", ListID = third.ListID };
             ListItem b1 = new ListItem { ListItemID = 4, ItemName = "D", ListID = first.ListID };
             ListItem c1 = new ListItem { ListItemID = 5, ItemName = "E", ListID = first.ListID };
-            context.ListItems.AddOrUpdate(n => n.ItemName, a1, a2, a3, b1, c1);
+            context.ListItems.AddOrUpdate( n => n.ItemName   , a1, a2, a3, b1, c1);
             context.SaveChanges();
 
 
             ApplicationUser link = new ApplicationUser { Id = "1", UserName = "Linkan", Email = "Link@test.com" };
-            ApplicationUser stening = new ApplicationUser { Id = "2", UserName = "Stening"};
+            //ApplicationUser stening = new ApplicationUser { Id = "2", UserName = "Stening"};
             ApplicationUser alex = new ApplicationUser { Id = "3", UserName = "Alex",Email ="Alex@test.com"};
-            context.Users.AddOrUpdate(n =>n.UserName, link, stening, alex);
+            context.Users.AddOrUpdate(n =>n.UserName, link, alex);
             context.SaveChanges();
 
             Friend linkStening = new Friend
@@ -105,9 +105,9 @@ namespace BlackList.Migrations
             context.SaveChanges();
             UserMtoMList linklist = new UserMtoMList { UserID = link.Id, ListID = first.ListID };
             UserMtoMList linklist2 = new UserMtoMList { UserID = link.Id, ListID = second.ListID };
-            UserMtoMList steninglist = new UserMtoMList { UserID = stening.Id, ListID = third.ListID };
+            //UserMtoMList steninglist = new UserMtoMList { UserID = stening.Id, ListID = third.ListID };
             UserMtoMList alexlist = new UserMtoMList { UserID = alex.Id, ListID = first.ListID };
-            context.UserMtoMLists.AddOrUpdate(i => new {i.UserID, i.ListID }, linklist, linklist2, steninglist, alexlist);
+            context.UserMtoMLists.AddOrUpdate(i => new {i.UserID, i.ListID }, linklist, linklist2, alexlist);
             context.SaveChanges();
         }
     }
