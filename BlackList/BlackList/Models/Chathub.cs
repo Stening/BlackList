@@ -11,6 +11,7 @@ namespace BlackList
 {
     public class ChatHub : Hub
     {
+        private readonly ApplicationDbContext adb = new ApplicationDbContext();
         // Authorize the method, user logged in will only be able to use this feature.
         // The method will be called from the ChatAll.js file, containing 3 string variables.
         [Authorize]
