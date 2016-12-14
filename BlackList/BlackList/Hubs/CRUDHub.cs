@@ -104,6 +104,23 @@ namespace BlackList.Hubs
 
         }
 
+        public void AddToListInReadMode(string wordForList, int IDFromList)
+        {
+
+            ListItem listItem = new ListItem();
+            listItem.ItemName = wordForList;
+            listItem.ListID = IDFromList;
+            _context.ListItems.Add(listItem);
+            _context.SaveChanges();
+
+            int listItemID = listItem.ListItemID;
+
+
+
+            Clients.All.renderListItem(wordForList, listItemID);
+
+        }
+
         //removes word from kist
         public void RemoveFromListCode(int IDFromList)
         {
