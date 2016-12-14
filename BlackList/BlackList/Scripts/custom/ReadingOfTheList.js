@@ -131,7 +131,7 @@ $(document).ready(function () {
 
 
     $('#add-to-listButton').click(function () {
-        CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
+        CL.server.addToListInReadMode($('#textbox-list-readMode').val(), $('.listheading-read').prop('id'));
 
 
         //Knapp för att ta bort hela listan
