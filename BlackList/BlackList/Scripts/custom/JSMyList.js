@@ -5,7 +5,9 @@ $(document).ready(function () {
     //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {
-            CL.server.createListCode($('#listName').val());
+            CL.server.createListCode($('#listName').val()).done(function () {
+                CL.server.getMyLists();
+            })
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
             $('#addToListID').toggleClass('toggleClass-div-show');
@@ -27,13 +29,22 @@ $(document).ready(function () {
         $('#add-to-list-button').click(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
-           
-            //Knapp för att ta bort hela listan
-            $('#remove-list').click(function () {
-                $('.ul-ShoppingList').remove();
+        });
+            //Knapp för att skapa ny lista
+        $('#remove-list').click(function () {
+            $(".headingForListName").remove();
+                $("#addToListID").toggleClass("toggleClass-div-hide");
+                $("#addToListID").removeClass("toggleClass-div-show");
+                $('.ul-ShoppingList').empty();
+                $(".headingForListName").empty();
+                $("#listName").css("display:", "inline-block");
+                $("#createList").css("display:", "inline-block");
+                $("#createList").toggleClass("toggleClass-hide-create");
+                $("#listName").toggleClass("toggleClass-hide-create");
+                //$("#createList").show();
             });
 
-        });
+       
     
 
     //Creates the html for the list heading
@@ -54,7 +65,7 @@ $(document).ready(function () {
     // Add Words to list
     CL.client.addToList = function (wordsInList, id ) 
     {
-        console.log("testig")
+        console.log("testig");
         function deleteWord() {
             CL.server.removeFromListCode(id);              
         }
@@ -90,19 +101,19 @@ $(document).ready(function () {
             var defaultDiv = $('<div />')
                 .addClass('default-div-word')
                 .appendTo(li);
+
+            var spanInList = $('<span/>')
+                        .addClass('glyphicon')
+                        .addClass('glyphicon-ok')
+                        .addClass('bock-class')
+                        .appendTo(defaultDiv);
             
             var text = $('<p/>')
                 .addClass('word-in-p')
                 .addClass('col-lg-5')
                 .text(wordsInList)
                 .click(toggleListWords)
-                .appendTo(defaultDiv);
-
-            var spanInList = $('<span/>')
-                    .addClass('glyphicon')
-                    .addClass('glyphicon-ok')
-                    .addClass('bock-class')
-                    .appendTo(text);
+                .appendTo(defaultDiv);            
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
@@ -154,7 +165,7 @@ $(document).ready(function () {
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-visible');
     }
     function deleteWord() {
         CL.server.removeFromListCode(id);

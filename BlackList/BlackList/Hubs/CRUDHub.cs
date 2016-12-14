@@ -104,6 +104,23 @@ namespace BlackList.Hubs
 
         }
 
+        public void AddToListInReadMode(string wordForList, int IDFromList)
+        {
+
+            ListItem listItem = new ListItem();
+            listItem.ItemName = wordForList;
+            listItem.ListID = IDFromList;
+            _context.ListItems.Add(listItem);
+            _context.SaveChanges();
+
+            int listItemID = listItem.ListItemID;
+
+
+
+            Clients.All.renderListItem(wordForList, listItemID);
+
+        }
+
         //removes word from kist
         public void RemoveFromListCode(int IDFromList)
         {
@@ -151,6 +168,41 @@ namespace BlackList.Hubs
             Clients.Caller.renderMyListItems(myListitems.ToArray());
 
         }
+
+        public void RemoveListWithItems(int listID)
+        {
+            var listItems = from item in _context.ListItems
+                            where item.ListID == listID
+                            select item;
+
+            foreach (var item in listItems)
+            {
+                _context.ListItems.Remove(item);
+            }
+            _context.SaveChanges();
+            var listRel = from listrel in _context.UserMtoMLists
+                       where listrel.ListID == listID
+                       select listrel;
+            foreach (var item in listRel)
+            {
+                _context.UserMtoMLists.Remove(item);
+            }
+            _context.SaveChanges();
+
+
+            var list = from listrel in _context.ShoppingLists
+
+                          where listrel.ListID == listID
+                          select listrel;
+
+            foreach (var item in list)
+            {
+                _context.ShoppingLists.Remove(item);
+            }
+            _context.SaveChanges();
+
+        }
+
 
     }
 }

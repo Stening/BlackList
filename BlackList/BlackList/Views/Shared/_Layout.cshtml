@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="container body-content" id="site-wrapper">
@@ -64,14 +63,11 @@
                         </li>
                         <li>
                             <a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive"
-                               aria-expanded="false" aria-controls="collapseFive">Mina Listor</a>
-
+                               aria-expanded="false" aria-controls="collapseFive" id="a-in-li">Mina Listor</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
-
             @RenderBody()
             @RenderSection("SPAViews", required: false)
             <hr />
@@ -80,8 +76,6 @@
             </footer>
         </div>
     </div>
-
-   
     
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/jquery.signalR-2.2.1.min.js")
@@ -89,7 +83,9 @@
     @Scripts.Render("~/signalr/hubs")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("Scripts", required: false)
+    <!-- md5 hash encrypt library -->
+    <script type="text/javascript" src="~/Scripts/md5.js"></script>
+    <!-- JavaScript containing the function for the chat -->
     <script type="text/javascript" src="~/Scripts/ChatAll.js"></script>
-    <script type="text/javascript" src="~/Scripts/GravatarApi.js"></script>
 </body>
 </html>

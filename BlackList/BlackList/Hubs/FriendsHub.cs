@@ -30,7 +30,7 @@ namespace BlackList.Hubs
             //{
             //    connectedUsers.Add(friends[1].Email, new ConnectedUser(friends[1].Email, null, true, "12345"));
             //}
-            ////Dummy code
+            //Dummy code
 
 
 

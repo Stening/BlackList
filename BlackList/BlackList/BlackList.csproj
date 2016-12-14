@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
       <DependentUpon>201612081037378_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121021103_Attempt.cs" />
+    <Compile Include="Migrations\201612121021103_Attempt.Designer.cs">
+      <DependentUpon>201612121021103_Attempt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -346,6 +350,8 @@
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\custom\menu.js" />
+    <Content Include="Scripts\md5.js" />
+    <Content Include="Scripts\md5LibraryJQ.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -411,6 +417,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612081037378_Initial.resx">
       <DependentUpon>201612081037378_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121021103_Attempt.resx">
+      <DependentUpon>201612121021103_Attempt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
