@@ -31,7 +31,7 @@
                         <div class="add-list-div toggleClass-div-hide" id="addToListID">
                             <input type="text" value="" id="textbox-list" placeholder="Add Word" />
                             <input type="button" value="Add" id="add-to-list-button" />
-                            <input type="button" value="Remove List" id="remove-list" />
+                            <input type="button" value="Create new list" id="remove-list" />
                         </div>
                         <!-- Area containing the chat -->
                         <div class="containers">
@@ -50,6 +50,7 @@
     <div class="panel panel-default">
         <div id="collapseThree" class="panel-collapse collapse">
             <h4 class="panel-title">Vänner</h4>
+            <div id="Friends"></div>
             <h4 class="panel-title">Bjud in en vän som du vill ska börja använda BlackList</h4>
             <div class="panel-body"></div>
 @model BlackList.Models.RegisterModel
@@ -72,8 +73,39 @@
         <div id="collapseFour" class="panel-collapse collapse">
             <h4 class="panel-title">Chatt</h4>
             <div class="panel-body">
-        </div>  
+
+
+                
+
+
+        </div>
+            
     </div>
     </div>
+    <div class="panel panel-default">
+        <div id="collapseFive" class="panel-collapse collapse">
+            <h4 class="panel-title">Mina Listor</h4>
+            <div class="panel-body">
+
+                <div class="containers read-List">
+                    <div id="MyLists"></div>
+                    <h2 class="listheading-read"></h2>
+                    <ul id="secondUl">
+                    </ul>
+                    <div class="add-listItem-div" id="add-listItem-id">
+                        <input type="text" value="" id="textbox-list-readMode" placeholder="Add Word" />
+                        <input type="button" value="Add" class="Button-in-read-mode" id="add-to-listButton" />
+                        <input type="button" value="Remove List" class="Button-in-read-mode" id="remove-listItem" />
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </div>
 

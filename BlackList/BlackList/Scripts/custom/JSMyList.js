@@ -5,7 +5,9 @@ $(document).ready(function () {
     //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {
-            CL.server.createListCode($('#listName').val());
+            CL.server.createListCode($('#listName').val()).done(function () {
+                CL.server.getMyLists();
+            })
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
             $('#addToListID').toggleClass('toggleClass-div-show');
@@ -14,11 +16,7 @@ $(document).ready(function () {
     });
 
     //Makes the words in the list clickable
-    function toggleListWords() {
-        $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
-    }
-
+    
 
     //Tar bort li elemnt från listan efter att detta görs i databasen
     CL.client.deleteWordfromList = function (deleteWordID) {
@@ -31,13 +29,22 @@ $(document).ready(function () {
         $('#add-to-list-button').click(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
-           
+        });
             //Knapp för att ta bort hela listan
-            $('#remove-list').click(function () {
-                $('.ul-ShoppingList').remove();
+        $('#remove-list').click(function () {
+            $(".headingForListName").remove();
+                $("#addToListID").toggleClass("toggleClass-div-hide");
+                $("#addToListID").removeClass("toggleClass-div-show");
+                $('.ul-ShoppingList').empty();
+                $(".headingForListName").empty();
+                $("#listName").css("display:", "inline-block");
+                $("#createList").css("display:", "inline-block");
+                $("#createList").toggleClass("toggleClass-hide-create");
+                $("#listName").toggleClass("toggleClass-hide-create");
+                //$("#createList").show();
             });
 
-        });
+       
     
 
     //Creates the html for the list heading
@@ -58,6 +65,7 @@ $(document).ready(function () {
     // Add Words to list
     CL.client.addToList = function (wordsInList, id ) 
     {
+        console.log("testig");
         function deleteWord() {
             CL.server.removeFromListCode(id);              
         }
@@ -152,6 +160,17 @@ $(document).ready(function () {
             
     }
     
+
+
+
+    function toggleListWords() {
+        $(this).toggleClass('toggleClass-li-clicked');
+        $(this).find('.bock-class').toggleClass('bock-visible');
+    }
+    function deleteWord() {
+        CL.server.removeFromListCode(id);
+    }
+
 });
 
 

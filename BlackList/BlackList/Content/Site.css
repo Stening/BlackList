@@ -42,16 +42,12 @@ textarea {
 
 /* Styles for the chatbox */
 .containers {
-    background-color: antiquewhite;
+    background-color: #99ccff;
+    border: thick solid #808080;
     padding: 20px;
-    margin-top: 20px;
-    width:100%;
-}
-
-#ChatText{
-    font-size:22px;
-    max-width:350px;
-    font-weight:normal;
+    margin: 20px;
+    width:400px;
+    float:left;
 }
 
 /* No border on panels*/
@@ -106,8 +102,11 @@ figure.fluidratio {
 
   background-image: url(../Resources/Image/pexels-photo-225011.jpg);
   background-size: cover;
+  -moz-background-size: cover;  /* Firefox 3.6 */
   background-position: center;  /* Internet Explorer 7/8 */
 }
+
+
 
 #myDiv{
     height:200px;
@@ -126,7 +125,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border:solid;
     margin-top:50px;
     background-color:antiquewhite;
-    width:100%;
+    
 }
 
 .create-list-div{
@@ -166,11 +165,13 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .toggleClass-li-clicked{
     color:gray;
+
 }
 
 .toggleClass-hide-create{
     display:none;
 }
+
 
 .headingForListName{
     
@@ -183,6 +184,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .toggleClass-div-show{
     display:inline-block;
 }
+
 
 .bock-class{
     display:none;
@@ -198,15 +200,43 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     position: relative;
 }
 
+
 .ul-ShoppingList{
     list-style-type: none;
     
 
 }
 
+#secondUl {
+    list-style-type:none;
+}
+
 .li-ShoppingList{
+    
     font-family:'Annie Use Your Telescope', cursive;
     font-weight:bold;
     font-size:x-large;
     margin-top:20px;
+
+}
+
+.li-in-list{
+    list-style-type:none;
+    color:blueviolet;
+}
+
+.add-listItem-div{
+    margin:20px;
+}
+
+.listheading-read{
+    margin-left:40px;
+    margin-right:40px;
+    text-decoration:underline;
+}
+
+.Button-in-read-mode{
+    margin-top:12px;
+    margin-right:12px;
+    margin-bottom:12px;
 }
