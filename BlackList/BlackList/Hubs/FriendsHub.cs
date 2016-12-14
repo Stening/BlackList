@@ -10,7 +10,7 @@ namespace BlackList.Hubs
     public class FriendsHub : Hub
     {
         static BlackList.BusinessLayer.BlackListDbBusinessLayer dbLayer = new BusinessLayer.BlackListDbBusinessLayer();
-        static Dictionary<string, ConnectedUser> connectedUsers = new Dictionary<string, ConnectedUser>();
+        public static Dictionary<string, ConnectedUser> connectedUsers = new Dictionary<string, ConnectedUser>();
 
         public void ConnectToFriends()
         {
@@ -114,7 +114,7 @@ namespace BlackList.Hubs
 
 
 
-        private class ConnectedUser
+        public class ConnectedUser
         {
             public ConnectedUser(string userName, ApplicationUser[] friends, bool isOnline, string connectionId = "")
             {

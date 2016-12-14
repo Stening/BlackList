@@ -53,6 +53,14 @@ namespace BlackList.BusinessLayer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ApplicationUser> getChatRoomUsers(int roomID)
+        {
+            var users = from user in _context.ChatRoomUsers
+                        where user.ChatRoomID == roomID
+                        select user.user;
+            return users;
+        }
+
         public ApplicationUser getUser(string Email) => _context.Users.Where(u => u.Email == Email).Single();
 
 
