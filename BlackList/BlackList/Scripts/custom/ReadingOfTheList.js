@@ -68,7 +68,9 @@ $(document).ready(function () {
         var html = "<ul>";
 
         for (var i = 0; i < myLists.length; i++) {
-            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><p>" + myLists[i].Title + "</p></li>";
+            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
+
+            //<a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Mina Listor</a>
         }
         html += "</ul>";
         $("#ListMenuItem").append(html);
