@@ -50,19 +50,12 @@ $(document).ready(function () {
         CrudConnection.server.getListItems($(this).prop("id"));
         var heading = $(this).children().text();
         var liID = $(this).prop('id');
-        
+        $('.listheading-read').empty();
         $('.listheading-read').append(heading);
         $('.listheading-read').prop('id', liID);
 
-       
-        
-
     })
-    $('body').on('click', '.remove-listItem', function () {
-
-        CL.server.removeListWithItems(enter list ID here);
-
-    })
+   
 
     var CrudConnection = $.connection.cRUDHub;
 
@@ -86,7 +79,7 @@ $(document).ready(function () {
     }
 
 
-
+    
 
     CrudConnection.client.renderMyListItems = function (myListItems) {
         $("#secondUl").empty();
@@ -114,7 +107,13 @@ $(document).ready(function () {
         CrudConnection.server.getMyLists();
         
     })
-
+    $('body').on('click', '#remove-listItem', function () {
+        var listID = $(this).parent().parent().children("h2").prop("id");
+        CrudConnection.server.removeListWithItems(listID).done(function () {
+            CrudConnection.server.getMyLists();
+        })
+        console.log("test" + listID);
+    })
 
     $("#ListMenuItem a").click(function(){
 
