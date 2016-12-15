@@ -11,6 +11,7 @@ $(document).ready(function () {
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
             $('#addToListID').toggleClass('toggleClass-div-show');
+            
         });
 
     });
@@ -35,6 +36,7 @@ $(document).ready(function () {
             $(".headingForListName").remove();
                 $("#addToListID").toggleClass("toggleClass-div-hide");
                 $("#addToListID").removeClass("toggleClass-div-show");
+                $('#textbox-list').empty();
                 $('.ul-ShoppingList').empty();
                 $(".headingForListName").empty();
                 $("#listName").css("display:", "inline-block");
@@ -188,7 +190,7 @@ $(document).ready(function () {
 
         
             $('#theUlList').append(li);
-
+            $('#textbox-list').val('');
             
     }
     
