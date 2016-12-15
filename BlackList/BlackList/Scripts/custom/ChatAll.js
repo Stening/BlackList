@@ -1,7 +1,7 @@
 ﻿// Function that will run when the html document has fully loaded.
 $(document).ready(function () {
     // Declare a connection to the Hub and save the connection in a variable.
-    var chat = $.connection.chatHub;
+    var chat = $.connection.cRUDHub;
     // Create a function that the hub can call to broadcast messages.
     chat.client.broadcastMessage = function (email, name, message, date) {
         // Console.log() when then function begins to run.
@@ -22,13 +22,14 @@ $(document).ready(function () {
         // Console.log() when connection is done.
         console.log("done");
 
-
-        var listID = 7;
         
+        
+        
+
         // Function will run if user clicks on element with #sendmessage.
         $('#sendmessage').click(function () {
             // Call the Send method on the hub.
-            chat.server.send($('#message').val(), listID);
+            chat.server.sendMessage($('#message').val());
             // Clear text box and reset focus for next comment.
             $('#message').val('').focus();
         });

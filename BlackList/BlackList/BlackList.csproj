@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201612141437229_minorupdate.Designer.cs">
       <DependentUpon>201612141437229_minorupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612151208397_ChangingMessagePreviousIdNullable.cs" />
+    <Compile Include="Migrations\201612151208397_ChangingMessagePreviousIdNullable.Designer.cs">
+      <DependentUpon>201612151208397_ChangingMessagePreviousIdNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -348,7 +352,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\BlackList45 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\ChatAll.js" />
+    <Content Include="Scripts\custom\ChatAll.js" />
     <Content Include="Scripts\custom\ReadingOfTheList.js" />
     <Content Include="Scripts\GravatarApi.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -362,7 +366,7 @@
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\custom\menu.js" />
-    <Content Include="Scripts\md5.js" />
+    <Content Include="Scripts\custom\md5.js" />
     <Content Include="Scripts\md5LibraryJQ.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -441,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612141437229_minorupdate.resx">
       <DependentUpon>201612141437229_minorupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151208397_ChangingMessagePreviousIdNullable.resx">
+      <DependentUpon>201612151208397_ChangingMessagePreviousIdNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
