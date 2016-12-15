@@ -21,13 +21,12 @@ $(document).ready(function () {
     $.connection.hub.start().done(function () {
         // Console.log() when connection is done.
         console.log("done");
-
-        var listID = 7;
-        
-        
-
         // Function will run if user clicks on element with #sendmessage.
         $('#sendmessage').click(function () {
+
+            var listID = $('.listheading-read').prop("id");
+            console.log(listID);
+
             // Call the Send method on the hub.
             chat.server.send($('#message').val(), listID);
             // Clear text box and reset focus for next comment.
