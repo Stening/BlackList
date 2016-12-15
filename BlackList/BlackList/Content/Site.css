@@ -47,6 +47,11 @@ textarea {
     margin-left:15px;
 }
 
+#ChatText{
+    font-weight:normal;
+    font-size:20px;
+}
+
 /* No border on panels*/
 .panel {
     border: 0;
