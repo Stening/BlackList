@@ -232,6 +232,18 @@
     <Compile Include="Migrations\201612121021103_Attempt.Designer.cs">
       <DependentUpon>201612121021103_Attempt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612141227549_message.cs" />
+    <Compile Include="Migrations\201612141227549_message.Designer.cs">
+      <DependentUpon>201612141227549_message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612141419323_null_previousmessageid.cs" />
+    <Compile Include="Migrations\201612141419323_null_previousmessageid.Designer.cs">
+      <DependentUpon>201612141419323_null_previousmessageid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612141437229_minorupdate.cs" />
+    <Compile Include="Migrations\201612141437229_minorupdate.Designer.cs">
+      <DependentUpon>201612141437229_minorupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -385,6 +397,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121021103_Attempt.resx">
       <DependentUpon>201612121021103_Attempt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141227549_message.resx">
+      <DependentUpon>201612141227549_message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141419323_null_previousmessageid.resx">
+      <DependentUpon>201612141419323_null_previousmessageid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141437229_minorupdate.resx">
+      <DependentUpon>201612141437229_minorupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
