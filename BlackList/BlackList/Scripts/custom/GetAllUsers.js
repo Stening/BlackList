@@ -1,34 +1,31 @@
-﻿
-    $(document).ready(function () {
-        var entrypush;
-        entrypush = $.connection.showAllUsers;
+﻿$(document).ready(function () {
+    var entrypush;
+
+    entrypush = $.connection.showAllUsers;
+
+    entrypush.client.updateUserList = function (list) {
+        
+        
 
 
-        entrypush.client.updateUserList = function(list){
-            
-            
+            for (var i = 0; i <= list.length; i++) {
 
-                //$(".UserListz").append(list)
-                alert("Innan loop");
-            console.log("innan loopen");
-            for (var i = 0; i < list.Count; i++) {
-                $('#UserListz').append("<li>wigge</li>");
-                console.log("i loopen");
+               
+
+                $('#UserListz').append("<div style='text-align:center;'><p class='col-md-6';>" + list[i] + "</p><button class='col-md-6';>Lägg Till Vän</button></div>");
+                
+
             }
-                
 
+        
+            alert(list);
 
-            
-            
-            
-        }
+    }
 
-        //connect to hub
-        $.connection.hub.start().done(function () {
-            entrypush.server.send();
-                
-            });
-        });
+    //connect to hub
+    $.connection.hub.start().done(function () {
+        entrypush.server.send();
 
+    });
+});
 
-    

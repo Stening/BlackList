@@ -47,6 +47,7 @@ namespace BlackList
                 "~/Scripts/custom/menu.js",
                 "~/Scripts/custom/JSMyList.js",
                 "~/Scripts/custom/ReadingOfTheList.js",
+                "~/Scripts/custom/GetAllUsers.js",
                 "~/Scripts/custom/ViewConnectedFriends.js"));
 
         }
