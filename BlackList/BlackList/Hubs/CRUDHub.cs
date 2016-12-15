@@ -144,7 +144,15 @@ namespace BlackList.Hubs
             _context.SaveChanges();
 
             //Clients.All.addToList(wordFromList, IDFromListItem);
+        }
 
+        public void updateHeading(string newHeading, int ListID)
+        {
+            CheckList updateListName = new CheckList();
+            updateListName.ListID = ListID;
+            updateListName.Title = newHeading;
+            _context.Entry(updateListName).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
 
         }
 

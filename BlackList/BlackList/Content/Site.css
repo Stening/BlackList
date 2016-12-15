@@ -42,12 +42,14 @@ textarea {
 
 /* Styles for the chatbox */
 .containers {
-    background-color: #99ccff;
-    border: thick solid #808080;
-    padding: 20px;
-    margin: 20px;
-    width:400px;
-    float:left;
+    background-color: antiquewhite;
+    width:500px;
+    margin-left:15px;
+}
+
+#ChatText{
+    font-weight:normal;
+    font-size:20px;
 }
 
 /* No border on panels*/
@@ -102,11 +104,8 @@ figure.fluidratio {
 
   background-image: url(../Resources/Image/pexels-photo-225011.jpg);
   background-size: cover;
-  -moz-background-size: cover;  /* Firefox 3.6 */
   background-position: center;  /* Internet Explorer 7/8 */
 }
-
-
 
 #myDiv{
     height:200px;
@@ -194,7 +193,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display:inline-block;
 }
 
-
 .bock-class{
     display:none;
     margin-left:-20px;
@@ -225,11 +223,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     float:left;
 }
 
-
 .ul-ShoppingList{
     list-style-type: none;
-    
-
 }
 
 #secondUl {
@@ -237,12 +232,10 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .li-ShoppingList{
-    
     font-family:'Annie Use Your Telescope', cursive;
     font-weight:bold;
     font-size:x-large;
     margin-top:20px;
-
 }
 
 .li-in-list{
@@ -264,4 +257,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-top:12px;
     margin-right:12px;
     margin-bottom:12px;
+}
+
+#discussion{
+    list-style-type:none;
 }
