@@ -16,9 +16,12 @@
                 
 
             }
-
-        
-            alert(list);
+            var propvalue;
+            for (var key in list) {
+                propvalue = list[key];
+                console.log(key, propvalue);
+            }
+            
 
     }
 

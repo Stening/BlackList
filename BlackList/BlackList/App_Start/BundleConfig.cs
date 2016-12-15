@@ -44,10 +44,10 @@ namespace BlackList
 
             //Custom scripts
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                "~/Scripts/custom/GetAllUsers.js",
                 "~/Scripts/custom/menu.js",
                 "~/Scripts/custom/JSMyList.js",
                 "~/Scripts/custom/ReadingOfTheList.js",
-                "~/Scripts/custom/GetAllUsers.js",
                 "~/Scripts/custom/ViewConnectedFriends.js"));
 
         }
