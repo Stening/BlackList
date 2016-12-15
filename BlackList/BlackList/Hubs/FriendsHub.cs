@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using BlackList.Models;
+using System.Threading.Tasks;
 
 namespace BlackList.Hubs
 {
@@ -34,9 +35,14 @@ namespace BlackList.Hubs
 
 
 
+
             if (!connectedUsers.ContainsKey(myName))
             {
                 connectedUsers.Add(myName, new ConnectedUser(myName, friends, true, Context.ConnectionId));
+            }
+            else
+            {
+                connectedUsers[myName].Friends = friends;
             }
 
             //Clients.All.renderFriends(friends);
@@ -59,7 +65,12 @@ namespace BlackList.Hubs
         }
 
 
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            DisconnectFromFriends();
 
+            return base.OnDisconnected(stopCalled);
+        }
 
 
 
