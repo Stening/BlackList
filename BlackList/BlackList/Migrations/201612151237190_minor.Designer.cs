@@ -7,13 +7,13 @@ namespace BlackList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangingMessagePreviousIdNullable : IMigrationMetadata
+    public sealed partial class minor : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangingMessagePreviousIdNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(minor));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612151208397_ChangingMessagePreviousIdNullable"; }
+            get { return "201612151237190_minor"; }
         }
         
         string IMigrationMetadata.Source
