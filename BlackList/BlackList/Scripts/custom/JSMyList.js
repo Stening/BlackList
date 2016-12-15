@@ -41,10 +41,30 @@ $(document).ready(function () {
                 $("#createList").css("display:", "inline-block");
                 $("#createList").toggleClass("toggleClass-hide-create");
                 $("#listName").toggleClass("toggleClass-hide-create");
+                $("#listName").val('');
                 //$("#createList").show();
             });
 
        
+        //function changeHeadingFunction() {
+        //    $('#listName').toggleClass('toggleClass-hide-create');
+
+        //    var saveHeadingButton = $('< button />')
+        //    .prop('id', 'saveNewHeading')
+        //    .click(sendNewHeading)
+        //    .appendTo('#listName');
+            
+
+        //}
+
+        //function sendNewHeading() {
+        //    CL.server.updateHeading($('#listName').val(), $('.headingForListName').prop('id'));
+        //}
+
+
+
+
+
     
 
     //Creates the html for the list heading
@@ -59,7 +79,19 @@ $(document).ready(function () {
             .text(nameOfList)
             .appendTo(listHeading);
 
+        //var changeHeading = $('<button />')
+        //        .addClass('edit-button-class')
+        //        .click(changeHeadingFunction)
+                
+
+        //var changeHeadingButton = $('<span />')
+        //    .addClass('glyphicon')
+        //    .addClass('glyphicon-pencil')
+        //    .appendTo(changeHeading);
+
         $('.create-list-div').append(listHeading)
+        //headingText.append(changeHeading);
+
     }
 
     // Add Words to list
