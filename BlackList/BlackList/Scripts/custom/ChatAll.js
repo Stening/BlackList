@@ -1,7 +1,7 @@
 ﻿// Function that will run when the html document has fully loaded.
 $(document).ready(function () {
     // Declare a connection to the Hub and save the connection in a variable.
-    var chat = $.connection.cRUDHub;
+    var chat = $.connection.chatHub;
     // Create a function that the hub can call to broadcast messages.
     chat.client.broadcastMessage = function (email, name, message, date) {
         // Console.log() when then function begins to run.
@@ -13,7 +13,7 @@ $(document).ready(function () {
         var encodedEmail = $('<div />').text(email).html();
         var encodedName = $('<div />').text(name).html();
         var encodedMsg = $('<div />').text(message).html();
-            var encodedDate = $('<div />').text(date).html();
+        var encodedDate = $('<div />').text(date).html();
         // Add the message to the page by creating a list item and elements needed.
         $("#discussion").append('<li><p id="ChatText"><img src="' + result + '" width="15px" height="15px"/><strong>' + encodedName + '</strong>(' + encodedDate + '): ' + encodedMsg + '<p/></li>');
     };
@@ -22,14 +22,14 @@ $(document).ready(function () {
         // Console.log() when connection is done.
         console.log("done");
 
-        
+        var listID = 7;
         
         
 
         // Function will run if user clicks on element with #sendmessage.
         $('#sendmessage').click(function () {
             // Call the Send method on the hub.
-            chat.server.sendMessage($('#message').val());
+            chat.server.send($('#message').val(), listID);
             // Clear text box and reset focus for next comment.
             $('#message').val('').focus();
         });
