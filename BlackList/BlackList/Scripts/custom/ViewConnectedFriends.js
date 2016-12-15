@@ -8,7 +8,7 @@
 
 
 
-        FriendsConnection.server.connectToFriends();
+        //FriendsConnection.server.connectToFriends();
 
 
 
@@ -20,8 +20,8 @@
         FriendList = friends;
         $("#Friends").empty();
         for (var i = 0; i < friends.length; i++) {
-            $("#InviteFriends").append("<div>" + friends[i].UserName + "<button class='AddFriendToList'>Add to list</button>" + "</div>");
-            var toAppend = "<div class='col-md-8'>" + friends[i].UserName;
+            //$("#InviteFriends").append("<div>" + friends[i].UserName + "<button class='AddFriendToList'>Add to list</button>" + "</div>");
+            var toAppend = "<div class='AddFriendToList col-md-8'>" + friends[i].UserName;
 
 
             if (friends[i].Online == true) {
@@ -48,7 +48,9 @@
 
     $('body').on('click', '.AddFriendToList', function () {
         console.log("Here We will invite the friend to the list, however first we need tha ability to add multiple lists to be able to invite to that specific list");
-        //console.log($(this).parent());
+        console.log($(this).text());
+        console.log($(".listheading-read").prop("id"));
+        FriendsConnection.server.inviteToList($(this).text(), $(".listheading-read").prop("id"));
     });
 
 

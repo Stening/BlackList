@@ -63,7 +63,11 @@ namespace BlackList.Hubs
             Clients.Clients(FriendIds).updateFriends();
             UpdateConnectedFriends();
         }
-
+        public override Task OnConnected()
+        {
+            ConnectToFriends();
+            return base.OnConnected();
+        }
 
         public override Task OnDisconnected(bool stopCalled)
         {
@@ -88,15 +92,19 @@ namespace BlackList.Hubs
                     friendIds[i] = temp.ConnectionId;
                 }
             }
+            connectedUsers.Remove(myName);
             Clients.Clients(friendIds).updateFriends();
         }
 
 
-        public void inviteToList(string userNameToInvite, int listId)
+        public void InviteToList(string userNameToInvite, int listId)
         {
             dbLayer.InviteToList(listId, userNameToInvite);
-
-
+            ConnectedUser temp;
+            if (connectedUsers.TryGetValue(userNameToInvite, out temp))
+            {
+                Clients.Client(temp.ConnectionId).renderMyLists();
+            }
 
             //call client method to update lists here!
 
@@ -113,8 +121,17 @@ namespace BlackList.Hubs
 
             for (int i = 0; i < MyFriends.Length; i++)
             {
-                FriendStatuses[i] =
-                    new ConnectedUser(MyFriends[i].Email, null, connectedUsers.ContainsKey(MyFriends[i].Email));
+                ConnectedUser temp;
+                if (connectedUsers.TryGetValue(MyFriends[i].Email, out temp))
+                {
+                    FriendStatuses[i] =
+                    new ConnectedUser(MyFriends[i].Email, null, true, temp.ConnectionId);
+                }
+                else
+                {
+                    FriendStatuses[i] =
+                    new ConnectedUser(MyFriends[i].Email, null, false, "");
+                }
 
             }
 
@@ -162,7 +179,7 @@ namespace BlackList.Hubs
 
         public class ConnectedUser
         {
-            public ConnectedUser(string userName, ApplicationUser[] friends, bool isOnline, string connectionId = "")
+            public ConnectedUser(string userName, ApplicationUser[] friends, bool isOnline, string connectionId)
             {
                 UserName = userName;
                 Online = isOnline;

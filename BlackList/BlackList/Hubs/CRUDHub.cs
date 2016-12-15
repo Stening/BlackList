@@ -28,7 +28,7 @@ namespace BlackList.Hubs
             NewList.DateCreated = DateTime.Now;
             _context.ShoppingLists.Add(NewList);
             _context.SaveChanges();
-
+            
             CheckList bl = new CheckList();
             var f = bl.ListID;
             //int val = f[0];

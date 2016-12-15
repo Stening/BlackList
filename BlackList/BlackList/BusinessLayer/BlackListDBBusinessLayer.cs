@@ -81,11 +81,15 @@ namespace BlackList.BusinessLayer
         public ApplicationUser[] GetFriends(string mail)
         {
 
-            var friends = from user in _context.Friends
-                          where user.user.Email == mail
-                          select user.friend;
-
-
+            var friends = (from user in _context.Friends
+                           where user.user.Email == mail
+                           select user.friend).Union
+                          (from user in _context.Friends
+                           where user.friend.Email == mail
+                           select user.user);
+                          
+            
+            friends = friends.Where(f => f.Email != mail);
             //var friends = from user in _context.ListUsers
             //              where user.
             //              from buddy in _context.Friends
@@ -109,22 +113,25 @@ namespace BlackList.BusinessLayer
         public void InviteToList(int listID,string UserName)
         {
 
-            var list = _context.ShoppingLists.Where(l => l.ListID == listID).Single();
-            var listRelation = from rel in _context.UserMtoMLists
-                               where rel.ListID == listID
-                               && rel.user.UserName == UserName
-                               && rel.Authority == 1
-                               select rel;
+            //var list = _context.ShoppingLists.Where(l => l.ListID == listID).Single();
+            //var listRelation = from rel in _context.UserMtoMLists
+            //                   where rel.ListID == listID
+            //                   && rel.user.UserName == UserName
+            //                   && rel.Authority == 1
+            //                   select rel;
 
-            var singleRelation = listRelation.First();
+            //var singleRelation = listRelation.First();
+            var users = from user in _context.Users
+                        where user.Email == UserName
+                        select user;
+
+
 
             _context.UserMtoMLists.Add(new UserMtoMList
-        {
+            {
                 Authority = 4,
-                List = singleRelation.List,
-                ListID = singleRelation.ListID,
-                user = singleRelation.user,
-                UserID = singleRelation.UserID
+                ListID = listID,
+                UserID = users.First().Id
             });
 
             _context.SaveChanges();
