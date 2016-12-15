@@ -8,13 +8,13 @@ using Microsoft.AspNet.Identity;
 using UserName.Extensions;
 using BlackList.Hubs;
 using BlackList.BusinessLayer;
-using static BlackList.Hubs.FriendsHub;
 
-namespace BlackList
+
+namespace BlackList.Hubs
 {
-    public class ChatHub : Hub
+    public partial class BlackListHub : Hub
     {
-        private BlackListDbBusinessLayer dbLayer = new BlackListDbBusinessLayer();
+        //private BlackListDbBusinessLayer dbLayer = new BlackListDbBusinessLayer();
         private readonly ApplicationDbContext adb = new ApplicationDbContext();
         // Authorize the method, user logged in will only be able to use this feature.
         // The method will be called from the ChatAll.js file, containing 3 string variables.

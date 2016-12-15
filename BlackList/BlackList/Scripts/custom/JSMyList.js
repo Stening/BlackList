@@ -1,7 +1,7 @@
 ﻿
 
 $(document).ready(function () {
-    var CL = $.connection.cRUDHub;
+    var CL = $.connection.blackListHub;
     //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {

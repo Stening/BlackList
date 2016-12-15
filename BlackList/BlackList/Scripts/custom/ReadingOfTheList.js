@@ -2,7 +2,7 @@
             On start
 ====================================*/
 $(document).ready(function () {
-    var CL = $.connection.cRUDHub;
+    var CL = $.connection.blackListHub;
     //$('#myLists').click(function () 
     //{
     //    alet('hej');
@@ -57,7 +57,7 @@ $(document).ready(function () {
     })
    
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
 
     CrudConnection.client.dummy = function () { };
 
@@ -104,7 +104,7 @@ $(document).ready(function () {
         }
     }
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
     $.connection.hub.start().done(function () {
         CrudConnection.server.getMyLists();
         

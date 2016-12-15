@@ -109,6 +109,13 @@ namespace BlackList.BusinessLayer
             return friends.ToArray();
         }
 
+        public CheckList getList(int listID)
+        {
+            var lists = from list in _context.ShoppingLists
+                        where list.ListID == listID
+                        select list;
+            return lists.First();
+        }
 
         public void InviteToList(int listID,string UserName)
         {
@@ -119,19 +126,25 @@ namespace BlackList.BusinessLayer
             //                   && rel.user.UserName == UserName
             //                   && rel.Authority == 1
             //                   select rel;
-
+            var lists = from list in _context.ShoppingLists
+                        where list.ListID == listID
+                        select list;
+            CheckList listRef = lists.First();
             //var singleRelation = listRelation.First();
             var users = from user in _context.Users
                         where user.Email == UserName
                         select user;
 
-
+            ApplicationUser userRef = users.First();
 
             _context.UserMtoMLists.Add(new UserMtoMList
             {
                 Authority = 4,
-                ListID = listID,
-                UserID = users.First().Id
+                ListID = listRef.ListID,
+                List = listRef,
+                UserID = userRef.Id,
+                user = userRef
+
             });
 
             _context.SaveChanges();

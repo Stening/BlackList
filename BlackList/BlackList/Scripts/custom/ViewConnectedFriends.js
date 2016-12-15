@@ -1,7 +1,7 @@
 ﻿$(function () {
     var FriendList = [];
 
-    var FriendsConnection = $.connection.friendsHub;
+    var FriendsConnection = $.connection.blackListHub;
 
     $.connection.hub.start().done(function () {
 
@@ -26,10 +26,10 @@
 
             if (friends[i].Online == true) {
 
-                toAppend += " <span class='glyphicon glyphicon-ok'>";
+                toAppend += "<span class='glyphicon glyphicon-ok'>";
             }
             else {
-                toAppend += " <span class='glyphicon glyphicon-remove'>";
+                toAppend += "<span class='glyphicon glyphicon-remove'>";
             }
             toAppend += "</div>";
             $("#Friends").append(toAppend)

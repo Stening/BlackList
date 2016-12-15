@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BlackList.Hubs
 {
-    public class CRUDHub : Hub
+    public partial class BlackListHub : Hub
     {
 
         private readonly ApplicationDbContext _context = new ApplicationDbContext();

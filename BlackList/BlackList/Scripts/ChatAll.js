@@ -1,7 +1,7 @@
 ﻿// Function that will run when the html document has fully loaded.
 $(document).ready(function () {
     // Declare a connection to the Hub and save the connection in a variable.
-    var chat = $.connection.chatHub;
+    var chat = $.connection.blackListHub;
     // Create a function that the hub can call to broadcast messages.
     chat.client.broadcastMessage = function (email, name, message) {
         // Console.log() when then function begins to run.

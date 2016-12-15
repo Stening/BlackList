@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BlackList.Hubs
 {
-    public class FriendsHub : Hub
+    public partial class BlackListHub : Hub
     {
-        static BlackList.BusinessLayer.BlackListDbBusinessLayer dbLayer = new BusinessLayer.BlackListDbBusinessLayer();
+        //static BlackList.BusinessLayer.BlackListDbBusinessLayer dbLayer = new BusinessLayer.BlackListDbBusinessLayer();
         public static Dictionary<string, ConnectedUser> connectedUsers = new Dictionary<string, ConnectedUser>();
 
         public void ConnectToFriends()
@@ -81,19 +81,23 @@ namespace BlackList.Hubs
         public void DisconnectFromFriends()
         {
             var myName = Context.User.Identity.Name;
-
-            ConnectedUser me = connectedUsers[myName];
-            string[] friendIds = new string[me.Friends.Length];
-            for (int i = 0; i < me.Friends.Length; i++)
+            if (connectedUsers.ContainsKey(myName))
             {
-                ConnectedUser temp;
-                if (connectedUsers.TryGetValue(me.Friends[i].Email, out temp))
+
+
+                ConnectedUser me = connectedUsers[myName];
+                string[] friendIds = new string[me.Friends.Length];
+                for (int i = 0; i < me.Friends.Length; i++)
                 {
-                    friendIds[i] = temp.ConnectionId;
+                    ConnectedUser temp;
+                    if (connectedUsers.TryGetValue(me.Friends[i].Email, out temp))
+                    {
+                        friendIds[i] = temp.ConnectionId;
+                    }
                 }
+                connectedUsers.Remove(myName);
+                Clients.Clients(friendIds).updateFriends();
             }
-            connectedUsers.Remove(myName);
-            Clients.Clients(friendIds).updateFriends();
         }
 
 
@@ -101,9 +105,14 @@ namespace BlackList.Hubs
         {
             dbLayer.InviteToList(listId, userNameToInvite);
             ConnectedUser temp;
+            CheckList[] HisLists = dbLayer.getMyLists(userNameToInvite).ToArray();
+            //CheckList invitedTo = dbLayer.getList(listId);
+            //CheckList[] ListInvitedTo = new CheckList[HisLists.Length+1];
+            //ListInvitedTo[ListInvitedTo.Length - 1] = invitedTo;
+            //ListInvitedTo[0] = invitedTo;
             if (connectedUsers.TryGetValue(userNameToInvite, out temp))
             {
-                Clients.Client(temp.ConnectionId).renderMyLists();
+                Clients.Client(temp.ConnectionId).renderMyLists(HisLists);
             }
 
             //call client method to update lists here!
