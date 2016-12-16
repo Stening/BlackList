@@ -4,24 +4,31 @@
     entrypush = $.connection.showAllUsers;
 
     entrypush.client.updateUserList = function (list) {
-        
-        
+
+       var count = 0;
 
 
-            for (var i = 0; i <= list.length; i++) {
+        for (var i = 0; i <= list.length; i++) {
 
-               
+         
+            //$('#UserListz').append("<div style='text-align:center;'><a class='col';>" + list[i] + "</a></div>");
 
-                $('#UserListz').append("<div style='text-align:center;'><p class='col-md-6';>" + list[i] + "</p><button class='col-md-6';>Lägg Till Vän</button></div>");
-                
 
-            }
-            var propvalue;
-            for (var key in list) {
-                propvalue = list[key];
-                console.log(key, propvalue);
-            }
             
+            $('#UserListz').append("<select id='cList'></select>");
+            for (i = 0; i < list.length; i++) {
+                $("#cList").append("<option class='clr'>" +
+                list[i] + "</option>");
+            }
+
+
+        }
+        var propvalue;
+        for (var key in list) {
+            propvalue = list[key];
+            console.log(key, propvalue);
+        }
+
 
     }
 
@@ -31,4 +38,3 @@
 
     });
 });
-

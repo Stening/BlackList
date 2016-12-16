@@ -4,10 +4,28 @@
 @section Scripts{
     @Scripts.Render("~/bundles/knockout")
     @Scripts.Render("~/bundles/app")
-    
+   
+
 }
 
+@Scripts.Render("~/bundles/jquery")
 
 <input placeholder="Write A Username Here" style="margin-top:30px; margin-bottom:20px;" />
 <div id="UserListz" class="col-md-6" style="overflow:auto"></div>
+<button class='col-md-6' ;>Lägg Till Vän</button>
+@*<div onclick="location.href='#';" style="cursor: pointer;">*@
 
+
+
+<script>
+    $('.col-md-6').click(function () {
+        $('#cList').change(function () {
+            console.log($(this).val());
+
+        });
+      //  console.log("test");
+    });
+        
+
+
+</script>
