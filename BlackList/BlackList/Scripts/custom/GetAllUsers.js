@@ -12,14 +12,9 @@
 
                
 
-                $('#UserListz').append("<div style='text-align:center;'><p class='col-md-6';>" + list[i] + "</p><button class='col-md-6';>Lägg Till Vän</button></div>");
+                $('#UserListz').append("<div class='col-md-12';><p class='col-md-8'; style='margin: 0 0 0px; overflow-wrap: break-word;'>" + list[i].UserName + "</p><button class='col-md-4' value=" + list[i].Id + ">Lägg Till Vän</button></div>");
                 
 
-            }
-            var propvalue;
-            for (var key in list) {
-                propvalue = list[key];
-                console.log(key, propvalue);
             }
             
 
