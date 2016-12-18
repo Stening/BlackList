@@ -199,6 +199,19 @@ namespace BlackList.BusinessLayer
             return items;
         }
 
+        public IEnumerable<Message> getMyMessages(int listID)
+        {
+            var messages = from message in _context.Messages.Include("Sender")
+                           where message.chatRoom.ListID == listID
+                           select message;
+
+            return messages;
+
+
+        }
+
+
+
 
     }
 }
