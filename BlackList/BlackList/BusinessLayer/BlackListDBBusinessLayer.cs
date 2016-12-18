@@ -119,13 +119,16 @@ namespace BlackList.BusinessLayer
 
         public void InviteToList(int listID,string UserName)
         {
+            var existingRels = from rel in _context.UserMtoMLists
+                               where rel.user.Email == UserName &&
+                               rel.ListID == listID
+                               select rel;
 
-            //var list = _context.ShoppingLists.Where(l => l.ListID == listID).Single();
-            //var listRelation = from rel in _context.UserMtoMLists
-            //                   where rel.ListID == listID
-            //                   && rel.user.UserName == UserName
-            //                   && rel.Authority == 1
-            //                   select rel;
+            if (existingRels.Count() == 0 )
+            {
+
+            
+
             var lists = from list in _context.ShoppingLists
                         where list.ListID == listID
                         select list;
@@ -148,7 +151,7 @@ namespace BlackList.BusinessLayer
             });
 
             _context.SaveChanges();
-
+            }
 
         }
         //public List<int> getListID(string listId)
