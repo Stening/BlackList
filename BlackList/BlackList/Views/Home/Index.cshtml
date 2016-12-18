@@ -8,24 +8,66 @@
 
 }
 
+
 @Scripts.Render("~/bundles/jquery")
 
 <input placeholder="Write A Username Here" style="margin-top:30px; margin-bottom:20px;" />
 <div id="UserListz" class="col-md-6" style="overflow:auto"></div>
-<button class='col-md-6' ;>Lägg Till Vän</button>
+<button class='submitFriendMailToControllen' ;>Lägg Till Vän</button>
 @*<div onclick="location.href='#';" style="cursor: pointer;">*@
 
+@ViewBag.Message
 
 
-<script>
-    $('.col-md-6').click(function () {
-        $('#cList').change(function () {
-            console.log($(this).val());
-
-        });
-      //  console.log("test");
-    });
+    <script>
         
 
+     var valueFromDropDown;
+  
 
+           $('#cList').change(function () {
+                valueFromDropDown = $(this).val();
+                console.log(valueFromDropDown + "hej");
+            });
+           
+            //    console.log("test");
+         
+
+
+        //   $('.col-md-6').click(function (e) {
+        //       e.preventDefault();
+        //      var fft= $('#cList').val();
+  
+        //      console.log(fft);
+
+
+        //});
+
+
+           $('.submitFriendMailToControllen').click(function () {
+               var userName = $('#cList').val();
+              // console.log(fft + "submitFriendMailToControllen");
+           
+            //$.ajax({
+            //    url: '/Home/addNewFriend',
+            //    type: 'POST',
+            //    dataType: 'json',
+            //    cache: false,
+            //    data: JSON.stringify(userName) ,
+              
+
+            //});
+              
+               $.ajax({
+                   url: '/Home/addNewFriend',
+                   type: "POST",
+                   contentType: "application/x-www-form-urlencoded",
+                   success: function (userName) { alert(userName); },
+                   data: { userName }
+               });
+     
+        });
+       
+       
 </script>
+
