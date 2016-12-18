@@ -63,7 +63,7 @@
                         </li>
                         <li>
                             <a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive"
-                               aria-expanded="false" aria-controls="collapseFive">Mina Listor</a>
+                               aria-expanded="false" aria-controls="collapseFive" id="a-in-li">Mina Listor</a>
                         </li>
                     </ul>
                 </div>
@@ -83,9 +83,5 @@
     @Scripts.Render("~/signalr/hubs")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("Scripts", required: false)
-    <!-- md5 hash encrypt library -->
-    <script type="text/javascript" src="~/Scripts/md5.js"></script>
-    <!-- JavaScript containing the function for the chat -->
-    <script type="text/javascript" src="~/Scripts/ChatAll.js"></script>
 </body>
 </html>

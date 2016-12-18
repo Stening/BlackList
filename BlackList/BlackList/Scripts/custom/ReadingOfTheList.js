@@ -68,10 +68,9 @@ $(document).ready(function () {
         var html = "<ul>";
 
         for (var i = 0; i < myLists.length; i++) {
-            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
+            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' class='a-in-li' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
 
-            //<a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Mina Listor</a>
-        }
+            }
         html += "</ul>";
         $("#ListMenuItem").append(html);
 
@@ -113,6 +112,12 @@ $(document).ready(function () {
         var listID = $(this).parent().parent().children("h2").prop("id");
         CrudConnection.server.removeListWithItems(listID).done(function () {
             CrudConnection.server.getMyLists();
+            $('#collapseFive').toggleClass('collapse');
+            $('#collapseFive').toggleClass('in');
+            //$('.listheading-read').toggleClass('toggleClass-div-hide');
+            //$('#secondUl').toggleClass('toggleClass-div-hide');
+
+
         })
         console.log("test" + listID);
     })
@@ -190,18 +195,18 @@ $(document).ready(function () {
             .addClass('default-div-word')
             .appendTo(li);
 
+        var spanInList = $('<span/>')
+                .addClass('glyphicon')
+                .addClass('glyphicon-ok')
+                .addClass('bock-class-read')
+                .appendTo(defaultDiv);
+
         var text = $('<p/>')
             .addClass('word-in-p')
             .addClass('col-lg-5')
             .text(wordsInList)
             .click(toggleListWords)
-            .appendTo(defaultDiv);
-
-        var spanInList = $('<span/>')
-                .addClass('glyphicon')
-                .addClass('glyphicon-ok')
-                .addClass('bock-class')
-                .appendTo(text);
+            .appendTo(defaultDiv);        
 
         var trashButtonInList = $('<button />')
             .addClass('remove-button-class')
@@ -249,7 +254,7 @@ $(document).ready(function () {
     }
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-read-visible');
     }
     function deleteWord() {
         CL.server.removeFromListCode(id);

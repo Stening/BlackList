@@ -11,6 +11,7 @@ $(document).ready(function () {
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
             $('#addToListID').toggleClass('toggleClass-div-show');
+            
         });
 
     });
@@ -30,21 +31,42 @@ $(document).ready(function () {
             CL.server.addToListCode($('#textbox-list').val(), $('.headingForListName').prop('id'));
 
         });
-            //Knapp för att ta bort hela listan
+            //Knapp för att skapa ny lista
         $('#remove-list').click(function () {
             $(".headingForListName").remove();
                 $("#addToListID").toggleClass("toggleClass-div-hide");
                 $("#addToListID").removeClass("toggleClass-div-show");
+                $('#textbox-list').empty();
                 $('.ul-ShoppingList').empty();
                 $(".headingForListName").empty();
                 $("#listName").css("display:", "inline-block");
                 $("#createList").css("display:", "inline-block");
                 $("#createList").toggleClass("toggleClass-hide-create");
                 $("#listName").toggleClass("toggleClass-hide-create");
+                $("#listName").val('');
                 //$("#createList").show();
             });
 
        
+        //function changeHeadingFunction() {
+        //    $('#listName').toggleClass('toggleClass-hide-create');
+
+        //    var saveHeadingButton = $('< button />')
+        //    .prop('id', 'saveNewHeading')
+        //    .click(sendNewHeading)
+        //    .appendTo('#listName');
+            
+
+        //}
+
+        //function sendNewHeading() {
+        //    CL.server.updateHeading($('#listName').val(), $('.headingForListName').prop('id'));
+        //}
+
+
+
+
+
     
 
     //Creates the html for the list heading
@@ -59,7 +81,19 @@ $(document).ready(function () {
             .text(nameOfList)
             .appendTo(listHeading);
 
+        //var changeHeading = $('<button />')
+        //        .addClass('edit-button-class')
+        //        .click(changeHeadingFunction)
+                
+
+        //var changeHeadingButton = $('<span />')
+        //    .addClass('glyphicon')
+        //    .addClass('glyphicon-pencil')
+        //    .appendTo(changeHeading);
+
         $('.create-list-div').append(listHeading)
+        //headingText.append(changeHeading);
+
     }
 
     // Add Words to list
@@ -101,19 +135,19 @@ $(document).ready(function () {
             var defaultDiv = $('<div />')
                 .addClass('default-div-word')
                 .appendTo(li);
+
+            var spanInList = $('<span/>')
+                        .addClass('glyphicon')
+                        .addClass('glyphicon-ok')
+                        .addClass('bock-class')
+                        .appendTo(defaultDiv);
             
             var text = $('<p/>')
                 .addClass('word-in-p')
                 .addClass('col-lg-5')
                 .text(wordsInList)
                 .click(toggleListWords)
-                .appendTo(defaultDiv);
-
-            var spanInList = $('<span/>')
-                    .addClass('glyphicon')
-                    .addClass('glyphicon-ok')
-                    .addClass('bock-class')
-                    .appendTo(text);
+                .appendTo(defaultDiv);            
 
             var trashButtonInList = $('<button />')
                 .addClass('remove-button-class')
@@ -156,7 +190,7 @@ $(document).ready(function () {
 
         
             $('#theUlList').append(li);
-
+            $('#textbox-list').val('');
             
     }
     
@@ -165,7 +199,7 @@ $(document).ready(function () {
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-visible');
     }
     function deleteWord() {
         CL.server.removeFromListCode(id);
