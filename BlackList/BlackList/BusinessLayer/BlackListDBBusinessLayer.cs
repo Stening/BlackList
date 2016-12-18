@@ -127,8 +127,10 @@ namespace BlackList.BusinessLayer
             if (existingRels.Count() == 0 )
             {
 
-            
-
+                var chatrooms = from chatroom in _context.ChatRooms
+                                where listID == chatroom.ListID
+                                select chatroom;
+                ChatRoom chatroomRef = chatrooms.First();
             var lists = from list in _context.ShoppingLists
                         where list.ListID == listID
                         select list;
@@ -139,6 +141,13 @@ namespace BlackList.BusinessLayer
                         select user;
 
             ApplicationUser userRef = users.First();
+                _context.ChatRoomUsers.Add(new ChatRoomUser
+                {
+                    user = userRef,
+                    UserId = userRef.Id,
+                    chatRoom = chatroomRef,
+                    ChatRoomID = chatroomRef.ChatRoomID
+                });
 
             _context.UserMtoMLists.Add(new UserMtoMList
             {
@@ -165,7 +174,15 @@ namespace BlackList.BusinessLayer
         //    return ListID.ToList();
         //}
 
+        //    public IEnumerable<ApplicationUser> getUsersInChatRoom(int chatroomID)
+        //{
+        //    var users = from user in _context.ChatRoomUsers
+        //                where user.ChatRoomID == chatroomID
+        //                select user.user;
 
+        //    return users;
+
+        //}
         public IEnumerable<CheckList> getMyLists(string Mail)
         {
             var lists = from list in _context.UserMtoMLists

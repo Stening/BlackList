@@ -110,6 +110,9 @@ namespace BlackList.Hubs
             //CheckList[] ListInvitedTo = new CheckList[HisLists.Length+1];
             //ListInvitedTo[ListInvitedTo.Length - 1] = invitedTo;
             //ListInvitedTo[0] = invitedTo;
+
+             
+
             if (connectedUsers.TryGetValue(userNameToInvite, out temp))
             {
                 Clients.Client(temp.ConnectionId).renderMyLists(HisLists);
@@ -153,29 +156,29 @@ namespace BlackList.Hubs
 
 
 
-        public void sendToRoom(int chatRoomID, string message)
-        {
-            // save the message in DB also!
-            string[] connectionIDs = GetRoomUsers(chatRoomID);
+        //public void sendToRoom(int chatRoomID, string message)
+        //{
+        //    // save the message in DB also!
+        //    string[] connectionIDs = GetRoomUsers(chatRoomID);
 
-            Clients.Clients(connectionIDs).receiveMessage(chatRoomID);
+        //    Clients.Clients(connectionIDs).receiveMessage(chatRoomID);
 
-        }
-
-
+        //}
 
 
-        public string[] GetRoomUsers(int chatRoomID)
+
+
+        public List<string> GetRoomUsers(int chatRoomID)
         {
             ApplicationUser[] users = dbLayer.getChatRoomUsers(chatRoomID).ToArray();
-            string[] connectionIds = new string[users.Length];
+            List<string> connectionIds = new List<string>();
             //ConnectedUser[] connectedUsersFiltered = new ConnectedUser[users.Length];
             for (int i = 0; i < users.Length; i++)
             {
                 ConnectedUser temp;
                 if (connectedUsers.TryGetValue(users[i].Email, out temp))
                 {
-                    connectionIds[i] = temp.ConnectionId;
+                    connectionIds.Add(temp.ConnectionId);
                     //connectedUsersFiltered[i] = temp;
                 }
             }
