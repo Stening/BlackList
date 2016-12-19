@@ -50,7 +50,7 @@ namespace BlackList.Controllers
                 MailMessage msg = new MailMessage();
                 msg.Subject = "projectblacklistteam alexander28";
                 msg.From = new MailAddress(fromaddr);
-                msg.Body = "Hej "+ InviteUserName+ "\n"+ UserName + " vill bjuda in dig till att använda BlackList,\nFölj länken nedan " + " www.?.de";
+                msg.Body = "Hej "+ InviteUserName+ "\n"+ UserName + " vill bjuda in dig till att använda BlackList,\nFölj länken nedan " + "https://blacklist45.azurewebsites.net/Account/Login";
                 msg.To.Add(new MailAddress(toaddr));
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
