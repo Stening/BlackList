@@ -71,9 +71,9 @@ namespace BlackList.Controllers
         [HttpPost]
         public ActionResult addNewFriend(string userName)
         {
-            
 
-           // string UserName = currentLoggedInUser();
+
+            // string UserName = currentLoggedInUser();
 
             var newFriendsUserId = (from customer in _context.Users
                                     where customer.UserName == userName
@@ -90,22 +90,20 @@ namespace BlackList.Controllers
             {
                 string id = User.Identity.GetUserId<string>();
 
-            var newFriendsUserId = (from customer in _context.Users
-                           where customer.UserName == findFriendsUserId
-                           select customer.Id).SingleOrDefault();
-            
-            if (newFriendsUserId == null)
-            {
-                //ViewBag.Message = TempData["shortMessage"].ToString();
-                //return RedirectToAction("Action2");
-                string query = "INSERT INTO dbo.Friends(UserID,FriendID) VALUES ('" + id + "', '" + newFriendsUserId + "')";
-                _context.Database.ExecuteSqlCommand(query);
-                _context.SaveChanges();
+             
 
+                    //ViewBag.Message = TempData["shortMessage"].ToString();
+                    //return RedirectToAction("Action2");
+                    string query = "INSERT INTO dbo.Friends(UserID,FriendID) VALUES ('" + id + "', '" + newFriendsUserId + "')";
+                    _context.Database.ExecuteSqlCommand(query);
+                    _context.SaveChanges();
+
+                
+
+
+              
             }
-
-
-            TempData["message"] = "someMessage";
+         
             return View("TestController/Index");
         }
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
