@@ -13,7 +13,7 @@ using BlackList.Hubs;
 
 namespace BlackList.Controllers
 {
-    
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -90,6 +90,14 @@ namespace BlackList.Controllers
             {
                 string id = User.Identity.GetUserId<string>();
 
+            var newFriendsUserId = (from customer in _context.Users
+                           where customer.UserName == findFriendsUserId
+                           select customer.Id).SingleOrDefault();
+            
+            if (newFriendsUserId == null)
+            {
+                //ViewBag.Message = TempData["shortMessage"].ToString();
+                //return RedirectToAction("Action2");
                 string query = "INSERT INTO dbo.Friends(UserID,FriendID) VALUES ('" + id + "', '" + newFriendsUserId + "')";
                 _context.Database.ExecuteSqlCommand(query);
                 _context.SaveChanges();

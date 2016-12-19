@@ -61,7 +61,6 @@ namespace BlackList.Models
             modelBuilder.Entity<ChatRoomUser>().HasRequired(i => i.chatRoom).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<ChatRoom>().HasRequired(i => i.List).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Message>().HasRequired(i => i.chatRoom).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<Message>().HasRequired(i => i.PreviousMessage).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Message>().HasRequired(i => i.Sender).WithMany().WillCascadeOnDelete(false);
 
 

@@ -1,7 +1,7 @@
 ﻿
 
 $(document).ready(function () {
-    var CL = $.connection.cRUDHub;
+    var CL = $.connection.blackListHub;
     //starts the connection to the hub and calls createmethod in hub and creates list
     $.connection.hub.start().done(function () {
         $('#createList').click(function () {
@@ -11,6 +11,7 @@ $(document).ready(function () {
             $('#listName').toggleClass('toggleClass-hide-create');
             $('#createList').toggleClass('toggleClass-hide-create');
             $('#addToListID').toggleClass('toggleClass-div-show');
+            
         });
 
     });
@@ -35,6 +36,7 @@ $(document).ready(function () {
             $(".headingForListName").remove();
                 $("#addToListID").toggleClass("toggleClass-div-hide");
                 $("#addToListID").removeClass("toggleClass-div-show");
+                $('#textbox-list').empty();
                 $('.ul-ShoppingList').empty();
                 $(".headingForListName").empty();
                 $("#listName").css("display:", "inline-block");
@@ -188,20 +190,31 @@ $(document).ready(function () {
 
         
             $('#theUlList').append(li);
-
+            $('#textbox-list').val('');
             
     }
     
+    //function toggleListWordsHubCall() {
+    //    var liId = $(this).parents('li').prop('id');
+    //    CL.server.toggleListWordInHub(liId);
+    //}
 
 
+    //CL.client.toggleListWords = function toggleListWords(id) {
+    //    alert(id);
+    //    $('#' + id).toggleClass('toggleClass-li-clicked');
+    //    $('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
+    //    $(this).parent().children('span').toggleClass('bock-visible');
+    //};
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).parent().children('span').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-read-visible');
     }
+
     function deleteWord() {
         CL.server.removeFromListCode(id);
-    }
+    };
 
 });
 

@@ -14,10 +14,6 @@ namespace BlackList.Models
 
         public DateTime TimeStamp{ get; set; }
 
-        [ForeignKey("PreviousMessage")]
-        public Nullable<int> PreviousMessageID { get; set; }
-        public Message PreviousMessage { get; set; }
-
         [ForeignKey("Sender")]
         public string SenderUserID { get; set; }
         public ApplicationUser Sender { get; set; }
