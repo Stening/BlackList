@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title - Blacklist - Shoppinglistan</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -19,7 +19,6 @@
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
-
             </div>
 
             @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,7 +42,7 @@
                 </div>*@
 
             <div id="site-menu">
-                <div class="navbar-collapse">
+                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-brand">
                         <li class="sidemenu-li">
                             <a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne"
@@ -77,7 +76,7 @@
             </footer>
         </div>
     </div>
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/jquery.signalR-2.2.1.min.js")
     @Scripts.Render("~/bundles/bootstrap")

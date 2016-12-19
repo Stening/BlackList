@@ -328,6 +328,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\Image\moon-clipart5.jpg" />
     <Content Include="Resources\Image\pexels-photo-225011.jpg" />
     <Content Include="Scripts\app\menu.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -421,6 +422,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\mockupView.cshtml" />
+    <Content Include="Views\Shared\_LayoutMobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
