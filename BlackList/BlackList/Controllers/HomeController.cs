@@ -85,7 +85,7 @@ namespace BlackList.Controllers
             if (newFriendsUserId == null)
             {
                 ViewBag.Message = TempData["shortMessage"].ToString();
-                return RedirectToAction("Action2");
+                
             }
            //string d= newFriendsUserId.ToString();
          //   string UserName = currentLoggedInUser();

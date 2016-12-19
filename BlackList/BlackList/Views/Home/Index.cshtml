@@ -4,16 +4,21 @@
 @section Scripts{
     @Scripts.Render("~/bundles/knockout")
     @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.signalR-2.2.1.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/signalr/hubs")
    
 
 }
 
 
-@Scripts.Render("~/bundles/jquery")
 
-<input placeholder="Write A Username Here" style="margin-top:30px; margin-bottom:20px;" />
-<div id="UserListz" class="col-md-6" style="overflow:auto"></div>
-<button class='submitFriendMailToControllen' ;>Lägg Till Vän</button>
+
+
+
+<div id="UserListz" class="col-md-4" style="overflow:auto; margin-top:30px;"></div>
+<button class='submitFriendMailToControllen' ; style="margin-top:30px;">Lägg Till Vän</button>
 @*<div onclick="location.href='#';" style="cursor: pointer;">*@
 
 @ViewBag.Message
@@ -27,7 +32,7 @@
 
            $('#cList').change(function () {
                 valueFromDropDown = $(this).val();
-                console.log(valueFromDropDown + "hej");
+                //console.log(valueFromDropDown + "hej");
             });
            
             //    console.log("test");
