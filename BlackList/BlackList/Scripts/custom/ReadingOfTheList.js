@@ -2,7 +2,7 @@
             On start
 ====================================*/
 $(document).ready(function () {
-    var CL = $.connection.cRUDHub;
+    var CL = $.connection.blackListHub;
     //$('#myLists').click(function () 
     //{
     //    alet('hej');
@@ -42,22 +42,35 @@ $(document).ready(function () {
     /*====================================
        Generating list item from idlist
     ====================================*/
+   function toggleNav() {
+        if ($('#site-wrapper').hasClass('show-nav')) {
+            // Do things on Nav Close
+            $('#site-wrapper').removeClass('show-nav');
+        } else {
+            // Do things on Nav Open
+            $('#site-wrapper').addClass('show-nav');
+        }
 
- 
+        //$('#site-wrapper').toggleClass('show-nav');
+    }
+   $('body').on('click', '.sidemenu-li', function () {
+       toggleNav();
+   });
 
+    /* Closing of meny with link click in LI element*/
+   $('body').on('click', '.li-in-list', function () {
+       CrudConnection.server.getListItems($(this).prop("id"));
+       var heading = $(this).children().text();
+       var liID = $(this).prop('id');
+       $('.listheading-read').empty();
+       $('.listheading-read').append(heading);
+       $('.listheading-read').prop('id', liID);
+       //toggleNav();
 
-    $('body').on('click', '.li-in-list', function () {
-        CrudConnection.server.getListItems($(this).prop("id"));
-        var heading = $(this).children().text();
-        var liID = $(this).prop('id');
-        $('.listheading-read').empty();
-        $('.listheading-read').append(heading);
-        $('.listheading-read').prop('id', liID);
-
-    })
+   });
    
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
 
     CrudConnection.client.dummy = function () { };
 
@@ -103,7 +116,7 @@ $(document).ready(function () {
         }
     }
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
     $.connection.hub.start().done(function () {
         CrudConnection.server.getMyLists();
         

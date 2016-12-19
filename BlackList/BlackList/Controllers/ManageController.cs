@@ -10,7 +10,7 @@ using BlackList.Models;
 
 namespace BlackList.Controllers
 {
-    
+    [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

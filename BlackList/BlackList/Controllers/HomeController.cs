@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlackList.Models;
+using Microsoft.AspNet.SignalR.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BlackList.Controllers
 {
-    
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -59,6 +61,36 @@ namespace BlackList.Controllers
 
                 throw new ArgumentException("något gick fel");
             }
+        }
+        [HttpPost]
+        public ActionResult addNewFriend(string userName)
+        {
+
+            returnvalue(userName);
+
+            string UserName = currentLoggedInUser();
+            return RedirectToAction("Index");
+        }
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+
+
+        public string returnvalue(string findFriendsUserId)
+        {
+
+
+            var newFriendsUserId = (from customer in _context.Users
+                           where customer.UserName == findFriendsUserId
+                           select customer.Id).SingleOrDefault();
+            
+            if (newFriendsUserId == null)
+            {
+                //ViewBag.Message = TempData["shortMessage"].ToString();
+                //return RedirectToAction("Action2");
+            }
+           //string d= newFriendsUserId.ToString();
+         //   string UserName = currentLoggedInUser();
+
+            return newFriendsUserId.ToString();
         }
     }
 }

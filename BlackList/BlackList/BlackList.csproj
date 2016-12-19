@@ -257,6 +257,7 @@
     <Compile Include="Authorization\ListAuth.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="BusinessLayer\SeedHelper.cs" />
+    <Compile Include="Hubs\ShowAllUsers.cs" />
     <Compile Include="Migrations\201612081037378_Initial.cs" />
     <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
       <DependentUpon>201612081037378_Initial.cs</DependentUpon>
@@ -276,6 +277,10 @@
     <Compile Include="Migrations\201612151237190_minor.cs" />
     <Compile Include="Migrations\201612151237190_minor.Designer.cs">
       <DependentUpon>201612151237190_minor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612181101190_removed_previousMessage.cs" />
+    <Compile Include="Migrations\201612181101190_removed_previousMessage.Designer.cs">
+      <DependentUpon>201612181101190_removed_previousMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -323,6 +328,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\Image\moon-clipart5.jpg" />
     <Content Include="Resources\Image\pexels-photo-225011.jpg" />
     <Content Include="Scripts\app\menu.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -349,6 +355,7 @@
     <None Include="Properties\PublishProfiles\BlackList45 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom\ChatAll.js" />
+    <Content Include="Scripts\custom\GetAllUsers.js" />
     <Content Include="Scripts\custom\ReadingOfTheList.js" />
     <Content Include="Scripts\GravatarApi.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -415,6 +422,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\mockupView.cshtml" />
+    <Content Include="Views\Shared\_LayoutMobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -441,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612151237190_minor.resx">
       <DependentUpon>201612151237190_minor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612181101190_removed_previousMessage.resx">
+      <DependentUpon>201612181101190_removed_previousMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
