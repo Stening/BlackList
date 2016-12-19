@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     var entrypush;
 
-    //entrypush = $.connection.showAllUsers;
+    entrypush = $.connection.showAllUsers;
 
     entrypush.client.updateUserList = function (list) {
 
