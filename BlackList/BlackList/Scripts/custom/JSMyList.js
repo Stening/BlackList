@@ -193,18 +193,18 @@ $(document).ready(function () {
             
     }
     
-    //function toggleListWordsHubCall() {
-    //    var liId = $(this).parents('li').prop('id');
-    //    CL.server.toggleListWordInHub(liId);
-    //}
+    function toggleListWordsHubCall() {
+        var liId = $(this).parents('li').prop('id');
+        CL.server.toggleListWordInHub(liId);
+    }
 
 
-    //CL.client.toggleListWords = function toggleListWords(id) {
-    //    alert(id);
-    //    $('#' + id).toggleClass('toggleClass-li-clicked');
-    //    $('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
-    //    $(this).parent().children('span').toggleClass('bock-visible');
-    //};
+    CL.client.toggleListWords = function toggleListWords(id) {
+        alert(id);
+        $('#' + id).toggleClass('toggleClass-li-clicked');
+        $('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
+        $(this).parent().children('span').toggleClass('bock-visible');
+    };
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');

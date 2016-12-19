@@ -65,7 +65,7 @@ $(document).ready(function () {
         $('.listheading-read').empty();
         $('.listheading-read').append(heading);
         $('.listheading-read').prop('id', liID);
-        //toggleNav();
+        toggleNav();
 
     });
 
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 
             for (var i = 0; i < myListItems.length; i++) {
-                renderListItem(myListItems[i].ItemName, myListItems[i].ListItem);
+                renderListItem(myListItems[i].ItemName, myListItems[i].ListItemID, myListItems[i].IsChecked);
 
 
                 //html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
@@ -142,10 +142,10 @@ $(document).ready(function () {
     });
 
 
-    CL.client.renderListItem = function (wordsInList, id) {
+    CL.client.renderListItem = function (wordsInList, id, bool) {
 
-        renderListItem(wordsInList, id);
-
+        renderListItem(wordsInList, id, bool);
+        console.log(bool +"var är boolen");
     };
 
 
@@ -162,9 +162,9 @@ $(document).ready(function () {
 
     });
 
-    var renderListItem = function (wordsInList, id) {
-
+    var renderListItem = function (wordsInList, id, bool) {
         function deleteWord() {
+
             CL.server.removeFromListCode(id);
         }
 
@@ -218,10 +218,11 @@ $(document).ready(function () {
         var text = $('<p/>')
             .addClass('word-in-p')
             .addClass('col-lg-5')
-            //.addClass(wordsInList.IsChecked)
             .text(wordsInList)
             .click(toggleListWordsHubCall)
+            //.click(toggleListWords)
             .appendTo(defaultDiv);
+            //.addClass(wordsInList.IsChecked)
 
         var trashButtonInList = $('<button />')
             .addClass('remove-button-class')
@@ -267,22 +268,31 @@ $(document).ready(function () {
         $('#textbox-list-readMode').val('');
 
 
+        if (bool == true) {
+            text.addClass('toggleClass-li-clicked');
+        }
     };
 
     function toggleListWordsHubCall() {
         var liId = $(this).parents('li').prop('id');
-        CL.server.toggleListWordInHub(liId);
+        var listId = $('.listheading-read').prop('id');
+        var listName = $(this).text();
+        
+
+        
+        CL.server.toggleListWordInHub(liId, listId, listName);
     }
 
     CL.client.toggleListWordsTrue = function (id) {
-        alert(id);
-        $('#' + id).addClass('toggleClass-li-clicked');
+
+        $('li#' + id).find('p').addClass('toggleClass-li-clicked');
         //$('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
         //$('#' + id).addClass('bock-visible');
     };
 
     CL.client.toggleListWordsFalse = function (id) {
-        $('#' + id).removeClass('toggleClass-li-clicked');
+        $('li#' + id).find('p').removeClass('toggleClass-li-clicked');
+        console.log($('li#' + id).find('p'));
     }
 
     function toggleListWords() {
