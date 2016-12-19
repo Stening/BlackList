@@ -14,7 +14,7 @@ using BlackList.Models;
 
 namespace BlackList.Controllers
 {
-   
+   [Authorize]
     public class MeController : ApiController
     {
         private ApplicationUserManager _userManager;

@@ -323,6 +323,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\Image\moon-clipart5.jpg" />
     <Content Include="Resources\Image\pexels-photo-225011.jpg" />
     <Content Include="Scripts\app\menu.js" />
     <Content Include="Scripts\bootstrap.js" />
