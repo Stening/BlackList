@@ -23,3 +23,7 @@ function toggleNav() {
 
     //$('#site-wrapper').toggleClass('show-nav');
 }
+
+//function hidemenyonclick() {
+
+//}

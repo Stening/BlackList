@@ -2,7 +2,7 @@
             On start
 ====================================*/
 $(document).ready(function () {
-    var CL = $.connection.cRUDHub;
+    var CL = $.connection.blackListHub;
     //$('#myLists').click(function () 
     //{
     //    alet('hej');
@@ -42,22 +42,35 @@ $(document).ready(function () {
     /*====================================
        Generating list item from idlist
     ====================================*/
+   function toggleNav() {
+        if ($('#site-wrapper').hasClass('show-nav')) {
+            // Do things on Nav Close
+            $('#site-wrapper').removeClass('show-nav');
+        } else {
+            // Do things on Nav Open
+            $('#site-wrapper').addClass('show-nav');
+        }
 
- 
+        //$('#site-wrapper').toggleClass('show-nav');
+    }
+   $('body').on('click', '.sidemenu-li', function () {
+       toggleNav();
+   });
 
+    /* Closing of meny with link click in LI element*/
+   $('body').on('click', '.li-in-list', function () {
+       CrudConnection.server.getListItems($(this).prop("id"));
+       var heading = $(this).children().text();
+       var liID = $(this).prop('id');
+       $('.listheading-read').empty();
+       $('.listheading-read').append(heading);
+       $('.listheading-read').prop('id', liID);
+       //toggleNav();
 
-    $('body').on('click', '.li-in-list', function () {
-        CrudConnection.server.getListItems($(this).prop("id"));
-        var heading = $(this).children().text();
-        var liID = $(this).prop('id');
-        $('.listheading-read').empty();
-        $('.listheading-read').append(heading);
-        $('.listheading-read').prop('id', liID);
-
-    })
+   });
    
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
 
     CrudConnection.client.dummy = function () { };
 
@@ -68,10 +81,9 @@ $(document).ready(function () {
         var html = "<ul>";
 
         for (var i = 0; i < myLists.length; i++) {
-            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
+            html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' class='a-in-li' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
 
-            //<a href="#" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Mina Listor</a>
-        }
+            }
         html += "</ul>";
         $("#ListMenuItem").append(html);
 
@@ -104,7 +116,7 @@ $(document).ready(function () {
         }
     }
 
-    var CrudConnection = $.connection.cRUDHub;
+    var CrudConnection = $.connection.blackListHub;
     $.connection.hub.start().done(function () {
         CrudConnection.server.getMyLists();
         
@@ -113,6 +125,12 @@ $(document).ready(function () {
         var listID = $(this).parent().parent().children("h2").prop("id");
         CrudConnection.server.removeListWithItems(listID).done(function () {
             CrudConnection.server.getMyLists();
+            $('#collapseFive').toggleClass('collapse');
+            $('#collapseFive').toggleClass('in');
+            //$('.listheading-read').toggleClass('toggleClass-div-hide');
+            //$('#secondUl').toggleClass('toggleClass-div-hide');
+
+
         })
         console.log("test" + listID);
     })
@@ -134,6 +152,7 @@ $(document).ready(function () {
 
     $('#add-to-listButton').click(function () {
         CL.server.addToListInReadMode($('#textbox-list-readMode').val(), $('.listheading-read').prop('id'));
+        $('#textbox-list-readMode').val('');
 
 
         //Knapp för att ta bort hela listan
@@ -190,18 +209,18 @@ $(document).ready(function () {
             .addClass('default-div-word')
             .appendTo(li);
 
+        var spanInList = $('<span/>')
+                .addClass('glyphicon')
+                .addClass('glyphicon-ok')
+                .addClass('bock-class-read')
+                .appendTo(defaultDiv);
+
         var text = $('<p/>')
             .addClass('word-in-p')
             .addClass('col-lg-5')
             .text(wordsInList)
             .click(toggleListWords)
-            .appendTo(defaultDiv);
-
-        var spanInList = $('<span/>')
-                .addClass('glyphicon')
-                .addClass('glyphicon-ok')
-                .addClass('bock-class')
-                .appendTo(text);
+            .appendTo(defaultDiv);        
 
         var trashButtonInList = $('<button />')
             .addClass('remove-button-class')
@@ -244,12 +263,15 @@ $(document).ready(function () {
 
 
         $('#secondUl').append(li);
+        $('#textbox-list-readMode').val('');
 
 
     }
+    
+
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
-        $(this).find('.bock-class').toggleClass('bock-visible');
+        $(this).parent().children('span').toggleClass('bock-read-visible');
     }
     function deleteWord() {
         CL.server.removeFromListCode(id);
