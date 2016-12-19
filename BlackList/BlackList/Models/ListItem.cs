@@ -14,6 +14,8 @@ namespace BlackList.Models
         [Required]
         public string ItemName { get; set; }
 
+        public bool IsChecked { get; set; }
+
         [ForeignKey("List")]
         public int ListID { get; set; }
         public virtual CheckList List { get; set; }
