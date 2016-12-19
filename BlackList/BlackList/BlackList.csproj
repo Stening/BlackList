@@ -354,7 +354,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\BlackList45 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\ChatAll.js" />
+    <Content Include="Scripts\custom\ChatAll.js" />
     <Content Include="Scripts\custom\GetAllUsers.js" />
     <Content Include="Scripts\custom\ReadingOfTheList.js" />
     <Content Include="Scripts\GravatarApi.js" />
