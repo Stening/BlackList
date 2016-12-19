@@ -34,7 +34,7 @@
         }
 
 
-    }
+    };
 
     //connect to hub
     $.connection.hub.start().done(function () {
