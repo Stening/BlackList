@@ -82,7 +82,7 @@ namespace BlackList.Hubs
 
             //_context.Database.ExecuteSqlCommand(query);
             //_context.SaveChanges();
-
+            Clients.Caller.createList(f);
 
         }
 
