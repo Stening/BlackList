@@ -1,4 +1,6 @@
-﻿@section SPAViews {
+﻿@model BlackList.Models.errorViewModel
+
+@section SPAViews {
     @Html.Partial("_Home")
 }
 @section Scripts{
@@ -9,6 +11,8 @@
 }
 
 
+
+
 @Scripts.Render("~/bundles/jquery")
 
 <input placeholder="Write A Username Here" style="margin-top:30px; margin-bottom:20px;" />
@@ -16,18 +20,16 @@
 <button class='submitFriendMailToControllen' ;>Lägg Till Vän</button>
 @*<div onclick="location.href='#';" style="cursor: pointer;">*@
 
-@ViewBag.Message
 
-
-    <script>
-        
-
+@TempData["message"]
+<script>
      var valueFromDropDown;
   
 
-           $('#cList').change(function () {
+     $('#cList').change(function () {
+         event.preventDefault();
                 valueFromDropDown = $(this).val();
-                console.log(valueFromDropDown + "hej");
+                console.log("test")
             });
            
             //    console.log("test");
@@ -45,6 +47,7 @@
 
 
            $('.submitFriendMailToControllen').click(function () {
+               event.preventDefault();
                var userName = $('#cList').val();
               // console.log(fft + "submitFriendMailToControllen");
            
@@ -62,7 +65,7 @@
                    url: '/Home/addNewFriend',
                    type: "POST",
                    contentType: "application/x-www-form-urlencoded",
-                   success: function (userName) { alert(userName); },
+                  
                    data: { userName }
                });
      
