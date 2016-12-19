@@ -169,7 +169,23 @@ namespace BlackList.Hubs
 
         public void ToggleListWordInHub(int id)
         {
-            Clients.All.toggleListWords(id);
+
+            ListItem listItem = new ListItem();
+            listItem.ListItemID = id;
+            if (listItem.IsChecked == false)
+            {
+                listItem.IsChecked = true;
+                Clients.All.toggleListWordsTrue(id);
+            }
+            else
+            {
+                listItem.IsChecked = false;
+                Clients.All.toggleListWordsFalse(id);
+            }
+
+                _context.Entry(listItem).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+
 
         }
 

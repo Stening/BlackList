@@ -257,6 +257,8 @@
     <Compile Include="Authorization\ListAuth.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="BusinessLayer\SeedHelper.cs" />
+    <Compile Include="Hubs\ShowAllUsers.cs" />
+    <Compile Include="Hubs\UserHub.cs" />
     <Compile Include="Migrations\201612081037378_Initial.cs" />
     <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
       <DependentUpon>201612081037378_Initial.cs</DependentUpon>

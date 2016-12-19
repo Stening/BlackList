@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 
             for (var i = 0; i < myListItems.length; i++) {
-                renderListItem(myListItems[i].ItemName, myListItems[i].ListItemID);
+                renderListItem(myListItems[i].ItemName, myListItems[i].ListItem);
 
 
                 //html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
@@ -218,8 +218,9 @@ $(document).ready(function () {
         var text = $('<p/>')
             .addClass('word-in-p')
             .addClass('col-lg-5')
+            //.addClass(wordsInList.IsChecked)
             .text(wordsInList)
-            .click(toggleListWords)
+            .click(toggleListWordsHubCall)
             .appendTo(defaultDiv);
 
         var trashButtonInList = $('<button />')
@@ -268,18 +269,21 @@ $(document).ready(function () {
 
     };
 
-    //function toggleListWordsHubCall() {
-    //    var liId = $(this).parents('li').prop('id');
-    //    CL.server.toggleListWordInHub(liId);
-    //}
+    function toggleListWordsHubCall() {
+        var liId = $(this).parents('li').prop('id');
+        CL.server.toggleListWordInHub(liId);
+    }
 
-    //CL.client.toggleListWords = function toggleListWords(id) {
-    //    alert(id);
-    //    $('#' + id).addClass('toggleClass-li-clicked');
-    //    //$('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
-    //    //$('#' + id).addClass('bock-visible');
-    //};
+    CL.client.toggleListWordsTrue = function (id) {
+        alert(id);
+        $('#' + id).addClass('toggleClass-li-clicked');
+        //$('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
+        //$('#' + id).addClass('bock-visible');
+    };
 
+    CL.client.toggleListWordsFalse = function (id) {
+        $('#' + id).removeClass('toggleClass-li-clicked');
+    }
 
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
