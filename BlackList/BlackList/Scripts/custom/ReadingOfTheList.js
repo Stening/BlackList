@@ -263,14 +263,17 @@ $(document).ready(function () {
             .addClass('glyphicon-floppy-saved')
             .appendTo(editButton);
 
-
+        if (bool == true) {
+            text.addClass('toggleClass-li-clicked');
+        }
+        else {
+            text.removeClass('toggleClass-li-clicked');
+        }
         $('#secondUl').append(li);
         $('#textbox-list-readMode').val('');
 
 
-        if (bool == true) {
-            text.addClass('toggleClass-li-clicked');
-        }
+        
     };
 
     function toggleListWordsHubCall() {
