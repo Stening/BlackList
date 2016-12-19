@@ -210,7 +210,13 @@ namespace BlackList.BusinessLayer
 
         }
 
-
+        public ChatRoom GetChatRoom(int listId)
+        {
+            var chatrooms = from chatroom in _context.ChatRooms
+                            where chatroom.ListID == listId
+                            select chatroom;
+            return chatrooms.First();
+        }
 
 
     }

@@ -79,9 +79,12 @@ namespace BlackList.Hubs
             _context.SaveChanges();
             //string query = "INSERT INTO UserMtoMLists(UserID,ShoppingListID,Authority) VALUES ('" + id + "', '" + val + "', '" + 1 + "')";
 
-
             //_context.Database.ExecuteSqlCommand(query);
             //_context.SaveChanges();
+
+            //ChatRoom chatroom = dbLayer.GetChatRoom(_listID);
+            //var chatroomUsers = GetRoomUsers(chatroom.ChatRoomID);
+            //Clients.Clients(chatroomUsers).createList(_listID);
             Clients.Caller.createList(_listID);
 
         }
@@ -110,7 +113,9 @@ namespace BlackList.Hubs
             int listItemID = listItem.ListItemID;
 
 
-
+            //ChatRoom chatroom = dbLayer.GetChatRoom(IDFromList);
+            //var chatroomUsers = GetRoomUsers(chatroom.ChatRoomID);
+            //Clients.Clients(chatroomUsers).addToList(wordForList, listItemID);
             Clients.All.addToList(wordForList, listItemID);
 
         }
@@ -127,7 +132,9 @@ namespace BlackList.Hubs
             int listItemID = listItem.ListItemID;
 
 
-
+            //ChatRoom chatroom = dbLayer.GetChatRoom(IDFromList);
+            //var chatroomUsers = GetRoomUsers(chatroom.ChatRoomID);
+            //Clients.Clients(chatroomUsers).renderListItem(wordForList, listItemID);
             Clients.All.renderListItem(wordForList, listItemID);
 
         }
@@ -139,7 +146,9 @@ namespace BlackList.Hubs
             var _listID = _context.ListItems.SingleOrDefault(m => m.ListItemID == IDFromList);
             _context.ListItems.Remove(_listID);
             _context.SaveChanges();
-
+            //ChatRoom chatroom = dbLayer.GetChatRoom(IDFromList);
+            //var chatroomUsers = GetRoomUsers(chatroom.ChatRoomID);
+            //Clients.Clients(chatroomUsers).deleteWordfromList(IDFromList);
             Clients.All.deleteWordfromList(IDFromList);
 
         }
@@ -166,6 +175,8 @@ namespace BlackList.Hubs
             _context.SaveChanges();
 
         }
+
+
 
         public void ToggleListWordInHub(int id)
         {
