@@ -204,7 +204,7 @@ namespace BlackList.BusinessLayer
             var messages = from message in _context.Messages.Include("Sender")
                            where message.chatRoom.ListID == listID
                            select message;
-
+            messages = messages.OrderBy(m => m.TimeStamp);
             return messages;
 
 

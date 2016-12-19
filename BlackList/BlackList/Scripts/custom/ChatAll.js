@@ -20,7 +20,7 @@ $(document).ready(function () {
             var encodedMsg = $('<div />').text(message).html();
             var encodedDate = $('<div />').text(date).html();
             // Add the message to the page by creating a list item and elements needed.
-            $("#discussion").append('<li><p id="ChatText"><img src="' + result + '" width="15px" height="15px"/><strong>' + encodedName + '</strong>(' + encodedDate + '): ' + encodedMsg + '<p/></li>');
+            $("#discussion").prepend('<li><p id="ChatText"><img src="' + result + '" width="15px" height="15px"/><strong>' + encodedName + '</strong>(' + encodedDate + '): ' + encodedMsg + '<p/></li>');
         }
     };
     
