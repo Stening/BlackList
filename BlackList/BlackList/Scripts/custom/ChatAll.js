@@ -13,7 +13,7 @@ $(document).ready(function () {
         var encodedEmail = $('<div />').text(email).html();
         var encodedName = $('<div />').text(name).html();
         var encodedMsg = $('<div />').text(message).html();
-            var encodedDate = $('<div />').text(date).html();
+        var encodedDate = $('<div />').text(date).html();
         // Add the message to the page by creating a list item and elements needed.
         $("#discussion").append('<li><p id="ChatText"><img src="' + result + '" width="15px" height="15px"/><strong>' + encodedName + '</strong>(' + encodedDate + '): ' + encodedMsg + '<p/></li>');
     };
@@ -21,12 +21,12 @@ $(document).ready(function () {
     $.connection.hub.start().done(function () {
         // Console.log() when connection is done.
         console.log("done");
-
-
-        var listID = 7;
-        
         // Function will run if user clicks on element with #sendmessage.
         $('#sendmessage').click(function () {
+
+            var listID = $('.listheading-read').prop("id");
+            console.log(listID);
+
             // Call the Send method on the hub.
             chat.server.send($('#message').val(), listID);
             // Clear text box and reset focus for next comment.
