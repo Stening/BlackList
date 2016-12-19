@@ -21,8 +21,8 @@ $(document).ready(function () {
 
     //Tar bort li elemnt från listan efter att detta görs i databasen
     CL.client.deleteWordfromList = function (deleteWordID) {
-        $('#'+deleteWordID).remove();
-
+        $('li#' + deleteWordID).remove();
+        console.log(deleteWordID)
     }
 
     
@@ -188,7 +188,7 @@ $(document).ready(function () {
                 .addClass('glyphicon-floppy-saved')
                 .appendTo(editButton);
 
-        
+            $('.list-div').append(li);
             $('#theUlList').append(li);
             $('#textbox-list').val('');
             
