@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201612181101190_removed_previousMessage.Designer.cs">
       <DependentUpon>201612181101190_removed_previousMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612191353187_added_bool_listItem.cs" />
+    <Compile Include="Migrations\201612191353187_added_bool_listItem.Designer.cs">
+      <DependentUpon>201612191353187_added_bool_listItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -451,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612181101190_removed_previousMessage.resx">
       <DependentUpon>201612181101190_removed_previousMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191353187_added_bool_listItem.resx">
+      <DependentUpon>201612191353187_added_bool_listItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
