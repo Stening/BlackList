@@ -1,11 +1,15 @@
 ﻿using BlackList.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.SignalR.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using BlackList.Hubs;
 
 namespace BlackList.Controllers
 {
@@ -14,8 +18,10 @@ namespace BlackList.Controllers
     {
         public ActionResult Index()
         {
+         
             string _currentLoggedInUser= currentLoggedInUser();
             ViewBag.EmployeeName = _currentLoggedInUser;
+            
             return View();
         }
 
@@ -65,32 +71,41 @@ namespace BlackList.Controllers
         [HttpPost]
         public ActionResult addNewFriend(string userName)
         {
+            
 
-            returnvalue(userName);
+           // string UserName = currentLoggedInUser();
 
-            string UserName = currentLoggedInUser();
-            return RedirectToAction("Index");
+            var newFriendsUserId = (from customer in _context.Users
+                                    where customer.UserName == userName
+                                    select customer.Id).SingleOrDefault();
+
+            if (newFriendsUserId == null)
+            {
+
+                TempData["Error"] = "error message";
+                Session["ComputerNumber"] = "error message";
+
+            }
+            else
+            {
+                string id = User.Identity.GetUserId<string>();
+
+                string query = "INSERT INTO dbo.Friends(UserID,FriendID) VALUES ('" + id + "', '" + newFriendsUserId + "')";
+                _context.Database.ExecuteSqlCommand(query);
+                _context.SaveChanges();
+
+            }
+
+
+            TempData["message"] = "someMessage";
+            return View("TestController/Index");
         }
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-
-        public string returnvalue(string findFriendsUserId)
-        {
+       
 
 
-            var newFriendsUserId = (from customer in _context.Users
-                           where customer.UserName == findFriendsUserId
-                           select customer.Id).SingleOrDefault();
-            
-            if (newFriendsUserId == null)
-            {
-                ViewBag.Message = TempData["shortMessage"].ToString();
-                
-            }
-           //string d= newFriendsUserId.ToString();
-         //   string UserName = currentLoggedInUser();
 
-            return newFriendsUserId.ToString();
-        }
+
     }
 }

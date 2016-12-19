@@ -257,6 +257,7 @@
     <Compile Include="Authorization\ListAuth.cs" />
     <Compile Include="BusinessLayer\BlackListDBBusinessLayer.cs" />
     <Compile Include="BusinessLayer\SeedHelper.cs" />
+    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Hubs\ShowAllUsers.cs" />
     <Compile Include="Migrations\201612081037378_Initial.cs" />
     <Compile Include="Migrations\201612081037378_Initial.Designer.cs">
@@ -294,6 +295,7 @@
     <Compile Include="Models\ChatRoom.cs" />
     <Compile Include="Models\ChatRoomUser.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\errorViewModel.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListItem.cs" />
@@ -417,9 +419,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\mockupView.cshtml" />
+    <Content Include="Views\test2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
