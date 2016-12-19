@@ -6,7 +6,8 @@
     entrypush.client.updateUserList = function (list) {
 
         var count = 0;
-
+        $('#Userlistz').remove();
+        $('#cList').remove();
 
         for (var i = 0; i <= list.length; i++) {
 

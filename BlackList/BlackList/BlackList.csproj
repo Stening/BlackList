@@ -302,6 +302,7 @@
     <Compile Include="Models\ChatRoom.cs" />
     <Compile Include="Models\ChatRoomUser.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\errorViewModel.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListItem.cs" />
@@ -427,9 +428,11 @@
     </Content>
     <Content Include="Views\Home\mockupView.cshtml" />
     <Content Include="Views\Shared\_LayoutMobile.cshtml" />
+    <Content Include="Views\test2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
