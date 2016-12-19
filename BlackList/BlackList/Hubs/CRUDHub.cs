@@ -167,23 +167,32 @@ namespace BlackList.Hubs
 
         }
 
-        public void ToggleListWordInHub(int id)
+        public void ToggleListWordInHub(int id, int listId, string listName)
         {
 
-            ListItem listItem = new ListItem();
-            listItem.ListItemID = id;
-            if (listItem.IsChecked == false)
+            //ListItem listItem = new ListItem();
+            //listItem.ListID = listId;
+            //listItem.ItemName = listName;
+            //listItem.ListItemID = id;
+            
+
+            var listitems = from listitem in _context.ListItems
+                            where listitem.ListItemID == id
+                            select listitem;
+            ListItem item = listitems.First();
+
+            if (item.IsChecked == false)
             {
-                listItem.IsChecked = true;
+                item.IsChecked = true;
                 Clients.All.toggleListWordsTrue(id);
             }
             else
             {
-                listItem.IsChecked = false;
+                item.IsChecked = false;
                 Clients.All.toggleListWordsFalse(id);
             }
 
-                _context.Entry(listItem).State = System.Data.Entity.EntityState.Modified;
+                _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 _context.SaveChanges();
 
 
