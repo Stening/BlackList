@@ -139,6 +139,7 @@ $(document).ready(function () {
 
     $('#add-to-listButton').click(function () {
         CL.server.addToListInReadMode($('#textbox-list-readMode').val(), $('.listheading-read').prop('id'));
+        $('#textbox-list-readMode').val('');
 
 
         //Knapp för att ta bort hela listan
@@ -249,9 +250,12 @@ $(document).ready(function () {
 
 
         $('#secondUl').append(li);
+        $('#textbox-list-readMode').val('');
 
 
     }
+    
+
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
         $(this).parent().children('span').toggleClass('bock-read-visible');
