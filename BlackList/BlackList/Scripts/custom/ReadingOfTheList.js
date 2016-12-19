@@ -29,20 +29,20 @@ $(document).ready(function () {
     //            .text(listArray[i])
     //            .appendTo(liInMeny)
 
-           
+
     //        $('#myLists').append(ulListInMeny); 
 
-        
+
 
     //    });
-            
+
     //   };
 
 
     /*====================================
        Generating list item from idlist
     ====================================*/
-   function toggleNav() {
+    function toggleNav() {
         if ($('#site-wrapper').hasClass('show-nav')) {
             // Do things on Nav Close
             $('#site-wrapper').removeClass('show-nav');
@@ -53,22 +53,22 @@ $(document).ready(function () {
 
         //$('#site-wrapper').toggleClass('show-nav');
     }
-   $('body').on('click', '.sidemenu-li', function () {
-       toggleNav();
-   });
+    $('body').on('click', '.sidemenu-li', function () {
+        toggleNav();
+    });
 
     /* Closing of meny with link click in LI element*/
-   $('body').on('click', '.li-in-list', function () {
-       CrudConnection.server.getListItems($(this).prop("id"));
-       var heading = $(this).children().text();
-       var liID = $(this).prop('id');
-       $('.listheading-read').empty();
-       $('.listheading-read').append(heading);
-       $('.listheading-read').prop('id', liID);
-       //toggleNav();
+    $('body').on('click', '.li-in-list', function () {
+        CrudConnection.server.getListItems($(this).prop("id"));
+        var heading = $(this).children().text();
+        var liID = $(this).prop('id');
+        $('.listheading-read').empty();
+        $('.listheading-read').append(heading);
+        $('.listheading-read').prop('id', liID);
+        //toggleNav();
 
-   });
-   
+    });
+
 
     var CrudConnection = $.connection.blackListHub;
 
@@ -83,17 +83,17 @@ $(document).ready(function () {
         for (var i = 0; i < myLists.length; i++) {
             html += "<li id='" + myLists[i].ListID + "' class='li-in-list'><a href='#'data-toggle='collapse' data-parent='#accordion' data-target='#collapseFive' class='a-in-li' aria-expanded='false' aria-controls='collapseFive'><p>" + myLists[i].Title + "</p></a></li>";
 
-            }
+        }
         html += "</ul>";
         $("#ListMenuItem").append(html);
 
         console.log(myLists);
         console.log("renderMyListstesting2");
         console.log("5");
-    }
+    };
 
 
-    
+
 
     CrudConnection.client.renderMyListItems = function (myListItems) {
         $("#secondUl").empty();
@@ -104,23 +104,23 @@ $(document).ready(function () {
         }
         else {
 
-        
-        for (var i = 0; i < myListItems.length; i++) {
-            renderListItem(myListItems[i].ItemName, myListItems[i].ListItemID);
+
+            for (var i = 0; i < myListItems.length; i++) {
+                renderListItem(myListItems[i].ItemName, myListItems[i].ListItem);
 
 
                 //html += "<li id='" + myListItems[i].ListItemID + "'><p>" + myListItems[i].ItemName + "</p></li>";
             }
-        //    html += "</ul>";
-        //    $("#MyLists").append(html);
+            //    html += "</ul>";
+            //    $("#MyLists").append(html);
         }
-    }
+    };
 
     var CrudConnection = $.connection.blackListHub;
     $.connection.hub.start().done(function () {
         CrudConnection.server.getMyLists();
-        
-    })
+
+    });
     $('body').on('click', '#remove-listItem', function () {
         var listID = $(this).parent().parent().children("h2").prop("id");
         CrudConnection.server.removeListWithItems(listID).done(function () {
@@ -131,11 +131,11 @@ $(document).ready(function () {
             //$('#secondUl').toggleClass('toggleClass-div-hide');
 
 
-        })
+        });
         console.log("test" + listID);
-    })
+    });
 
-    $("#ListMenuItem a").click(function(){
+    $("#ListMenuItem a").click(function () {
 
         console.log("menuclick registered!");
         CrudConnection.server.getMyLists();
@@ -146,12 +146,13 @@ $(document).ready(function () {
 
         renderListItem(wordsInList, id);
 
-    }
+    };
 
 
 
     $('#add-to-listButton').click(function () {
         CL.server.addToListInReadMode($('#textbox-list-readMode').val(), $('.listheading-read').prop('id'));
+        $('#textbox-list-readMode').val('');
 
 
         //Knapp för att ta bort hela listan
@@ -169,7 +170,7 @@ $(document).ready(function () {
 
         //Takes new value and updates database, toggles the divs
         function sendNewWord() {
-            var valueOftextbox = $(this).parent().children('input').val()
+            var valueOftextbox = $(this).parent().children('input').val();
             $(this).parents('li').children().children('p').text(valueOftextbox);
             $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
             $(this).parents('li').children('div:nth-child(1)').toggleClass('toggleClass-div-hide');
@@ -183,7 +184,7 @@ $(document).ready(function () {
             $(this).parents('li').children('div:nth-child(2)').toggleClass('toggleClass-div-show');
 
 
-        };
+        }
 
         //Skapar listan med ord
         //var cList = $('<ul/>')
@@ -217,9 +218,10 @@ $(document).ready(function () {
         var text = $('<p/>')
             .addClass('word-in-p')
             .addClass('col-lg-5')
+            //.addClass(wordsInList.IsChecked)
             .text(wordsInList)
-            .click(toggleListWords)
-            .appendTo(defaultDiv);        
+            .click(toggleListWordsHubCall)
+            .appendTo(defaultDiv);
 
         var trashButtonInList = $('<button />')
             .addClass('remove-button-class')
@@ -262,9 +264,27 @@ $(document).ready(function () {
 
 
         $('#secondUl').append(li);
+        $('#textbox-list-readMode').val('');
 
 
+    };
+
+    function toggleListWordsHubCall() {
+        var liId = $(this).parents('li').prop('id');
+        CL.server.toggleListWordInHub(liId);
     }
+
+    CL.client.toggleListWordsTrue = function (id) {
+        alert(id);
+        $('#' + id).addClass('toggleClass-li-clicked');
+        //$('#' + id).children('div:nth-child(1)').children('word-in-p').css('color', 'red');//toggleClass('toggleClass-li-clicked');
+        //$('#' + id).addClass('bock-visible');
+    };
+
+    CL.client.toggleListWordsFalse = function (id) {
+        $('#' + id).removeClass('toggleClass-li-clicked');
+    }
+
     function toggleListWords() {
         $(this).toggleClass('toggleClass-li-clicked');
         $(this).parent().children('span').toggleClass('bock-read-visible');
@@ -274,7 +294,7 @@ $(document).ready(function () {
     }
 
 
-})
+});
 
   
             
