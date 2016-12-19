@@ -157,6 +157,12 @@ namespace BlackList.Hubs
 
         }
 
+        public void ToggleListWordInHub(int id)
+        {
+            Clients.All.toggleListWords(id);
+
+        }
+
         public void GetMyLists()
         {
             var myMail = Context.User.Identity.Name;
