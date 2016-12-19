@@ -42,12 +42,13 @@ textarea {
 
 /* Styles for the chatbox */
 .containers {
-    background-color: #99ccff;
-    border: thick solid #808080;
-    padding: 20px;
-    margin: 20px;
-    width:400px;
-    float:left;
+    padding: 10px;
+    margin: 10px;
+}
+
+#ChatText{
+    font-weight:normal;
+    font-size:20px;
 }
 
 /* No border on panels*/
@@ -57,7 +58,6 @@ textarea {
 
 .panel-group {
     min-height: 400px;
-    background-color: aliceblue;
     margin-top: 20px;
 }
 
@@ -94,6 +94,7 @@ textarea {
 
 .banner-image {
     max-width: 1200px;
+    margin-top: 10px;
 }
 
 figure.fluidratio {
@@ -102,11 +103,8 @@ figure.fluidratio {
 
   background-image: url(../Resources/Image/pexels-photo-225011.jpg);
   background-size: cover;
-  -moz-background-size: cover;  /* Firefox 3.6 */
   background-position: center;  /* Internet Explorer 7/8 */
 }
-
-
 
 #myDiv{
     height:200px;
@@ -114,17 +112,33 @@ figure.fluidratio {
     background-color:aquamarine;
 }
 
-body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3 {
     font-family:'Annie Use Your Telescope', cursive;
     font-weight:bold;
     font-size:xx-large;
 }
 
+body, h4, h5, h6 {
+    font-family:'Annie Use Your Telescope', cursive;
+    font-weight:bold;
+    font-size: large;
+}
+
 .read-List{
     font-family:'Annie Use Your Telescope', cursive;
     border:solid;
-    margin-top:50px;
+    margin-top:20px;
     background-color:antiquewhite;
+
+    
+}
+
+.read-the-list{
+    font-family:'Annie Use Your Telescope', cursive;
+    border:solid;
+    margin-top:10px;
+    background-color:antiquewhite;
+
     
 }
 
@@ -159,8 +173,12 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display:none;
 }
 
-.remove-button-class{
+.remove-button-class, .edit-button-class{
     display:inline-block;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
 }
 
 .toggleClass-li-clicked{
@@ -185,10 +203,9 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display:inline-block;
 }
 
-
 .bock-class{
     display:none;
-    margin-left:-70px;
+    margin-left:-20px;
     font-size:x-large;
     vertical-align:top;
 }
@@ -196,28 +213,42 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .bock-visible{
     display: inline-block;
     color: green;
-    width: 30px;
+    width: 15px;
     position: relative;
+    float:left;
 }
 
+.bock-class-read{
+    display:none;
+    margin-left:-5px;
+    padding-right: 30px;
+    font-size:x-large;
+    vertical-align:top;
+}
+
+.bock-read-visible{
+    display: inline-block;
+    color: green;
+    width: 15px;
+    position: relative;
+    float:left;
+}
 
 .ul-ShoppingList{
     list-style-type: none;
-    
-
 }
 
 #secondUl {
     list-style-type:none;
+    padding: 0;
+    margin-left: 20px;
 }
 
 .li-ShoppingList{
-    
     font-family:'Annie Use Your Telescope', cursive;
     font-weight:bold;
     font-size:x-large;
     margin-top:20px;
-
 }
 
 .li-in-list{
@@ -239,4 +270,61 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-top:12px;
     margin-right:12px;
     margin-bottom:12px;
+}
+
+#discussion{
+    list-style-type:none;
+}
+
+
+#clipart-img{
+    width: 200px;
+}
+
+/*========================================
+           Mobile adaption          
+========================================*/
+/*Removed default collapse of menu on smaller screens */
+.navbar-collapse.collapse {
+  display: block!important;
+}
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+.navbar-right {
+  float: right!important;
+}
+
+/* Smaller fontsize in menu*/
+.navbar-inverse .navbar-nav > li > a {
+    color: #999999;
+    font-size: large;
+}
+
+/*aligned top navigation centering*/
+.navbar-nav {
+    margin: 7.5px -5px;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 5px !important;
+}
+
+/*Removed border whitespace on accordion*/
+.panel-group .panel + .panel {
+    margin-top: 0;
+}
+
+
+/*========================================
+           Read list styling       
+========================================*/
+.panel-body {
+    padding: 0;
+}
+
+.word-in-p {
+    display: inline;
 }

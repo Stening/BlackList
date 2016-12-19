@@ -14,10 +14,6 @@ namespace BlackList.Models
 
         public DateTime TimeStamp{ get; set; }
 
-        [ForeignKey("PreviousMessage")]
-        public int PreviousMessageID { get; set; }
-        public Message PreviousMessage { get; set; }
-
         [ForeignKey("Sender")]
         public string SenderUserID { get; set; }
         public ApplicationUser Sender { get; set; }
@@ -26,6 +22,7 @@ namespace BlackList.Models
         public int ChatRoomID { get; set; }
         public ChatRoom chatRoom { get; set; }
 
-
+        [Required]
+        public string ChatMessage { get; set; }
     }
 }

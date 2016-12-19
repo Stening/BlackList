@@ -6,28 +6,72 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using UserName.Extensions;
+using BlackList.Hubs;
+using BlackList.BusinessLayer;
 
-namespace BlackList
+
+namespace BlackList.Hubs
 {
-    public class ChatHub : Hub
+    public partial class BlackListHub : Hub
     {
+        //private BlackListDbBusinessLayer dbLayer = new BlackListDbBusinessLayer();
         private readonly ApplicationDbContext adb = new ApplicationDbContext();
         // Authorize the method, user logged in will only be able to use this feature.
         // The method will be called from the ChatAll.js file, containing 3 string variables.
         [Authorize]
-        public void Send(string message)
+        public void Send(string message, int listID)
         {
             // Creating a string variable and storing the users Name from the database.
             string name = Context.User.Identity.GetName();
 
             // Creating a string variable and storing the users email from the database.
             string email = Context.User.Identity.GetUserName();
+            
+            // Creating a datetime variable and storing the date & time in it.
+            DateTime date = DateTime.Now;
+            Context.User.Identity.GetUserId();
+            // Creating an instance of the Message object, using it's variables to gather data from database
+            Message msg = new Message();
+            msg.TimeStamp = date;
+            msg.SenderUserID = Context.User.Identity.GetUserId();
+            msg.ChatRoomID = adb.ChatRooms.Where(p => p.ListID == listID).First().ChatRoomID;
+            msg.ChatMessage = message;
 
+            // Add data to the table.
+            adb.Messages.Add(msg);
+            // Save the changes.
+            adb.SaveChanges();
+
+            var ActiveChatRoomUsers = GetRoomUsers(msg.ChatRoomID);
+            var test = Context.ConnectionId;
+            //ActiveChatRoomUsers.Add(Context.ConnectionId);
             // Sends this method back to the function in ChatAll.js that creates <li>name : message</li>.
             // For each message sent.
             // Name is the name the string variable get from the database. Name of the user logged in.
-            // Message the the message use typed in the textbox in the view.
-            Clients.All.broadcastMessage(email, name, message);
+            // Message the the message use typed in the textbox in the view. email, name, message, date, listID
+            //Clients.Caller.broadcastMessage(email, name, message, listID);
+            Clients.Clients(ActiveChatRoomUsers).broadcastMessage(email, name, message, date, listID);
+            //Clients.All.broadcastMessage(email, name, message);
+            
         }
+
+        public void GetMessages(int listID)
+        {
+            var messages = dbLayer.getMyMessages(listID).ToArray();
+            if (messages.Length > 0)
+            {
+                Clients.Caller.RenderMessages(messages, listID);
+
+
+            }
+
+
+        }
+
+
+
+
+
+
     }
 }
